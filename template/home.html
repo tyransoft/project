@@ -43,14 +43,29 @@
             background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLjHyjoQOGPFpdCXaaLmhrdj40j_M2gx565zO6BmUsHsbBBqBNBgM71bHwSehl9DQsSjC98DvT9JoEYML1tWDDFVjz_aUQrybGol0hRV0W19kYRBNthLeAa1SBXrZp3Pyg76mSHWG249I0-kh-rRRVqVthHqJ-l1hwSvFrTP9afj7nHTPjFzXGV2f4nC30tPTlYrf_zDwcZ3wRj12CBvX11C8AiJOVZ0KOBykGfdKARQE_JX4N3y62');
         }
 
-        .logo-large {
-            height: 64px !important;
-            width: auto !important;
+        .logo-container {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #fed488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #ffffff;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         @media (max-width: 640px) {
-            .logo-large {
-                height: 48px !important;
+            .logo-container {
+                width: 44px;
+                height: 44px;
             }
         }
 
@@ -68,19 +83,89 @@
         .nav-bar .material-symbols-outlined {
             color: #ffffff !important;
         }
-        .nav-bar .bg-primary {
+
+        /* تنسيق زر الواتساب في الناف بار */
+        .nav-whatsapp-btn {
             background: #ffffff !important;
+            color: #775a19 !important;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        .nav-bar .text-on-primary {
+
+        .nav-whatsapp-btn:hover {
+            background: #fed488 !important;
+            color: #775a19 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-whatsapp-btn .material-symbols-outlined {
+            color: #775a19 !important;
+            font-size: 18px !important;
+        }
+
+        .nav-whatsapp-btn:hover .material-symbols-outlined {
             color: #775a19 !important;
         }
 
-        /* تحسينات الفوتر */
-        .footer-map iframe {
-            width: 100%;
-            height: 200px;
-            border: 0;
-            border-radius: 8px;
+        /* تنسيق أيقونة المستخدم */
+        .user-icon-container {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .user-icon-container:hover {
+            background: #fed488;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .user-icon-container .material-symbols-outlined {
+            color: #775a19 !important;
+            font-size: 20px !important;
+        }
+
+        .user-icon-container:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        /* تنسيق اسم الشركة */
+        .brand-name {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            color: #fed488;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 640px) {
+            .brand-name {
+                font-size: 18px;
+            }
+            .brand-subtitle {
+                font-size: 9px;
+            }
         }
 
         @media (max-width: 1279px) {
@@ -125,11 +210,13 @@
         <div class="h-20 max-w-7xl mx-auto px-structural flex items-center justify-between gap-spacious">
             <div class="flex items-center gap-spacious">
                 <a class="flex items-center gap-element" data-path="home" href="{% url 'home' %}">
-                    <!-- اللوقو مكبر -->
-                    <img alt="Bayti Architectural Logo" class="logo-large object-contain" src="{% static 'logo.jpeg' %}"/>
+                    <!-- دائرة اللوقو -->
+                    <div class="logo-container">
+                        <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
+                    </div>
                     <div class="flex flex-col text-right">
-                        <span class="font-headline-sm text-headline-sm text-white leading-tight">بيتي</span>
-                        <span class="font-label-sm text-label-sm text-[#fed488] uppercase tracking-widest">للابواب والاكسسوار - ليبيا</span>
+                        <span class="brand-name">بيتي</span>
+                        <span class="brand-subtitle">للابواب والاكسسوار - ليبيا</span>
                     </div>
                 </a>
                 <nav class="hidden xl:flex items-center gap-spacious">
@@ -138,15 +225,17 @@
                 </nav>
             </div>
             <div class="flex items-center gap-element">
-                <a class="hidden sm:inline-flex items-center gap-compact px-spacious py-element bg-white text-[#775a19] hover:bg-[#fed488] hover:text-[#775a19] transition-colors shadow-[0_1px_3px_rgba(18,19,22,0.15)]" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank">
-                    <span class="material-symbols-outlined text-[18px] text-[#775a19]">chat</span>
-                    <span class="font-label-md text-label-md whitespace-nowrap">استفسار عبر واتساب</span>
+                <!-- زر واتساب محسن -->
+                <a class="nav-whatsapp-btn" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank">
+                    <span class="material-symbols-outlined">chat</span>
+                    <span class="whitespace-nowrap">استفسار عبر واتساب</span>
                 </a>
-                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                <!-- أيقونة المستخدم محسنة -->
+                <div class="user-icon-container">
                     {% if not user.is_authenticated %}
-                   <a href="{% url 'user_login' %}"><span class="material-symbols-outlined text-[#775a19] text-[18px]">person</span></a>
+                    <a href="{% url 'user_login' %}"><span class="material-symbols-outlined">person</span></a>
                     {% else %}
-                    <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined text-[#775a19] text-[18px]">person</span></a>
+                    <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined">person</span></a>
                     {% endif %}
                 </div>
                 <button aria-label="القائمة الرئيسية" class="xl:hidden p-element text-white hover:text-[#fed488]" type="button">
@@ -174,7 +263,6 @@
 شركة بيتي للأبواب الجاهزة والإكسسوارات  في بنغازي، ليبيا، توفر تشكيلة واسعة من الأبواب الداخلية والخارجية، الأبواب المصفحة والمخفية، والأبواب التركية بتصاميم عصرية وخامات عالية الجودة.
                         </p>
                         <div class="flex flex-wrap items-center gap-spacious pt-element">
-                            <!-- زر بنفس لون الواتساب -->
                             <a class="h-[52px] px-monumental bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300 inline-flex items-center justify-center font-label-md text-label-md tracking-wider" href="#catalog-section">
                                 استكشف معرضنا
                                 <span class="material-symbols-outlined mr-compact text-[20px]">arrow_downward</span>
@@ -276,7 +364,6 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-compact overflow-x-auto pb-compact pt-micro scrollbar-none" id="category-filter-bar">
-                        <!-- زر جميع المعروضات بنفس لون الواتساب -->
                         <button class="category-pill active whitespace-nowrap px-spacious py-compact font-label-md text-label-md h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors rounded-full" 
                                 onclick="setCategory('all', this)" 
                                 data-url="{% url 'home' %}#catalog-section">
@@ -351,7 +438,6 @@
                     </div>
                     <p class="font-body-sm text-body-sm text-on-tertiary-container leading-relaxed max-w-sm">شركة بيتي للأبواب الجاهزة والإكسسوارات  - وجهتكم الأولى لاقتناء أفخم الأبواب الداخلية والخارجية والأنظمة  المتكاملة.</p>
                     
-                    <!-- خريطة قوقل ماب -->
                     <div class="footer-map">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.0!2d20.0833!3d32.1167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDA3JzAwLjAiTiAyMMKwMDUnMDAuMCJF!5e0!3m2!1sar!2sly!4v1650000000000" 
@@ -380,7 +466,6 @@
                                 <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
                             </div>
                         </div>
-                        <!-- رقم الهاتف مع رابط للاتصال -->
                         <div class="flex items-center gap-compact">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
                             <a href="tel:+218947710070" class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors" dir="ltr">+218 94 771 00 70</a>
