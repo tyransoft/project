@@ -21,7 +21,7 @@ class Category(models.Model):
         return self.name
     def save(self, *args, **kwargs):
 
-        if not self.slug:
+        if not self.slug or self.slug == '':
             self.slug = slugify(self.name)
             
             original_slug = self.slug
@@ -83,7 +83,7 @@ class Product(models.Model):
         if not self.code:
             self.code = self.generate_code()
     
-        if not self.slug:
+        if not self.slug or self.slug == '':
             self.slug = slugify(self.name)
             
             original_slug = self.slug
