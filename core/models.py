@@ -20,16 +20,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     def save(self, *args, **kwargs):
+     if not self.slug:
+        self.slug = slugify(self.name, allow_unicode=True)
 
-        if not self.slug or self.slug == '':
-            self.slug = slugify(self.name)
-            
-            original_slug = self.slug
-            counter = 1
-            while Category.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
-                self.slug = f"{original_slug}-{counter}"
-                counter += 1
-        super().save(*args, **kwargs)
+        original_slug = self.slug
+        counter = 1
+
+        while Category.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
+            self.slug = f"{original_slug}-{counter}"
+            counter += 1
+
+     super().save(*args, **kwargs)
     
     def get_absolute_url(self):
         return reverse('products_by_category', args=[self.slug])
@@ -80,18 +81,20 @@ class Product(models.Model):
                 return code
 
     def save(self, *args, **kwargs):
-        if not self.code:
-            self.code = self.generate_code()
-    
-        if not self.slug or self.slug == '':
-            self.slug = slugify(self.name)
-            
-            original_slug = self.slug
-            counter = 1
-            while Product.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
-                self.slug = f"{original_slug}-{counter}"
-                counter += 1
-        super().save(*args, **kwargs)   
+     if not self.code:
+        self.code = self.generate_code()
+
+     if not self.slug:
+        self.slug = slugify(self.name, allow_unicode=True)
+
+        original_slug = self.slug
+        counter = 1
+
+        while Product.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
+            self.slug = f"{original_slug}-{counter}"
+            counter += 1
+
+     super().save(*args, **kwargs) 
     
     def get_absolute_url(self):
         return reverse('product_detail', args=[self.slug])
