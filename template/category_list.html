@@ -1,50 +1,113 @@
+<!-- admin/category_list.html -->
 {% extends 'base_admin.html' %}
 {% load static %}
 
 {% block title %}إدارة الفئات{% endblock %}
+{% block page_title %}إدارة الفئات{% endblock %}
 
 {% block content %}
-<div class="w-full py-8">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex items-center justify-between mb-6">
-            <h1 class="font-headline-lg text-headline-lg text-on-surface">إدارة الفئات</h1>
-            <a href="{% url 'category_add' %}" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/80 transition-colors">
-                <span class="material-symbols-outlined text-[20px]">add</span>
+<div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-[28px] text-secondary">category</span>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface">إدارة الفئات</h1>
+    </div>
+    <a href="{% url 'category_add' %}" class="btn-primary">
+        <span class="material-symbols-outlined text-[20px]">add</span>
+        إضافة فئة
+    </a>
+</div>
+
+<!-- Desktop Table -->
+<div class="table-container hidden md:block">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>اسم الفئة</th>
+                <th>عدد المنتجات</th>
+                <th>تاريخ الإضافة</th>
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td class="font-medium">{{ category.name }}</td>
+                <td>
+                    <span class="badge badge-info">{{ category.product_count }}</span>
+                </td>
+                <td>{{ category.created_at|date:"Y-m-d" }}</td>
+                <td>
+                    <div class="flex items-center gap-2">
+                        <a href="{% url 'category_edit' category.id %}" class="btn-warning">
+                            <span class="material-symbols-outlined text-[16px]">edit</span>
+                            تعديل
+                        </a>
+                        <a href="{% url 'category_delete' category.id %}" class="btn-danger">
+                            <span class="material-symbols-outlined text-[16px]">delete</span>
+                            حذف
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">
+                    <div class="empty-state">
+                        <span class="material-symbols-outlined">category</span>
+                        <h3>لا توجد فئات</h3>
+                        <p>أضف فئة جديدة للبدء في إضافة المنتجات</p>
+                        <a href="{% url 'category_add' %}" class="btn-primary mt-4 inline-flex">
+                            <span class="material-symbols-outlined">add</span>
+                            إضافة فئة
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Mobile Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+    {% for category in categories %}
+    <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-all">
+        <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[24px] text-secondary">category</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">{{ category.name }}</h3>
+            </div>
+            <span class="badge badge-info">{{ category.product_count }} منتج</span>
+        </div>
+        <div class="text-sm text-on-surface-variant mb-3">
+            <span class="material-symbols-outlined text-[16px] align-middle">calendar_today</span>
+            {{ category.created_at|date:"Y-m-d" }}
+        </div>
+        <div class="flex items-center gap-2 pt-3 border-t border-gray-100">
+            <a href="{% url 'category_edit' category.id %}" class="btn-warning flex-1 justify-center">
+                <span class="material-symbols-outlined text-[16px]">edit</span>
+                تعديل
+            </a>
+            <a href="{% url 'category_delete' category.id %}" class="btn-danger flex-1 justify-center">
+                <span class="material-symbols-outlined text-[16px]">delete</span>
+                حذف
+            </a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-span-2">
+        <div class="empty-state">
+            <span class="material-symbols-outlined">category</span>
+            <h3>لا توجد فئات</h3>
+            <p>أضف فئة جديدة للبدء</p>
+            <a href="{% url 'category_add' %}" class="btn-primary mt-4 inline-flex">
+                <span class="material-symbols-outlined">add</span>
                 إضافة فئة
             </a>
         </div>
-
-        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <table class="w-full text-right">
-                <thead>
-                    <tr class="border-b border-gray-200">
-                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">#</th>
-                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">اسم الفئة</th>
-                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">عدد المنتجات</th>
-                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">تاريخ الإضافة</th>
-                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for category in categories %}
-                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                        <td class="p-4">{{ forloop.counter }}</td>
-                        <td class="p-4 font-body-md text-body-md text-on-surface">{{ category.name }}</td>
-                        <td class="p-4">{{ category.product_count }}</td>
-                        <td class="p-4">{{ category.created_at|date:"Y-m-d" }}</td>
-                        <td class="p-4">
-                            <div class="flex items-center gap-2">
-                                <a href="{% url 'category_edit' category.id %}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">تعديل</a>
-                                <a href="{% url 'category_delete' category.id %}" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition-colors">حذف</a>
-                            </div>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr><td colspan="5" class="p-8 text-center text-on-surface-variant">لا توجد فئات</td></tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}
