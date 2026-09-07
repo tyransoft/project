@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="utf-8"/>
@@ -13,9 +14,11 @@
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
     <meta name="robots" content="index, follow"/>
     
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/>
     
+    <!-- Tailwind CSS with config -->
     <script>
     tailwind.config = {
         darkMode: "class",
@@ -316,10 +319,7 @@
         .footer-text { color: #89837a; }
         .footer-heading { color: #fbf9f6; }
 
-        /* ================================
-           Responsive Fixes
-        ================================ */
-
+        /* Responsive Fixes */
         header { width: 100%; }
         header > div:first-child { width: 100%; }
 
