@@ -87,7 +87,7 @@
                 </a>
                 <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                     {% if not user.is_authenticated %}
-                   <a href="{% url 'login' %}"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a>
+                   <a href="{% url 'user_login' %}"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a>
                     {% else %}
                     <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a>
 

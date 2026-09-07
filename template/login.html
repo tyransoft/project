@@ -4,56 +4,288 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تسجيل الدخول  </title>
+  <title>تسجيل الدخول - شركة بيتي للأبواب</title>
+  <link href="https://fonts.googleapis.com/css2?family=ibmPlexSans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
   <style>
-    body { background: linear-gradient(135deg, #1A2035 0%, #2D3748 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-    .login-container { width: 100%; max-width: 420px; padding: 20px; }
-    .login-card { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-    .login-logo { text-align: center; margin-bottom: 28px; }
-    .login-logo .logo-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #b98709, #c8a920); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 12px; }
-    .login-logo h2 { font-size: 20px; font-weight: 800; color: #1A202C; margin: 0; }
-    .login-logo p { color: #718096; font-size: 13px; margin-top: 4px; }
-    .login-title { font-size: 22px; font-weight: 800; color: #1A202C; margin-bottom: 6px; }
-    .login-subtitle { color: #718096; font-size: 13px; margin-bottom: 28px; }
-    .login-btn { width: 100%; padding: 12px; font-size: 15px; font-weight: 700; background: linear-gradient(135deg, #b98709, #C85E20); border: none; border-radius: 10px; color: white; cursor: pointer; font-family: Tajawal, sans-serif; transition: all 0.2s; margin-top: 4px; }
-    .login-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(232,121,58,0.4); }
-    .login-footer { text-align: center; margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 12px; }
-    .decor-circles { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden; }
-    .decor-circle { position: absolute; border-radius: 50%; background: rgba(232,121,58,0.08); }
-    .c1 { width: 300px; height: 300px; top: -100px; right: -80px; }
-    .c2 { width: 200px; height: 200px; bottom: -60px; left: -60px; }
-    .c3 { width: 150px; height: 150px; bottom: 100px; right: 10%; background: rgba(255,255,255,0.03); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'ibmPlexSans', sans-serif;
+      background: linear-gradient(135deg, #1a1b21 0%, #2d2d2d 100%); 
+      min-height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* خلفية زخرفية */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 215, 0, 0.06);
+    }
+    .bg-circle-1 { width: 400px; height: 400px; top: -150px; right: -100px; }
+    .bg-circle-2 { width: 300px; height: 300px; bottom: -100px; left: -100px; }
+    .bg-circle-3 { width: 200px; height: 200px; bottom: 80px; right: 10%; background: rgba(255, 215, 0, 0.04); }
+    .bg-circle-4 { width: 100px; height: 100px; top: 30%; left: 5%; background: rgba(255, 215, 0, 0.03); }
+    
+    /* حاوية تسجيل الدخول */
+    .login-container { 
+      width: 100%; 
+      max-width: 440px; 
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .login-card { 
+      background: #ffffff; 
+      border-radius: 20px; 
+      padding: 40px 36px; 
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    
+    /* الشعار */
+    .login-logo { 
+      text-align: center; 
+      margin-bottom: 32px; 
+    }
+    .login-logo .logo-icon { 
+      width: 72px; 
+      height: 72px; 
+      background: linear-gradient(135deg, #b98709, #c8a920); 
+      border-radius: 18px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 32px; 
+      margin: 0 auto 12px;
+      color: #fff;
+      font-weight: 700;
+    }
+    .login-logo h2 { 
+      font-size: 22px; 
+      font-weight: 700; 
+      color: #1A202C; 
+      margin: 0; 
+    }
+    .login-logo p { 
+      color: #718096; 
+      font-size: 13px; 
+      margin-top: 4px; 
+      font-weight: 400;
+    }
+    
+    /* النموذج */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1A202C;
+      margin-bottom: 6px;
+      text-align: right;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-family: 'ibmPlexSans', sans-serif;
+      border: 2px solid #E2E8F0;
+      border-radius: 10px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #F7FAFC;
+      color: #1A202C;
+      text-align: right;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: #b98709;
+      box-shadow: 0 0 0 4px rgba(185, 135, 9, 0.12);
+      background: #ffffff;
+    }
+    .form-control::placeholder {
+      color: #A0AEC0;
+      font-size: 13px;
+    }
+    
+    /* زر تسجيل الدخول */
+    .login-btn { 
+      width: 100%; 
+      padding: 14px; 
+      font-size: 16px; 
+      font-weight: 700; 
+      font-family: 'ibmPlexSans', sans-serif;
+      background: linear-gradient(135deg, #b98709, #c8a920); 
+      border: none; 
+      border-radius: 10px; 
+      color: white; 
+      cursor: pointer; 
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .login-btn:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 24px rgba(185, 135, 9, 0.35);
+    }
+    .login-btn:active {
+      transform: translateY(0);
+    }
+    .login-btn .material-symbols-outlined {
+      font-size: 20px;
+    }
+    
+    /* الرسائل */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .alert-danger {
+      background: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FECACA;
+    }
+    .alert-success {
+      background: #D1FAE5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+    .alert .material-symbols-outlined {
+      font-size: 20px;
+    }
+    
+    /* الرابط السفلي */
+    .login-footer { 
+      text-align: center; 
+      margin-top: 24px; 
+      color: rgba(255,255,255,0.4); 
+      font-size: 12px; 
+      position: relative;
+      z-index: 1;
+    }
+    .login-footer a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .login-footer a:hover {
+      color: #fff;
+    }
+    
+    /* تذييل البطاقة */
+    .card-footer {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #E2E8F0;
+    }
+    .card-footer p {
+      font-size: 12px;
+      color: #A0AEC0;
+    }
+    .card-footer .brand {
+      color: #b98709;
+      font-weight: 600;
+    }
+    
+    /* استجابة */
+    @media (max-width: 480px) {
+      .login-card { padding: 28px 20px; }
+      .login-logo .logo-icon { width: 60px; height: 60px; font-size: 26px; }
+      .login-logo h2 { font-size: 19px; }
+      .login-title { font-size: 19px; }
+    }
   </style>
 </head>
 <body>
-<div class="decor-circles">
-  <div class="decor-circle c1"></div>
-  <div class="decor-circle c2"></div>
-  <div class="decor-circle c3"></div>
-</div>
-<div class="login-container">
-  <div class="login-card">
-    
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-danger" style="margin-bottom:16px;"> {{ message }}</div>
-    {% endfor %}
-    {% endif %}
 
-    <form method="post">
-      {% csrf_token %}
-      <div class="form-group">
-        <label class="form-label">اسم المستخدم</label>
-        <input type="text" name="username" class="form-control" placeholder="أدخل اسم المستخدم" autofocus required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">كلمة المرور</label>
-        <input type="password" name="password" class="form-control" placeholder="أدخل كلمة المرور" required>
-      </div>
-      <button type="submit" class="login-btn"> تسجيل الدخول</button>
-    </form>
+  <!-- خلفية زخرفية -->
+  <div class="bg-pattern">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    <div class="bg-circle bg-circle-4"></div>
   </div>
-  
-</div>
+
+  <div class="login-container">
+    <div class="login-card">
+      
+      <!-- الشعار -->
+      <div class="login-logo">
+        <div class="logo-icon">
+          <span class="material-symbols-outlined">door_front</span>
+        </div>
+        <h2>شركة بيتي</h2>
+        <p>للأبواب الجاهزة والإكسسوارات المعمارية</p>
+      </div>
+
+      <!-- رسائل التنبيه -->
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'error' %}alert-danger{% elif message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+          <span class="material-symbols-outlined">
+            {% if message.tags == 'error' %}error{% elif message.tags == 'success' %}check_circle{% else %}info{% endif %}
+          </span>
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- نموذج تسجيل الدخول -->
+      <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+          <label class="form-label">اسم المستخدم</label>
+          <input type="text" name="username" class="form-control" placeholder="أدخل اسم المستخدم" autofocus required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">كلمة المرور</label>
+          <input type="password" name="password" class="form-control" placeholder="أدخل كلمة المرور" required>
+        </div>
+        
+        <button type="submit" class="login-btn">
+          <span class="material-symbols-outlined">login</span>
+          تسجيل الدخول
+        </button>
+      </form>
+
+      <!-- تذييل البطاقة -->
+      <div class="card-footer">
+        <p>© 2026 <span class="brand">شركة بيتي</span> - جميع الحقوق محفوظة</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="login-footer">
+    <a href="{% url 'home' %}">العودة إلى الموقع الرئيسي</a>
+  </div>
+
 </body>
 </html>
