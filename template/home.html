@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=ibmPlexSans:wght@100..900&display=swap" rel="stylesheet"/>
@@ -23,7 +23,7 @@
         }
 
         .category-pill.active {
-            background: #000000 !important;
+            background: #775a19 !important;
             color: #ffffff !important;
         }
 
@@ -42,25 +42,64 @@
         .hero-image {
             background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLjHyjoQOGPFpdCXaaLmhrdj40j_M2gx565zO6BmUsHsbBBqBNBgM71bHwSehl9DQsSjC98DvT9JoEYML1tWDDFVjz_aUQrybGol0hRV0W19kYRBNthLeAa1SBXrZp3Pyg76mSHWG249I0-kh-rRRVqVthHqJ-l1hwSvFrTP9afj7nHTPjFzXGV2f4nC30tPTlYrf_zDwcZ3wRj12CBvX11C8AiJOVZ0KOBykGfdKARQE_JX4N3y62');
         }
+
+        .logo-large {
+            height: 64px !important;
+            width: auto !important;
+        }
+
+        @media (max-width: 640px) {
+            .logo-large {
+                height: 48px !important;
+            }
+        }
+
+        /* تحسين الناف بار */
+        .nav-bar {
+            background: #775a19 !important;
+            color: #ffffff !important;
+        }
+        .nav-bar a {
+            color: #ffffff !important;
+        }
+        .nav-bar a:hover {
+            color: #fed488 !important;
+        }
+        .nav-bar .material-symbols-outlined {
+            color: #ffffff !important;
+        }
+        .nav-bar .bg-primary {
+            background: #ffffff !important;
+        }
+        .nav-bar .text-on-primary {
+            color: #775a19 !important;
+        }
+
+        /* تحسينات الفوتر */
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1279px) {
+            nav.hidden.xl\\:flex {
+                display: none !important;
+            }
+            nav.hidden.xl\\:flex.mobile-open {
+                display: flex !important;
+            }
+        }
+        @media (min-width: 1280px) {
+            nav.hidden.xl\\:flex {
+                display: flex !important;
+            }
+            nav.hidden.xl\\:flex.mobile-open {
+                display: flex !important;
+            }
+        }
     </style>
-    <style>
-    @media (max-width: 1279px) {
-        nav.hidden.xl\\:flex {
-            display: none !important;
-        }
-        nav.hidden.xl\\:flex.mobile-open {
-            display: flex !important;
-        }
-    }
-    @media (min-width: 1280px) {
-        nav.hidden.xl\\:flex {
-            display: flex !important;
-        }
-        nav.hidden.xl\\:flex.mobile-open {
-            display: flex !important;
-        }
-    }
-</style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -81,37 +120,36 @@
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
 
-    <header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-        
+    <!-- header مع لون الناف بار الجديد -->
+    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
         <div class="h-20 max-w-7xl mx-auto px-structural flex items-center justify-between gap-spacious">
             <div class="flex items-center gap-spacious">
                 <a class="flex items-center gap-element" data-path="home" href="{% url 'home' %}">
-                    <img alt="Bayti Architectural Logo" class="h-8 w-auto object-contain" src="{% static 'logo.jpeg' %}"/>
+                    <!-- اللوقو مكبر -->
+                    <img alt="Bayti Architectural Logo" class="logo-large object-contain" src="{% static 'logo.jpeg' %}"/>
                     <div class="flex flex-col text-right">
-                        <span class="font-headline-sm text-headline-sm text-on-surface leading-tight">بيتي</span>
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">للابواب والاكسسوار - ليبيا</span>
+                        <span class="font-headline-sm text-headline-sm text-white leading-tight">بيتي</span>
+                        <span class="font-label-sm text-label-sm text-[#fed488] uppercase tracking-widest">للابواب والاكسسوار - ليبيا</span>
                     </div>
                 </a>
                 <nav class="hidden xl:flex items-center gap-spacious">
-                    <a aria-current="page" class="transition-colors py-micro text-primary font-bold" data-path="home" href="{% url 'home' %}">الرئيسية</a>
-                    <a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors py-micro" data-path="about-us" href="{% url 'about' %}">من نحن</a>
+                    <a aria-current="page" class="transition-colors py-micro text-white font-bold" data-path="home" href="{% url 'home' %}">الرئيسية</a>
+                    <a class="font-label-md text-label-md text-white hover:text-[#fed488] transition-colors py-micro" data-path="about-us" href="{% url 'about' %}">من نحن</a>
                 </nav>
             </div>
             <div class="flex items-center gap-element">
-                
-                <a class="hidden sm:inline-flex items-center gap-compact px-spacious py-element bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-[0_1px_3px_rgba(18,19,22,0.04)]" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank">
-                    <span class="material-symbols-outlined text-[18px] text-secondary-fixed">chat</span>
+                <a class="hidden sm:inline-flex items-center gap-compact px-spacious py-element bg-white text-[#775a19] hover:bg-[#fed488] hover:text-[#775a19] transition-colors shadow-[0_1px_3px_rgba(18,19,22,0.15)]" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank">
+                    <span class="material-symbols-outlined text-[18px] text-[#775a19]">chat</span>
                     <span class="font-label-md text-label-md whitespace-nowrap">استفسار عبر واتساب</span>
                 </a>
-                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center">
                     {% if not user.is_authenticated %}
-                   <a href="{% url 'user_login' %}"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a>
+                   <a href="{% url 'user_login' %}"><span class="material-symbols-outlined text-[#775a19] text-[18px]">person</span></a>
                     {% else %}
-                    <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></a>
-
+                    <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined text-[#775a19] text-[18px]">person</span></a>
                     {% endif %}
                 </div>
-                <button aria-label="القائمة الرئيسية" class="xl:hidden p-element text-on-surface-variant hover:text-on-surface" type="button">
+                <button aria-label="القائمة الرئيسية" class="xl:hidden p-element text-white hover:text-[#fed488]" type="button">
                     <span class="material-symbols-outlined text-[24px]">menu</span>
                 </button>
             </div>
@@ -127,7 +165,6 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-transparent"></div>
                 <div class="relative z-10 w-full max-w-7xl mx-auto px-structural pt-40 pb-monumental flex flex-col justify-end">
                     <div class="max-w-3xl space-y-spacious text-right">
-                        
                         <h1 class="font-display-xl text-display-xl text-surface-bright leading-tight drop-shadow-sm font-light">
                               أناقة بيتك تبدأ<br/>
                             <span class="font-medium text-secondary-fixed">من بابه</span>
@@ -137,6 +174,7 @@
 شركة بيتي للأبواب الجاهزة والإكسسوارات  في بنغازي، ليبيا، توفر تشكيلة واسعة من الأبواب الداخلية والخارجية، الأبواب المصفحة والمخفية، والأبواب التركية بتصاميم عصرية وخامات عالية الجودة.
                         </p>
                         <div class="flex flex-wrap items-center gap-spacious pt-element">
+                            <!-- زر بنفس لون الواتساب -->
                             <a class="h-[52px] px-monumental bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300 inline-flex items-center justify-center font-label-md text-label-md tracking-wider" href="#catalog-section">
                                 استكشف معرضنا
                                 <span class="material-symbols-outlined mr-compact text-[20px]">arrow_downward</span>
@@ -238,24 +276,23 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-compact overflow-x-auto pb-compact pt-micro scrollbar-none" id="category-filter-bar">
-                       <button class="category-pill active whitespace-nowrap px-spacious py-compact font-label-md text-label-md bg-primary text-on-primary transition-colors" 
-        onclick="setCategory('all', this)" 
-        data-url="{% url 'home' %}#catalog-section">
-    جميع المعروضات
-</button>
-
-{% for category in categories %}
-<button class="category-pill whitespace-nowrap px-spacious py-compact font-label-md text-label-md bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors" 
-        onclick="setCategory('{{ category.slug }}', this)" 
-        data-url="{% url 'products_by_category' slug=category.slug %}">
-    {{ category.name }}
-</button>
-{% endfor %}
+                        <!-- زر جميع المعروضات بنفس لون الواتساب -->
+                        <button class="category-pill active whitespace-nowrap px-spacious py-compact font-label-md text-label-md h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors rounded-full" 
+                                onclick="setCategory('all', this)" 
+                                data-url="{% url 'home' %}#catalog-section">
+                            جميع المعروضات
+                        </button>
+                        {% for category in categories %}
+                        <button class="category-pill whitespace-nowrap px-spacious py-compact font-label-md text-label-md bg-surface-container-high text-on-surface hover:bg-secondary hover:text-on-secondary transition-colors" 
+                                onclick="setCategory('{{ category.slug }}', this)" 
+                                data-url="{% url 'products_by_category' slug=category.slug %}">
+                            {{ category.name }}
+                        </button>
+                        {% endfor %}
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-spacious pt-spacious" id="products-grid">
                        
                         {% for product in products %}
-
                         <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl" data-category="smart" data-code="BY-LK550" data-title="{{ product.name }}">
                             <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                                 <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ product.name }}" src="{{ product.image1.url }}"/>
@@ -288,21 +325,17 @@
                 </div>
             </section>
 
-          
-
-         
-
         </div>
     </main>
 
     <div class="fixed bottom-monumental left-monumental z-40">
-        <a class="group relative inline-flex items-center gap-element px-spacious py-element bg-primary-container text-on-primary rounded-full shadow-[0_12px_32px_-4px_rgba(22,24,29,0.18)] hover:bg-primary transition-all duration-300" href="https://wa.me/218910000000?text=%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%20%D9%85%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A3%D8%A8%D9%88%D8%A7%D8%A8%20%D8%A7%D9%84%D9%85%D8%B9%D9%85%D8%A7%D8%B1%D9%8A%D8%A9" rel="noopener noreferrer" target="_blank">
+        <a class="group relative inline-flex items-center gap-element px-spacious py-element bg-secondary text-on-secondary rounded-full shadow-[0_12px_32px_-4px_rgba(22,24,29,0.18)] hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300" href="https://wa.me/218947710070?text=%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%20%D9%85%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A3%D8%A8%D9%88%D8%A7%D8%A8%20%D8%A7%D9%84%D9%85%D8%B9%D9%85%D8%A7%D8%B1%D9%8A%D8%A9" rel="noopener noreferrer" target="_blank">
             <span class="relative flex h-3 w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed-dim"></span>
             </span>
             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">forum</span>
-            <span class="font-label-md text-label-md hidden md:inline text-surface-bright">تواصل معنا</span>  
+            <span class="font-label-md text-label-md hidden md:inline text-white">تواصل معنا</span>  
         </a>
     </div>
 
@@ -318,6 +351,16 @@
                     </div>
                     <p class="font-body-sm text-body-sm text-on-tertiary-container leading-relaxed max-w-sm">شركة بيتي للأبواب الجاهزة والإكسسوارات  - وجهتكم الأولى لاقتناء أفخم الأبواب الداخلية والخارجية والأنظمة  المتكاملة.</p>
                     
+                    <!-- خريطة قوقل ماب -->
+                    <div class="footer-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301.0!2d20.0833!3d32.1167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDA3JzAwLjAiTiAyMMKwMDUnMDAuMCJF!5e0!3m2!1sar!2sly!4v1650000000000" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="موقع شركة بيتي على الخريطة">
+                        </iframe>
+                    </div>
                 </div>
                 <div class="lg:col-span-3 space-y-element">
                     <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-micro">التصنيفات والعروض</h4>
@@ -337,9 +380,10 @@
                                 <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
                             </div>
                         </div>
+                        <!-- رقم الهاتف مع رابط للاتصال -->
                         <div class="flex items-center gap-compact">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
-                            <span class="font-body-sm text-body-sm text-on-tertiary-container" dir="ltr">+218 94 771 00 70</span>
+                            <a href="tel:+218947710070" class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors" dir="ltr">+218 94 771 00 70</a>
                         </div>
                         <div class="flex items-center gap-compact">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">schedule</span>
@@ -359,11 +403,11 @@
 function setCategory(category, buttonEl) {
     const buttons = document.querySelectorAll('#category-filter-bar .category-pill');
     buttons.forEach(btn => {
-        btn.classList.remove('bg-primary', 'text-on-primary');
+        btn.classList.remove('bg-secondary', 'text-on-secondary');
         btn.classList.add('bg-surface-container-high', 'text-on-surface');
     });
     buttonEl.classList.remove('bg-surface-container-high', 'text-on-surface');
-    buttonEl.classList.add('bg-primary', 'text-on-primary');
+    buttonEl.classList.add('bg-secondary', 'text-on-secondary');
 
     const url = buttonEl.getAttribute('data-url');
     if (url) {
@@ -531,21 +575,21 @@ function setCategory(category, buttonEl) {
                 nav.style.top = '80px';
                 nav.style.right = '0';
                 nav.style.left = '0';
-                nav.style.backgroundColor = 'rgba(255,255,255,0.97)';
+                nav.style.backgroundColor = '#775a19';
                 nav.style.backdropFilter = 'blur(12px)';
                 nav.style.padding = '20px 16px';
-                nav.style.boxShadow = '0 8px 32px rgba(0,0,0,0.12)';
+                nav.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
                 nav.style.zIndex = '50';
                 nav.style.gap = '10px';
                 nav.style.borderRadius = '0 0 16px 16px';
                 
-                // جعل الروابط بارزة
                 nav.querySelectorAll('a').forEach(link => {
                     link.style.padding = '10px 16px';
                     link.style.borderRadius = '8px';
+                    link.style.color = '#ffffff';
                     link.style.transition = 'background 0.2s';
                     link.addEventListener('mouseenter', function() {
-                        this.style.backgroundColor = 'rgba(0,0,0,0.05)';
+                        this.style.backgroundColor = 'rgba(255,255,255,0.1)';
                     });
                     link.addEventListener('mouseleave', function() {
                         this.style.backgroundColor = 'transparent';
