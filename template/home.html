@@ -10,7 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>أبواب داخلية وخارجية في بنغازي وليبيا | أبواب تركية ومصفحة | بيتي</title>
     <meta name="description"
-      content="شركة بيتي للأبواب الجاهزة والإكسسوارات  في بنغازي وليبيا. نوفر أبواب داخلية وخارجية، أبواب مخفية ومصفحة، أبواب تركية وإكسسوارات  مع خيارات متعددة من التصاميم والمقاسات.">
+      content="شركة بيتي للأبواب الجاهزة والإكسسوارات في بنغازي وليبيا. نوفر أبواب داخلية وخارجية، أبواب مخفية ومصفحة، أبواب تركية وإكسسوارات مع خيارات متعددة من التصاميم والمقاسات.">
     <style>
         html, body { margin: 0; padding: 0; }
         body { overscroll-behavior: none; }
@@ -62,14 +62,45 @@
             object-fit: cover;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 767px) {
             .logo-container {
                 width: 44px;
                 height: 44px;
             }
+            header .h-20 {
+                height: 64px !important;
+            }
+            header .h-20 .brand-name {
+                font-size: 18px !important;
+            }
+            header .h-20 .brand-subtitle {
+                font-size: 9px !important;
+            }
+            .mobile-menu-top {
+                top: 64px !important;
+            }
         }
 
-        /* تحسين الناف بار */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            header .h-20 {
+                height: 72px !important;
+            }
+            .logo-container {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            header .h-20 {
+                height: 80px !important;
+            }
+            .logo-container {
+                width: 56px;
+                height: 56px;
+            }
+        }
+
         .nav-bar {
             background: #775a19 !important;
             color: #ffffff !important;
@@ -84,14 +115,13 @@
             color: #ffffff !important;
         }
 
-        /* تنسيق زر الواتساب في الناف بار */
         .nav-whatsapp-btn {
             background: #ffffff !important;
             color: #775a19 !important;
             border-radius: 8px;
             padding: 0.5rem 1rem;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 14px;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -115,7 +145,6 @@
             color: #775a19 !important;
         }
 
-        /* تنسيق أيقونة المستخدم */
         .user-icon-container {
             width: 36px;
             height: 36px;
@@ -143,53 +172,176 @@
             color: #775a19 !important;
         }
 
-        /* تنسيق اسم الشركة */
         .brand-name {
             color: #ffffff;
             font-size: 22px;
             font-weight: 500;
             line-height: 1.2;
+            letter-spacing: 0;
         }
 
         .brand-subtitle {
             color: #fed488;
             font-size: 11px;
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0;
             text-transform: uppercase;
         }
 
-        @media (max-width: 640px) {
-            .brand-name {
-                font-size: 18px;
+        .nav-link {
+            font-size: 15px;
+            letter-spacing: 0;
+            font-weight: 500;
+        }
+
+        @media (max-width: 767px) {
+            .nav-whatsapp-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 12px;
             }
-            .brand-subtitle {
-                font-size: 9px;
+            .nav-whatsapp-btn .whatsapp-text {
+                display: none;
+            }
+            .nav-whatsapp-btn .material-symbols-outlined {
+                font-size: 20px !important;
             }
         }
 
-        @media (max-width: 1279px) {
-            nav.hidden.xl\\:flex {
+        @media (max-width: 1023px) {
+            .desktop-nav {
                 display: none !important;
             }
-            nav.hidden.xl\\:flex.mobile-open {
+            .mobile-nav-trigger {
                 display: flex !important;
             }
         }
-        @media (min-width: 1280px) {
-            nav.hidden.xl\\:flex {
+
+        @media (min-width: 1024px) {
+            .desktop-nav {
                 display: flex !important;
             }
-            nav.hidden.xl\\:flex.mobile-open {
-                display: flex !important;
+            .mobile-nav-trigger {
+                display: none !important;
             }
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            right: 0;
+            left: 0;
+            background: #775a19;
+            backdrop-filter: blur(12px);
+            padding: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            z-index: 50;
+            gap: 6px;
+            border-radius: 0 0 16px 16px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            padding: 10px 16px;
+            border-radius: 8px;
+            color: #ffffff;
+            transition: background 0.2s;
+            font-size: 15px;
+            letter-spacing: 0;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu {
+                top: 64px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .mobile-menu {
+                top: 72px !important;
+            }
+        }
+
+        .hero-title {
+            font-size: 56px;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 1023px) {
+            .hero-title {
+                font-size: 44px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 36px;
+            }
+        }
+
+        .body-text {
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 767px) {
+            .body-text {
+                font-size: 15px;
+            }
+        }
+
+        .heading-text {
+            letter-spacing: 0;
+        }
+
+        .label-text {
+            letter-spacing: 0;
+        }
+
+        .english-label {
+            letter-spacing: 0.08em;
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        .cta-primary {
+            background: #775a19;
+            color: #ffffff;
+        }
+
+        .cta-primary:hover {
+            background: #fed488;
+            color: #261900;
+        }
+
+        .cta-secondary {
+            background: #fed488;
+            color: #261900;
+        }
+
+        .cta-secondary:hover {
+            background: #e9c176;
+            color: #261900;
         }
     </style>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "شركة بيتي للأبواب الجاهزة والإكسسوارات ",
+  "name": "شركة بيتي للأبواب الجاهزة والإكسسوارات",
   "image": "https://bayti.tip2.libyanspider.cloud/static/logo.jpeg",
   "url": "https://bayti.tip2.libyanspider.cloud/",
   "telephone": "+218947710070",
@@ -205,12 +357,10 @@
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
 
-    <!-- header مع لون الناف بار الجديد -->
     <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
-        <div class="h-20 max-w-7xl mx-auto px-structural flex items-center justify-between gap-spacious">
-            <div class="flex items-center gap-spacious">
-                <a class="flex items-center gap-element" data-path="home" href="{% url 'home' %}">
-                    <!-- دائرة اللوقو -->
+        <div class="h-20 max-w-7xl mx-auto px-structural flex items-center justify-between" style="padding-left:32px;padding-right:32px;">
+            <div class="flex items-center" style="gap:12px;">
+                <a class="flex items-center" style="gap:12px;" data-path="home" href="{% url 'home' %}">
                     <div class="logo-container">
                         <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
                     </div>
@@ -219,18 +369,18 @@
                         <span class="brand-subtitle">للابواب والاكسسوار - ليبيا</span>
                     </div>
                 </a>
-                <nav class="hidden xl:flex items-center gap-spacious">
-                    <a aria-current="page" class="transition-colors py-micro text-white font-bold" data-path="home" href="{% url 'home' %}">الرئيسية</a>
-                    <a class="font-label-md text-label-md text-white hover:text-[#fed488] transition-colors py-micro" data-path="about-us" href="{% url 'about' %}">من نحن</a>
-                </nav>
             </div>
-            <div class="flex items-center gap-element">
-                <!-- زر واتساب محسن -->
+
+            <nav class="desktop-nav items-center" style="gap:32px;">
+                <a aria-current="page" class="nav-link text-white font-bold transition-colors py-micro" data-path="home" href="{% url 'home' %}">الرئيسية</a>
+                <a class="nav-link text-white hover:text-[#fed488] transition-colors py-micro" data-path="about-us" href="{% url 'about' %}">من نحن</a>
+            </nav>
+
+            <div class="flex items-center" style="gap:12px;">
                 <a class="nav-whatsapp-btn" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank">
                     <span class="material-symbols-outlined">chat</span>
-                    <span class="whitespace-nowrap">استفسار عبر واتساب</span>
+                    <span class="whatsapp-text whitespace-nowrap">استفسار عبر واتساب</span>
                 </a>
-                <!-- أيقونة المستخدم محسنة -->
                 <div class="user-icon-container">
                     {% if not user.is_authenticated %}
                     <a href="{% url 'user_login' %}"><span class="material-symbols-outlined">person</span></a>
@@ -238,10 +388,21 @@
                     <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined">person</span></a>
                     {% endif %}
                 </div>
-                <button aria-label="القائمة الرئيسية" class="xl:hidden p-element text-white hover:text-[#fed488]" type="button">
+                <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-element text-white hover:text-[#fed488]" type="button">
                     <span class="material-symbols-outlined text-[24px]">menu</span>
                 </button>
             </div>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a aria-current="page" data-path="home" href="{% url 'home' %}">الرئيسية</a>
+            <a data-path="about-us" href="{% url 'about' %}">من نحن</a>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'user_login' %}">حسابي</a>
+            {% else %}
+            <a href="{% url 'dashboard' %}">حسابي</a>
+            {% endif %}
+            <a href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank" style="background:rgba(255,255,255,0.15);">واتساب</a>
         </div>
     </header>
 
@@ -252,42 +413,41 @@
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-1000 scale-105 hero-image"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-primary/20 backdrop-blur-[0.5px]"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-transparent to-transparent"></div>
-                <div class="relative z-10 w-full max-w-7xl mx-auto px-structural pt-40 pb-monumental flex flex-col justify-end">
+                <div class="relative z-10 w-full max-w-7xl mx-auto px-structural pt-40 pb-monumental flex flex-col justify-end" style="padding-left:32px;padding-right:32px;">
                     <div class="max-w-3xl space-y-spacious text-right">
-                        <h1 class="font-display-xl text-display-xl text-surface-bright leading-tight drop-shadow-sm font-light">
+                        <h1 class="hero-title text-surface-bright leading-tight drop-shadow-sm font-light">
                               أناقة بيتك تبدأ<br/>
                             <span class="font-medium text-secondary-fixed">من بابه</span>
-                            <p>الافضل في ليبيا</p>
+                            <p class="text-lg" style="font-size:18px;letter-spacing:0;">الافضل في ليبيا</p>
                         </h1>
-                        <p class="font-body-lg text-body-lg text-surface-container-high/90 max-w-2xl leading-relaxed">
-شركة بيتي للأبواب الجاهزة والإكسسوارات  في بنغازي، ليبيا، توفر تشكيلة واسعة من الأبواب الداخلية والخارجية، الأبواب المصفحة والمخفية، والأبواب التركية بتصاميم عصرية وخامات عالية الجودة.
+                        <p class="body-text text-surface-container-high/90 max-w-2xl leading-relaxed">
+شركة بيتي للأبواب الجاهزة والإكسسوارات في بنغازي، ليبيا، توفر تشكيلة واسعة من الأبواب الداخلية والخارجية، الأبواب المصفحة والمخفية، والأبواب التركية بتصاميم عصرية وخامات عالية الجودة.
                         </p>
                         <div class="flex flex-wrap items-center gap-spacious pt-element">
-                            <a class="h-[52px] px-monumental bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300 inline-flex items-center justify-center font-label-md text-label-md tracking-wider" href="#catalog-section">
+                            <a class="h-[52px] px-monumental cta-secondary transition-all duration-300 inline-flex items-center justify-center font-label-md text-label-md tracking-wider" href="#catalog-section" style="letter-spacing:0;font-size:14px;">
                                 استكشف معرضنا
                                 <span class="material-symbols-outlined mr-compact text-[20px]">arrow_downward</span>
                             </a>
-                            <a class="h-[52px] px-monumental bg-surface-bright/15 backdrop-blur-md text-surface-bright hover:bg-surface-bright hover:text-primary transition-all duration-300 inline-flex items-center justify-center font-label-md text-label-md" href="https://wa.me/218947710070?text=مرحباً، أنا زائر  من الموقع اريد معرفة المزيد عن شركتكم" rel="noopener noreferrer" target="_blank">
+                            <a class="h-[52px] px-monumental bg-surface-bright/15 backdrop-blur-md text-surface-bright hover:bg-surface-bright hover:text-primary transition-all duration-300 inline-flex items-center justify-center font-label-md text-label-md" href="https://wa.me/218947710070?text=مرحباً، أنا زائر من الموقع اريد معرفة المزيد عن شركتكم" rel="noopener noreferrer" target="_blank" style="letter-spacing:0;font-size:14px;">
                                 <span class="material-symbols-outlined ml-compact text-[20px] text-secondary-fixed">chat</span>
                                 تواصل معنا   
                             </a>
                         </div>
                         <div class="pt-monumental grid grid-cols-1 sm:grid-cols-3 gap-element bg-primary/40 backdrop-blur-md p-element">
                             <div class="p-spacious bg-surface-container-highest/10 flex flex-col">
-                                <span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">تشكيلة حصرية</span>
-                                <span class="font-headline-sm text-headline-sm text-surface-bright mt-micro">+180 موديلاً جاهزاً</span>
-                                <span class="font-body-sm text-body-sm text-on-primary-container mt-micro">جاهزية فورية ومقاسات دقيقة</span>
+                                <span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider" style="letter-spacing:0.05em;">تشكيلة حصرية</span>
+                                <span class="font-headline-sm text-headline-sm text-surface-bright mt-micro" style="letter-spacing:0;">+180 موديلاً جاهزاً</span>
+                                <span class="font-body-sm text-body-sm text-on-primary-container mt-micro" style="letter-spacing:0;">جاهزية فورية ومقاسات دقيقة</span>
                             </div>
                             <div class="p-spacious bg-surface-container-highest/10 flex flex-col">
-                                <span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">خامات نقية</span>
-                                <span class="font-headline-sm text-headline-sm text-surface-bright mt-micro">أخشاب  معالجة</span>
-                                <span class="font-body-sm text-body-sm text-on-primary-container mt-micro">مصنوعة من افضل الخامات التركية
-                                </span>
+                                <span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider" style="letter-spacing:0.05em;">خامات نقية</span>
+                                <span class="font-headline-sm text-headline-sm text-surface-bright mt-micro" style="letter-spacing:0;">أخشاب معالجة</span>
+                                <span class="font-body-sm text-body-sm text-on-primary-container mt-micro" style="letter-spacing:0;">مصنوعة من افضل الخامات التركية</span>
                             </div>
                             <div class="p-spacious bg-surface-container-highest/10 flex flex-col">
-                                <span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">موثوقية مطلقة</span>
-                                <span class="font-headline-sm text-headline-sm text-surface-bright mt-micro">أمان عالي وتصفيح كامل</span>
-                                <span class="font-body-sm text-body-sm text-on-primary-container mt-micro"> موديلات وألوان متنوعة لتختار ما يناسب ديكور بيتك</span>
+                                <span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider" style="letter-spacing:0.05em;">موثوقية مطلقة</span>
+                                <span class="font-headline-sm text-headline-sm text-surface-bright mt-micro" style="letter-spacing:0;">أمان عالي وتصفيح كامل</span>
+                                <span class="font-body-sm text-body-sm text-on-primary-container mt-micro" style="letter-spacing:0;">موديلات وألوان متنوعة لتختار ما يناسب ديكور بيتك</span>
                             </div>
                         </div>
                     </div>
@@ -295,50 +455,50 @@
             </section>
 
             <section class="w-full py-monumental bg-surface">
-                <div class="max-w-7xl mx-auto px-structural">
+                <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-monumental items-center">
                         <div class="lg:col-span-6 relative">
                             <div class="relative overflow-hidden aspect-[4/5] bg-surface-container-high">
                                 <img alt="صالة العرض الرقمية لأبواب بيتي الفلوش المخفية" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsVXnFCHxahcWca6-p3jNlOW8vQ8JPG37Ebs6RTRhwMJdeiFCCCEQGdFPnbcIyG9ZPW10siWY0oln0toqBfgNCeumMSOtH1q6Decpibzg7p1afBsDHHAH-sv8dRjUdVgaSg3IXtSC_xUK87kEev2LeRmudf1RIKlzTUZnI5_3qxuPuBaPd-cNb08sKxbbDplZKX1zK96yu_YMMmhpKov-dchmRJ79Fs9WaMV5JeCyFMuzRtAbF74oy"/>
                                 <div class="absolute bottom-0 inset-x-0 p-spacious bg-gradient-to-t from-primary/80 to-transparent">
-                                    <span class="font-label-sm text-label-sm text-secondary-fixed tracking-widest block uppercase">صالة العرض </span>
-                                    <p class="font-body-sm text-body-sm text-surface-bright mt-micro">تجربة متكاملة للأبواب المخفية Flush Doors بسلاسة  تامة</p>
+                                    <span class="font-label-sm text-label-sm text-secondary-fixed tracking-widest block uppercase" style="letter-spacing:0.05em;">صالة العرض</span>
+                                    <p class="font-body-sm text-body-sm text-surface-bright mt-micro" style="letter-spacing:0;">تجربة متكاملة للأبواب المخفية Flush Doors بسلاسة تامة</p>
                                 </div>
                             </div>
                             <div class="hidden sm:block absolute -bottom-element -right-element bg-surface-container-lowest p-spacious shadow-xl max-w-xs">
                                 <div class="flex items-center gap-compact text-secondary">
                                     <span class="material-symbols-outlined text-[24px]">verified</span>
-                                    <span class="font-label-md text-label-md">دقة عالية في التركيب </span>
+                                    <span class="font-label-md text-label-md" style="letter-spacing:0;">دقة عالية في التركيب</span>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-6 space-y-spacious text-right">
                             <div class="space-y-compact">
-                                <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block">ABOUT BAYTI • قصة الإتقان</span>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal">تفاصيل صغيرة تصنع فرقاً لا يُنسى في منزلك</h2>
+                                <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">ABOUT BAYTI • قصة الإتقان</span>
+                                <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">تفاصيل صغيرة تصنع فرقاً لا يُنسى في منزلك</h2>
                             </div>
-                            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">في «بيتي»، لا نتعامل مع الأبواب كعناصر فصل عادية، بل كنقاط تحول  تحدد إيقاع المساحة وتمنحها طابع الوقار والسكينة. تخصصنا في استيراد وتوفير أفخر الأبواب الجاهزة والحلول  المتكاملة، بدءاً من الأبواب المخفية وصولاً إلى الابواب المصفحة   وإكسسواراتها الفخمة.</p>
-                            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">نحرص على تقديم الجودة في كل خطوة، بدءًا من اختيار الباب وحتى إتمام عملية التركيب، كما نتحمل مسؤولية  أي عيوب ناتجة عن التصنيع أو التركيب.</p>
+                            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">في «بيتي»، لا نتعامل مع الأبواب كعناصر فصل عادية، بل كنقاط تحول تحدد إيقاع المساحة وتمنحها طابع الوقار والسكينة. تخصصنا في استيراد وتوفير أفخر الأبواب الجاهزة والحلول المتكاملة، بدءاً من الأبواب المخفية وصولاً إلى الابواب المصفحة وإكسسواراتها الفخمة.</p>
+                            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نحرص على تقديم الجودة في كل خطوة، بدءًا من اختيار الباب وحتى إتمام عملية التركيب، كما نتحمل مسؤولية أي عيوب ناتجة عن التصنيع أو التركيب.</p>
                             <div class="pt-compact space-y-standard">
                                 <div class="p-spacious bg-surface-container flex items-start gap-spacious transition-colors hover:bg-surface-container-high">
-                                    <span class="font-headline-md text-headline-md text-secondary font-light">01</span>
+                                    <span class="font-headline-md text-headline-md text-secondary font-light heading-text" style="letter-spacing:0;">01</span>
                                     <div>
-                                        <h4 class="font-headline-sm text-headline-sm text-on-surface">خامات قوية ومتينة</h4>
-                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro">نستخدم أفضل الخامات المتاحة في السوق الليبي لضمان جودة ومتانة الأبواب.</p>
+                                        <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">خامات قوية ومتينة</h4>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro body-text" style="letter-spacing:0;">نستخدم أفضل الخامات المتاحة في السوق الليبي لضمان جودة ومتانة الأبواب.</p>
                                     </div>
                                 </div>
                                 <div class="p-spacious bg-surface-container flex items-start gap-spacious transition-colors hover:bg-surface-container-high">
-                                    <span class="font-headline-md text-headline-md text-secondary font-light">02</span>
+                                    <span class="font-headline-md text-headline-md text-secondary font-light heading-text" style="letter-spacing:0;">02</span>
                                     <div>
-                                        <h4 class="font-headline-sm text-headline-sm text-on-surface">تصاميم فخمة وعصرية</h4>
-                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro">تصاميم  فخمة وعصرية تتناسب مع أي ديكور.</p>
+                                        <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">تصاميم فخمة وعصرية</h4>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro body-text" style="letter-spacing:0;">تصاميم فخمة وعصرية تتناسب مع أي ديكور.</p>
                                     </div>
                                 </div>
                                 <div class="p-spacious bg-surface-container flex items-start gap-spacious transition-colors hover:bg-surface-container-high">
-                                    <span class="font-headline-md text-headline-md text-secondary font-light">03</span>
+                                    <span class="font-headline-md text-headline-md text-secondary font-light heading-text" style="letter-spacing:0;">03</span>
                                     <div>
-                                        <h4 class="font-headline-sm text-headline-sm text-on-surface">تشطيبات وإكسسوارات  تركية</h4>
-                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro">تشطيبات وإكسسوارات  تركية تضفي طابعًا فريدًا على مساحاتك.</p>
+                                        <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">تشطيبات وإكسسوارات تركية</h4>
+                                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro body-text" style="letter-spacing:0;">تشطيبات وإكسسوارات تركية تضفي طابعًا فريدًا على مساحاتك.</p>
                                     </div>
                                 </div>
                             </div>
@@ -348,17 +508,17 @@
             </section>
 
             <section class="w-full py-monumental bg-surface-container-low" id="catalog-section">
-                <div class="max-w-7xl mx-auto px-structural">
+                <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
                     <div class="flex flex-col md:flex-row md:items-end justify-between gap-spacious pb-spacious">
                         <div class="space-y-compact text-right">
-                            <span class="font-label-md text-label-md text-secondary tracking-wider uppercase block">المعرض  </span>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal">استكشف مجموعة فريدة من منتجاتنا</h2>
-                            <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">تصفح أحدث تصاميم الأبواب  والإكسسوارات التركية ، مع توفر خيارات التخصيص والمقاسات القياسية والخاصة.</p>
+                            <span class="font-label-md text-label-md text-secondary tracking-wider uppercase block" style="letter-spacing:0.05em;">المعرض</span>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">استكشف مجموعة فريدة من منتجاتنا</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant max-w-xl body-text" style="letter-spacing:0;">تصفح أحدث تصاميم الأبواب والإكسسوارات التركية، مع توفر خيارات التخصيص والمقاسات القياسية والخاصة.</p>
                         </div>
                         <div class="w-full md:w-80">
-                            <label class="font-label-sm text-label-sm text-on-surface-variant block mb-compact text-right" for="catalog-search">بحث</label>
+                            <label class="font-label-sm text-label-sm text-on-surface-variant block mb-compact text-right" for="catalog-search" style="letter-spacing:0;">بحث</label>
                             <div class="relative">
-                                <input class="w-full h-12 pr-standard pl-10 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface shadow-sm" id="catalog-search" oninput="filterShowcase(this.value)" placeholder="ابحث بالاسم أو كود المنتج ..." type="text"/>
+                                <input class="w-full h-12 pr-standard pl-10 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface shadow-sm" id="catalog-search" oninput="filterShowcase(this.value)" placeholder="ابحث بالاسم أو كود المنتج ..." type="text" style="letter-spacing:0;"/>
                                 <span class="material-symbols-outlined absolute left-3 top-3 text-outline text-[20px]">search</span>
                             </div>
                         </div>
@@ -366,13 +526,13 @@
                     <div class="flex items-center gap-compact overflow-x-auto pb-compact pt-micro scrollbar-none" id="category-filter-bar">
                         <button class="category-pill active whitespace-nowrap px-spacious py-compact font-label-md text-label-md h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors rounded-full" 
                                 onclick="setCategory('all', this)" 
-                                data-url="{% url 'home' %}#catalog-section">
+                                data-url="{% url 'home' %}#catalog-section" style="letter-spacing:0;font-size:14px;">
                             جميع المعروضات
                         </button>
                         {% for category in categories %}
                         <button class="category-pill whitespace-nowrap px-spacious py-compact font-label-md text-label-md bg-surface-container-high text-on-surface hover:bg-secondary hover:text-on-secondary transition-colors" 
                                 onclick="setCategory('{{ category.slug }}', this)" 
-                                data-url="{% url 'products_by_category' slug=category.slug %}">
+                                data-url="{% url 'products_by_category' slug=category.slug %}" style="letter-spacing:0;font-size:14px;">
                             {{ category.name }}
                         </button>
                         {% endfor %}
@@ -383,19 +543,19 @@
                         <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl" data-category="smart" data-code="BY-LK550" data-title="{{ product.name }}">
                             <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                                 <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ product.name }}" src="{{ product.image1.url }}"/>
-                                <span class="absolute top-spacious right-spacious font-label-sm text-label-sm bg-primary/80 text-surface-bright px-compact py-micro">{{ product.category }}</span>
-                                <span class="absolute top-spacious left-spacious font-label-sm text-label-sm bg-secondary text-on-secondary px-compact py-micro" dir="ltr">{{ product.code }}</span>
+                                <span class="absolute top-spacious right-spacious font-label-sm text-label-sm bg-primary/80 text-surface-bright px-compact py-micro" style="letter-spacing:0;">{{ product.category }}</span>
+                                <span class="absolute top-spacious left-spacious font-label-sm text-label-sm bg-secondary text-on-secondary px-compact py-micro" dir="ltr" style="letter-spacing:0;">{{ product.code }}</span>
                             </div>
                             <div class="p-spacious flex flex-col flex-1 justify-between space-y-element text-right">
-                                <h3>
+                                <h3 class="heading-text" style="letter-spacing:0;font-size:18px;">
                                  {{ product.name }}
                                 </h3>
-                                <p>
+                                <p class="body-text" style="letter-spacing:0;font-size:15px;">
                                 {{ product.short_description }}
                                 </p>
                                 
                                 <div class="flex flex-wrap gap-3 pt-4">
-                                 <a id="whatsapp-btn" class="h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md" href="{{ product.get_absolute_url  }}" >
+                                 <a id="whatsapp-btn" class="h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md" href="{{ product.get_absolute_url  }}" style="letter-spacing:0;font-size:14px;">
                                   <span class="material-symbols-outlined ml-2 text-[20px]">chat</span>
                                       للتفاصيل والاستفسار
                                  </a>
@@ -406,8 +566,8 @@
                     </div>
                     <div class="hidden py-monumental text-center" id="no-results">
                         <span class="material-symbols-outlined text-[48px] text-outline">search_off</span>
-                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-compact">لم يتم العثور على نتائج مطابقة</h4>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro">يرجى تجربة كلمات بحث أخرى أو التواصل معنا مباشرة للحصول على كتالوج خاص.</p>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-compact heading-text" style="letter-spacing:0;">لم يتم العثور على نتائج مطابقة</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant mt-micro body-text" style="letter-spacing:0;">يرجى تجربة كلمات بحث أخرى أو التواصل معنا مباشرة للحصول على كتالوج خاص.</p>
                     </div>
                 </div>
             </section>
@@ -422,21 +582,21 @@
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed-dim"></span>
             </span>
             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">forum</span>
-            <span class="font-label-md text-label-md hidden md:inline text-white">تواصل معنا</span>  
+            <span class="font-label-md text-label-md hidden md:inline text-white" style="letter-spacing:0;">تواصل معنا</span>  
         </a>
     </div>
 
     <footer class="w-full bg-tertiary text-inverse-on-surface pt-monumental pb-spacious">
-        <div class="max-w-7xl mx-auto px-structural">
+        <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-monumental pb-monumental">
                 <div class="lg:col-span-4 space-y-spacious">
                     <div class="flex items-center gap-element">
                         <div class="flex flex-col text-right">
-                            <span class="font-headline-sm text-headline-sm text-surface-bright">شركة بيتي</span>
-                            <span class="font-label-sm text-label-sm text-on-tertiary-container uppercase tracking-wider">الأبواب الجاهزة والاكسسوار</span>
+                            <span class="font-headline-sm text-headline-sm text-surface-bright heading-text" style="letter-spacing:0;">شركة بيتي</span>
+                            <span class="font-label-sm text-label-sm text-on-tertiary-container uppercase tracking-wider" style="letter-spacing:0.05em;">الأبواب الجاهزة والاكسسوار</span>
                         </div>
                     </div>
-                    <p class="font-body-sm text-body-sm text-on-tertiary-container leading-relaxed max-w-sm">شركة بيتي للأبواب الجاهزة والإكسسوارات  - وجهتكم الأولى لاقتناء أفخم الأبواب الداخلية والخارجية والأنظمة  المتكاملة.</p>
+                    <p class="font-body-sm text-body-sm text-on-tertiary-container leading-relaxed max-w-sm body-text" style="letter-spacing:0;">شركة بيتي للأبواب الجاهزة والإكسسوارات - وجهتكم الأولى لاقتناء أفخم الأبواب الداخلية والخارجية والأنظمة المتكاملة.</p>
                     
                     <div class="footer-map">
                         <iframe 
@@ -449,37 +609,37 @@
                     </div>
                 </div>
                 <div class="lg:col-span-3 space-y-element">
-                    <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-micro">التصنيفات والعروض</h4>
+                    <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-micro heading-text" style="letter-spacing:0;">التصنيفات والعروض</h4>
                     <ul class="space-y-compact">
                       {% for category in categories %}
-                        <li class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors"><a data-path="products-and-catalog" href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                        <li class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;"><a data-path="products-and-catalog" href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
                       {% endfor %}
                     </ul>
                 </div>
                 <div class="lg:col-span-5 space-y-element">
-                    <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-micro">صالات العرض والتواصل</h4>
+                    <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-micro heading-text" style="letter-spacing:0;">صالات العرض والتواصل</h4>
                     <div class="space-y-compact">
                         <div class="flex items-start gap-compact">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed pt-micro">location_on</span>
-                            <div class="font-body-sm text-body-sm text-on-tertiary-container">
-                                <span class="block text-surface-bright font-label-md">صالة العرض الرئيسية</span>
+                            <div class="font-body-sm text-body-sm text-on-tertiary-container body-text" style="letter-spacing:0;">
+                                <span class="block text-surface-bright font-label-md" style="letter-spacing:0;">صالة العرض الرئيسية</span>
                                 <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-compact">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
-                            <a href="tel:+218947710070" class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors" dir="ltr">+218 94 771 00 70</a>
+                            <a href="tel:+218947710070" class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors body-text" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
                         </div>
                         <div class="flex items-center gap-compact">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">schedule</span>
-                            <span class="font-body-sm text-body-sm text-on-tertiary-container">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</span>
+                            <span class="font-body-sm text-body-sm text-on-tertiary-container body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="pt-spacious flex flex-col sm:flex-row items-center justify-between gap-standard">
-                <p class="font-label-sm text-label-sm text-on-tertiary-container">© 2026 شركة بيتي للأبواب الجاهزة والإكسسوارات . جميع الحقوق محفوظة.</p>
-                <p class="font-label-sm text-label-sm text-on-tertiary-container tracking-wider">دقة هندسية • حضور معماري • تشطيبات أصيلة</p>
+                <p class="font-label-sm text-label-sm text-on-tertiary-container body-text" style="letter-spacing:0;">© 2026 شركة بيتي للأبواب الجاهزة والإكسسوارات. جميع الحقوق محفوظة.</p>
+                <p class="font-label-sm text-label-sm text-on-tertiary-container tracking-wider body-text" style="letter-spacing:0.05em;">دقة هندسية • حضور معماري • تشطيبات أصيلة</p>
             </div>
         </div>
     </footer>
@@ -523,6 +683,24 @@ function setCategory(category, buttonEl) {
                 noResults.classList.add('hidden');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuTrigger = document.querySelector('.mobile-nav-trigger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuTrigger && mobileMenu) {
+                menuTrigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            }
+        });
     </script>
     <script>
     tailwind.config = {
@@ -625,80 +803,6 @@ function setCategory(category, buttonEl) {
             }
         }
     }
-</script>
-<script>
-    (function() {
-        const menuBtn = document.querySelector('button[aria-label="القائمة الرئيسية"]');
-        const nav = document.querySelector('nav.hidden.xl\\:flex');
-        
-        if (!menuBtn || !nav) return;
-        
-        menuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            const isOpen = nav.classList.contains('mobile-open');
-            
-            if (isOpen) {
-                nav.classList.remove('mobile-open');
-                nav.style.display = 'none';
-                nav.style.position = '';
-                nav.style.top = '';
-                nav.style.right = '';
-                nav.style.left = '';
-                nav.style.backgroundColor = '';
-                nav.style.backdropFilter = '';
-                nav.style.padding = '';
-                nav.style.boxShadow = '';
-                nav.style.zIndex = '';
-                nav.style.gap = '';
-                nav.style.borderRadius = '';
-            } else {
-                nav.classList.add('mobile-open');
-                nav.style.display = 'flex';
-                nav.style.flexDirection = 'column';
-                nav.style.position = 'absolute';
-                nav.style.top = '80px';
-                nav.style.right = '0';
-                nav.style.left = '0';
-                nav.style.backgroundColor = '#775a19';
-                nav.style.backdropFilter = 'blur(12px)';
-                nav.style.padding = '20px 16px';
-                nav.style.boxShadow = '0 8px 32px rgba(0,0,0,0.2)';
-                nav.style.zIndex = '50';
-                nav.style.gap = '10px';
-                nav.style.borderRadius = '0 0 16px 16px';
-                
-                nav.querySelectorAll('a').forEach(link => {
-                    link.style.padding = '10px 16px';
-                    link.style.borderRadius = '8px';
-                    link.style.color = '#ffffff';
-                    link.style.transition = 'background 0.2s';
-                    link.addEventListener('mouseenter', function() {
-                        this.style.backgroundColor = 'rgba(255,255,255,0.1)';
-                    });
-                    link.addEventListener('mouseleave', function() {
-                        this.style.backgroundColor = 'transparent';
-                    });
-                });
-            }
-        });
-        
-        document.addEventListener('click', function(e) {
-            if (nav.classList.contains('mobile-open')) {
-                if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
-                    nav.classList.remove('mobile-open');
-                    nav.style.display = 'none';
-                }
-            }
-        });
-        
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 1280 && nav.classList.contains('mobile-open')) {
-                nav.classList.remove('mobile-open');
-                nav.style.display = '';
-            }
-        });
-    })();
 </script>
 </body>
 </html>
