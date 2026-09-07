@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {% load static %}
-<!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="utf-8"/>
@@ -14,11 +13,9 @@
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
     <meta name="robots" content="index, follow"/>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/>
     
-    <!-- Tailwind CSS with config -->
     <script>
     tailwind.config = {
         darkMode: "class",
@@ -124,9 +121,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
+        /* ===== حل مشكلة عدم التمرير ===== */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto !important; /* مهم جداً للسماح بالتمرير */
+            overscroll-behavior: none;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* باقي الأنماط */
         * { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; }
-        body { overscroll-behavior: none; font-family: 'IBM Plex Sans', sans-serif; }
         main > :first-child { margin-top: 0 !important; }
         main > :last-child { margin-bottom: 0 !important; }
         ::-webkit-scrollbar { display: none; }
@@ -137,6 +157,7 @@
 
         .about-hero {
             background: linear-gradient(135deg, #1a1b21 0%, #2d2d2d 100%);
+            min-height: 50vh;
         }
 
         .stat-card:hover {
@@ -319,25 +340,23 @@
         .footer-text { color: #89837a; }
         .footer-heading { color: #fbf9f6; }
 
-        /* Responsive Fixes */
+        /* ===== Responsive Fixes ===== */
         header { width: 100%; }
         header > div:first-child { width: 100%; }
-
-        main { padding-top: 80px; }
 
         img { max-width: 100%; }
 
         .fixed.bottom-6 { max-width: calc(100vw - 24px); }
 
         @media (min-width: 768px) and (max-width: 1023px) {
-            main { padding-top: 72px; }
+            main { padding-top: 72px; min-height: calc(100vh - 72px); }
             header > div:first-child { padding-left: 20px !important; padding-right: 20px !important; }
             .mobile-menu { left: 12px; right: 12px; width: auto; }
             section > div { max-width: 100%; }
         }
 
         @media (max-width: 767px) {
-            main { padding-top: 64px; }
+            main { padding-top: 64px; min-height: calc(100vh - 64px); }
             header > div:first-child { padding-left: 14px !important; padding-right: 14px !important; }
             .brand-name { font-size: 17px !important; white-space: nowrap; }
             .brand-subtitle { font-size: 8px !important; white-space: nowrap; }
@@ -402,7 +421,7 @@
     }
     </script>
 </head>
-<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<body>
 
     <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
         <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
@@ -459,7 +478,7 @@
         </div>
     </header>
 
-    <main class="w-full bg-surface min-h-screen">
+    <main>
         
         <section class="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden about-hero">
             <div class="absolute inset-0 opacity-10">
