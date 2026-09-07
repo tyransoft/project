@@ -35,12 +35,10 @@ def login_view(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
-            if user and user.is_active:
+            if user :
                 login(request, user)
-                if user.is_accountant() or user.can_see_all_data():
-                  return redirect('statistics')
+                return redirect('home')
   
-                return redirect('create_invoice')
             else:
                 messages.error(request, 'اسم المستخدم أو كلمة المرور غير صحيحة')
     else:
