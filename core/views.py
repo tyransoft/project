@@ -13,14 +13,12 @@ from .forms import *
 from django.urls import reverse
 def home(request):
     categories = Category.objects.all()
-    featured_products = Product.objects.filter(is_featured=True)[:6]
-    recent_products = Product.objects.all()[:12]
+    products = Product.objects.all().order_by('-is_featured')
+    
     
     context = {
         'categories': categories,
-        'featured_products': featured_products,
-        'recent_products': recent_products,
-        'products': recent_products,
+        'products': products,
     }
     return render(request, 'home.html', context)
 
