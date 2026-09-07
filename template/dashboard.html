@@ -1,0 +1,74 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block title %}لوحة التحكم - إدارة الموقع{% endblock %}
+
+{% block content %}
+<div class="w-full py-8">
+    <div class="max-w-7xl mx-auto px-4">
+        <h1 class="font-headline-lg text-headline-lg text-on-surface text-right mb-8">لوحة التحكم</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm text-right">
+                <span class="material-symbols-outlined text-[48px] text-secondary">category</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-2">{{ total_categories }}</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">إجمالي الفئات</p>
+            </div>
+            <div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm text-right">
+                <span class="material-symbols-outlined text-[48px] text-secondary">inventory_2</span>
+                <h3 class="font-headline-sm text-headline-sm text-on-surface mt-2">{{ total_products }}</h3>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">إجمالي المنتجات</p>
+            </div>
+            
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+                <h2 class="font-headline-sm text-headline-sm text-on-surface text-right mb-4">أكثر المنتجات استفساراً</h2>
+                <ul class="space-y-2">
+                    {% for product in top_inquired_products %}
+                    <li class="flex items-center justify-between p-3 bg-surface-container rounded-lg">
+                        <span class="font-body-md text-body-md text-on-surface">{{ product.name }}</span>
+                        <span class="inline-flex items-center gap-1 text-sm bg-secondary/20 text-secondary px-2 py-0.5 rounded">
+                            <span class="material-symbols-outlined text-[16px]">chat</span>
+                            {{ product.inquiry_count }}
+                        </span>
+                    </li>
+                    {% empty %}
+                    <p class="text-center text-on-surface-variant">لا توجد استفسارات حتى الآن</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface text-right mb-4">إحصائيات الفئات</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-right">
+                    <thead>
+                        <tr class="border-b border-surface-container-high">
+                            <th class="p-3 font-label-sm text-label-sm text-on-surface-variant">الفئة</th>
+                            <th class="p-3 font-label-sm text-label-sm text-on-surface-variant">عدد المنتجات</th>
+                            <th class="p-3 font-label-sm text-label-sm text-on-surface-variant">إجمالي الاستفسارات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cat in categories_stats %}
+                        <tr class="border-b border-surface-container-high/50 hover:bg-surface-container transition-colors">
+                            <td class="p-3 font-body-md text-body-md text-on-surface">{{ cat.name }}</td>
+                            <td class="p-3 font-body-md text-body-md text-on-surface">{{ cat.product_count }}</td>
+                            <td class="p-3 font-body-md text-body-md text-on-surface">{{ cat.total_inquiries|default:0 }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="3" class="p-3 text-center text-on-surface-variant">لا توجد فئات</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+       
+    </div>
+</div>
+{% endblock %}

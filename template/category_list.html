@@ -1,0 +1,50 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block title %}إدارة الفئات{% endblock %}
+
+{% block content %}
+<div class="w-full py-8">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="font-headline-lg text-headline-lg text-on-surface">إدارة الفئات</h1>
+            <a href="{% url 'category_add' %}" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/80 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">add</span>
+                إضافة فئة
+            </a>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <table class="w-full text-right">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">#</th>
+                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">اسم الفئة</th>
+                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">عدد المنتجات</th>
+                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">تاريخ الإضافة</th>
+                        <th class="p-4 font-label-sm text-label-sm text-on-surface-variant">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="p-4">{{ forloop.counter }}</td>
+                        <td class="p-4 font-body-md text-body-md text-on-surface">{{ category.name }}</td>
+                        <td class="p-4">{{ category.product_count }}</td>
+                        <td class="p-4">{{ category.created_at|date:"Y-m-d" }}</td>
+                        <td class="p-4">
+                            <div class="flex items-center gap-2">
+                                <a href="{% url 'category_edit' category.id %}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors">تعديل</a>
+                                <a href="{% url 'category_delete' category.id %}" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition-colors">حذف</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" class="p-8 text-center text-on-surface-variant">لا توجد فئات</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

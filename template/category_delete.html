@@ -1,0 +1,29 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block title %}حذف الفئة{% endblock %}
+{% block page_title %}حذف الفئة{% endblock %}
+
+{% block content %}
+<div class="delete-box">
+    <span class="material-symbols-outlined icon">delete_forever</span>
+    <h2>حذف الفئة</h2>
+    <p>هل أنت متأكد من حذف الفئة <strong>"{{ category.name }}"</strong>؟</p>
+    {% if category.products.count > 0 %}
+    <div class="bg-red-50 border border-red-200 rounded-lg p-3 mb-4 text-red-700 text-sm">
+        لا يمكن حذف الفئة لأنها تحتوي على {{ category.products.count }} منتج. قم بنقل المنتجات أو حذفها أولاً.
+    </div>
+    {% endif %}
+    <div class="actions">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger" {% if category.products.count > 0 %}disabled{% endif %}>
+                تأكيد الحذف
+            </button>
+            <a href="{% url 'category_list' %}" class="btn-outline">
+                إلغاء
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}
