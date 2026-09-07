@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from urllib.parse import quote
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="اسم الفئة")
     slug = models.SlugField(max_length=100, unique=True, blank=True, null=True, verbose_name="الرابط المختصر")
