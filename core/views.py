@@ -45,7 +45,15 @@ def login_view(request):
 
 
 def about(request):
-    return render(request, 'about.html')
+    categories = Category.objects.all()
+    
+    
+    context = {
+        'categories': categories,
+    }
+
+
+    return render(request, 'about.html', context)
 
 def dashboard(request):
     return render(request, 'dashboard.html')

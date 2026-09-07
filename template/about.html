@@ -15,762 +15,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=ibmPlexSans:wght@100..900&display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com"></script>
     
-    <style>
-        html, body { margin: 0; padding: 0; }
-        body { overscroll-behavior: none; }
-        main > :first-child { margin-top: 0 !important; }
-        main > :last-child { margin-bottom: 0 !important; }
-        ::-webkit-scrollbar { display: none; }
-        
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        .about-hero {
-            background: linear-gradient(135deg, #1a1b21 0%, #2d2d2d 100%);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-
-        .logo-container {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid #fed488;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: #ffffff;
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @media (max-width: 767px) {
-            .logo-container {
-                width: 44px;
-                height: 44px;
-            }
-            header .h-20 {
-                height: 64px !important;
-            }
-            header .h-20 .brand-name {
-                font-size: 18px !important;
-            }
-            header .h-20 .brand-subtitle {
-                font-size: 9px !important;
-            }
-            .mobile-menu-top {
-                top: 64px !important;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1023px) {
-            header .h-20 {
-                height: 72px !important;
-            }
-            .logo-container {
-                width: 50px;
-                height: 50px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            header .h-20 {
-                height: 80px !important;
-            }
-            .logo-container {
-                width: 56px;
-                height: 56px;
-            }
-        }
-
-        .nav-bar {
-            background: #775a19 !important;
-            color: #ffffff !important;
-        }
-        .nav-bar a {
-            color: #ffffff !important;
-        }
-        .nav-bar a:hover {
-            color: #fed488 !important;
-        }
-        .nav-bar .material-symbols-outlined {
-            color: #ffffff !important;
-        }
-
-        .nav-whatsapp-btn {
-            background: #FED488 !important;
-            color: #775a19 !important;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .nav-whatsapp-btn:hover {
-            background: #fed488 !important;
-            color: #775a19 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .nav-whatsapp-btn .material-symbols-outlined {
-            color: #775a19 !important;
-            font-size: 18px !important;
-        }
-
-        .nav-whatsapp-btn:hover .material-symbols-outlined {
-            color: #775a19 !important;
-        }
-
-        .user-icon-container {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #FED488;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .user-icon-container:hover {
-            background: #fed488;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-
-        .user-icon-container .material-symbols-outlined {
-            color: #775a19 !important;
-            font-size: 20px !important;
-        }
-
-        .user-icon-container:hover .material-symbols-outlined {
-            color: #775a19 !important;
-        }
-
-        .brand-name {
-            color: #ffffff;
-            font-size: 22px;
-            font-weight: 500;
-            line-height: 1.2;
-            letter-spacing: 0;
-        }
-
-        .brand-subtitle {
-            color: #fed488;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0;
-            text-transform: uppercase;
-        }
-
-        .nav-link {
-            font-size: 15px;
-            letter-spacing: 0;
-            font-weight: 500;
-        }
-
-        @media (max-width: 767px) {
-            .nav-whatsapp-btn {
-                padding: 0.4rem 0.7rem;
-                font-size: 12px;
-            }
-            .nav-whatsapp-btn .whatsapp-text {
-                display: none;
-            }
-            .nav-whatsapp-btn .material-symbols-outlined {
-                font-size: 20px !important;
-            }
-        }
-
-        @media (max-width: 1023px) {
-            .desktop-nav {
-                display: none !important;
-            }
-            .mobile-nav-trigger {
-                display: flex !important;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .desktop-nav {
-                display: flex !important;
-            }
-            .mobile-nav-trigger {
-                display: none !important;
-            }
-        }
-
-        .mobile-menu {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 80px;
-            right: 0;
-            left: 0;
-            background: #775a19;
-            backdrop-filter: blur(12px);
-            padding: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            z-index: 50;
-            gap: 6px;
-            border-radius: 0 0 16px 16px;
-        }
-
-        .mobile-menu.open {
-            display: flex;
-        }
-
-        .mobile-menu a {
-            padding: 10px 16px;
-            border-radius: 8px;
-            color: #ffffff;
-            transition: background 0.2s;
-            font-size: 15px;
-            letter-spacing: 0;
-        }
-
-        .mobile-menu a:hover {
-            background: rgba(255,255,255,0.1);
-        }
-
-        @media (max-width: 767px) {
-            .mobile-menu {
-                top: 64px !important;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .mobile-menu {
-                top: 72px !important;
-            }
-        }
-
-        .body-text {
-            font-size: 16px;
-            letter-spacing: 0;
-        }
-
-        @media (max-width: 767px) {
-            .body-text {
-                font-size: 15px;
-            }
-        }
-
-        .heading-text {
-            letter-spacing: 0;
-        }
-
-        .label-text {
-            letter-spacing: 0;
-        }
-
-        .english-label {
-            letter-spacing: 0.08em;
-        }
-
-        .footer-map iframe {
-            width: 100%;
-            height: 200px;
-            border: 0;
-            border-radius: 8px;
-        }
-
-        .cta-primary {
-            background: #775a19;
-            color: #ffffff;
-        }
-
-        .cta-primary:hover {
-            background: #fed488;
-            color: #261900;
-        }
-
-        .cta-secondary {
-            background: #775a19;
-            color: #ffffff;
-        }
-
-        .cta-secondary:hover {
-            background: #fed488;
-            color: #261900;
-        }
-
-        .footer-bg {
-            background: #000000;
-        }
-
-        .footer-text {
-            color: #89837a;
-        }
-
-        .footer-heading {
-            color: #fbf9f6;
-        }
-    </style>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "شركة بيتي للأبواب الجاهزة والإكسسوارات",
-      "image": "https://bayti.tip2.libyanspider.cloud/static/logo.jpeg",
-      "url": "https://bayti.tip2.libyanspider.cloud/",
-      "telephone": "+218947710070",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري",
-        "addressLocality": "بنغازي",
-        "addressCountry": "LY"
-      },
-      "openingHours": "Sa-Th 09:00-21:00"
-    }
-    </script>
-</head>
-<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
-
-    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
-        <div class="h-20 max-w-7xl mx-auto px-structural flex items-center justify-between" style="padding-left:32px;padding-right:32px;">
-            <div class="flex items-center" style="gap:12px;">
-                <a class="flex items-center" style="gap:12px;" data-path="home" href="{% url 'home' %}">
-                    <div class="logo-container">
-                        <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
-                    </div>
-                    <div class="flex flex-col text-right">
-                        <span class="brand-name">شركة بيتي</span>
-                        <span class="brand-subtitle">للابواب الجاهزة والإكسسوار - ليبيا</span>
-                    </div>
-                </a>
-            </div>
-
-            <nav class="desktop-nav items-center" style="gap:32px;">
-                <a class="nav-link text-white hover:text-[#fed488] transition-colors py-micro" data-path="home" href="{% url 'home' %}">الرئيسية</a>
-                <a class="nav-link text-white hover:text-[#fed488] transition-colors py-micro" href="{% url 'home' %}#catalog-section">المنتجات</a>
-                <a aria-current="page" class="nav-link text-white font-bold transition-colors py-micro" href="{% url 'about' %}">من نحن</a>
-            </nav>
-
-            <div class="flex items-center" style="gap:12px;">
-                <a class="nav-whatsapp-btn" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank">
-                    <span class="material-symbols-outlined">chat</span>
-                    <span class="whatsapp-text whitespace-nowrap">واتساب</span>
-                </a>
-                <div class="user-icon-container">
-                    {% if not user.is_authenticated %}
-                    <a href="{% url 'user_login' %}"><span class="material-symbols-outlined">person</span></a>
-                    {% else %}
-                    <a href="{% url 'dashboard' %}"><span class="material-symbols-outlined">person</span></a>
-                    {% endif %}
-                </div>
-                <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-element text-white hover:text-[#fed488]" type="button">
-                    <span class="material-symbols-outlined text-[24px]">menu</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="mobile-menu" id="mobile-menu">
-            <a aria-current="page" data-path="home" href="{% url 'home' %}">الرئيسية</a>
-            <a href="{% url 'home' %}#catalog-section">المنتجات</a>
-            <a href="{% url 'about' %}">من نحن</a>
-            {% if not user.is_authenticated %}
-            <a href="{% url 'user_login' %}">حسابي</a>
-            {% else %}
-            <a href="{% url 'dashboard' %}">حسابي</a>
-            {% endif %}
-            <a href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank" style="background:rgba(255,255,255,0.15);">واتساب</a>
-        </div>
-    </header>
-
-    <main class="w-full pt-20 bg-surface min-h-screen">
-        
-        <section class="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden about-hero">
-            <div class="absolute inset-0 opacity-10">
-                <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLjHyjoQOGPFpdCXaaLmhrdj40j_M2gx565zO6BmUsHsbBBqBNBgM71bHwSehl9DQsSjC98DvT9JoEYML1tWDDFVjz_aUQrybGol0hRV0W19kYRBNthLeAa1SBXrZp3Pyg76mSHWG249I0-kh-rRRVqVthHqJ-l1hwSvFrTP9afj7nHTPjFzXGV2f4nC30tPTlYrf_zDwcZ3wRj12CBvX11C8AiJOVZ0KOBykGfdKARQE_JX4N3y62');"></div>
-            </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-primary/30"></div>
-            <div class="relative z-10 w-full max-w-4xl mx-auto px-4 py-20 text-center text-surface-bright">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-surface-bright/10 text-secondary-fixed font-label-md text-label-md rounded-full mb-6" style="letter-spacing:0;">
-                    <span class="material-symbols-outlined text-[18px]">info</span>
-                    من نحن
-                </div>
-                <h1 class="font-headline-lg text-headline-lg text-surface-bright font-normal heading-text" style="letter-spacing:0;">
-                    من نحن | شركة بيتي للأبواب الجاهزة والإكسسوارات
-                </h1>
-                <p class="font-body-lg text-body-lg text-surface-container-high/80 max-w-3xl mx-auto mt-4 leading-relaxed body-text" style="letter-spacing:0;">
-                    شركة بيتي للأبواب الجاهزة والإكسسوارات هي شركة متخصصة في توفير الأبواب الجاهزة والإكسسوارات، ونحرص على تقديم منتجات تجمع بين الجودة، التصميم العملي، والمظهر الذي يناسب مختلف المساحات والمشاريع.
-                </p>
-                <p class="font-body-md text-body-md text-surface-container-high/70 max-w-3xl mx-auto mt-3 leading-relaxed body-text" style="letter-spacing:0;">
-                    نعمل على توفير خيارات متنوعة تلبي احتياجات المنازل والمكاتب والمشاريع التجارية، مع الاهتمام بجودة المنتجات وتفاصيلها لمساعدة عملائنا على اختيار الحل المناسب لاحتياجاتهم.
-                </p>
-            </div>
-        </section>
-
-        <section class="w-full py-monumental bg-surface">
-            <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-monumental items-center">
-                    <div class="text-right space-y-spacious">
-                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">من نحن؟</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">
-                            في شركة بيتي، نؤمن أن الباب ليس مجرد جزء من المبنى، بل عنصر أساسي في التصميم والوظيفة.
-                        </h2>
-                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
-                            لذلك نسعى إلى توفير مجموعة من الأبواب الجاهزة والإكسسوارات التي تساعد أصحاب المنازل والمشاريع والمصممين على الوصول إلى خيارات عملية وأنيقة تناسب احتياجاتهم.
-                        </p>
-                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
-                            نهتم بتقديم تجربة شراء واضحة للعميل، بدءًا من التعرف على المنتجات واختيار التصميم المناسب، وصولًا إلى الحصول على المنتج الذي يلائم احتياجات المشروع.
-                        </p>
-                    </div>
-                    <div class="relative">
-                        <div class="aspect-[4/3] bg-surface-container-high overflow-hidden rounded-lg">
-                            <img alt="شركة بيتي للأبواب الجاهزة والإكسسوارات" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsVXnFCHxahcWca6-p3jNlOW8vQ8JPG37Ebs6RTRhwMJdeiFCCCEQGdFPnbcIyG9ZPW10siWY0oln0toqBfgNCeumMSOtH1q6Decpibzg7p1afBsDHHAH-sv8dRjUdVgaSg3IXtSC_xUK87kEev2LeRmudf1RIKlzTUZnI5_3qxuPuBaPd-cNb08sKxbbDplZKX1zK96yu_YMMmhpKov-dchmRJ79Fs9WaMV5JeCyFMuzRtAbF74oy"/>
-                        </div>
-                        <div class="absolute -bottom-4 -left-4 bg-surface-container-lowest p-4 shadow-lg rounded-lg max-w-xs">
-                            <div class="flex items-center gap-2 text-secondary">
-                                <span class="material-symbols-outlined text-[24px]">verified</span>
-                                <span class="font-label-md text-label-md" style="letter-spacing:0;">أبواب جاهزة بجودة عالية</span>
-                            </div>
-                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 body-text" style="letter-spacing:0;">تشكيلة واسعة من الأبواب والإكسسوارات</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="w-full py-monumental bg-surface-container-low">
-            <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-                <div class="text-center max-w-3xl mx-auto space-y-3 pb-12">
-                    <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">لماذا نحن؟</span>
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">لماذا تختار شركة بيتي للأبواب والإكسسوارات؟</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
-                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
-                            <span class="material-symbols-outlined text-[28px]">grid_view</span>
-                        </div>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">خيارات متنوعة</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نوفر مجموعة من الأبواب الجاهزة والإكسسوارات لتناسب احتياجات مختلفة، سواء للمنازل أو المكاتب أو المشاريع التجارية.</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
-                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
-                            <span class="material-symbols-outlined text-[28px]">verified</span>
-                        </div>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">الاهتمام بالجودة</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نحرص على اختيار المنتجات التي تحقق مستوى جيدًا من الجودة والاعتمادية، مع الاهتمام بالتفاصيل التي تؤثر على الاستخدام والمظهر النهائي.</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
-                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
-                            <span class="material-symbols-outlined text-[28px]">design_services</span>
-                        </div>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">تصاميم تناسب مختلف المساحات</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نقدم خيارات متعددة من حيث التصميم والمظهر، لمساعدة العميل على اختيار ما يتناسب مع طبيعة المكان والديكور.</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
-                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
-                            <span class="material-symbols-outlined text-[28px]">business_center</span>
-                        </div>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">حلول للمشاريع المختلفة</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">سواء كنت تقوم بتجهيز منزل، مكتب، محل تجاري أو مشروع جديد، نساعدك في الوصول إلى المنتجات المناسبة لاحتياجاتك.</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
-                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
-                            <span class="material-symbols-outlined text-[28px]">shopping_cart</span>
-                        </div>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">تجربة شراء واضحة</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نحرص على أن تكون معلومات المنتجات وخياراتها واضحة قدر الإمكان، حتى يستطيع العميل اتخاذ قرار مناسب بناءً على احتياجاته.</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
-                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
-                            <span class="material-symbols-outlined text-[28px]">support_agent</span>
-                        </div>
-                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">نهتم باحتياجات العميل</h3>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نستمع إلى احتياجات العميل ونساعده في اختيار المنتج المناسب بدلًا من تقديم خيار واحد للجميع.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="w-full py-monumental bg-surface">
-            <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-                <div class="text-center max-w-3xl mx-auto space-y-3 pb-12">
-                    <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">ماذا نقدم؟</span>
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">منتجات وحلول متكاملة</h2>
-                    <p class="font-body-md text-body-md text-on-surface-variant body-text" style="letter-spacing:0;">في شركة بيتي نوفر مجموعة من المنتجات والحلول المتعلقة بالأبواب والتجهيزات</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
-                        <span class="material-symbols-outlined text-[48px] text-secondary">door_front</span>
-                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">الأبواب الجاهزة</h4>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">تشكيلة واسعة من الأبواب الجاهزة بمواصفات عالية</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
-                        <span class="material-symbols-outlined text-[48px] text-secondary">meeting_room</span>
-                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">أبواب داخلية</h4>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">تصاميم راقية تناسب مختلف الديكورات الداخلية</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
-                        <span class="material-symbols-outlined text-[48px] text-secondary">security</span>
-                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">أبواب خارجية مصفحة</h4>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">أمان عالي ومتانة للاستخدام الخارجي</p>
-                    </div>
-                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
-                        <span class="material-symbols-outlined text-[48px] text-secondary">handshake</span>
-                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">إكسسوارات فاخرة وعملية</h4>
-                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">مقابض وتركيبات وإكسسوارات عالية الجودة</p>
-                    </div>
-                </div>
-                <div class="text-center mt-8">
-                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">* المنتجات متاحة حسب المخزون والتوفر</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="w-full py-monumental bg-surface-container-low">
-            <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-monumental items-center">
-                    <div>
-                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">لمن نقدم خدماتنا؟</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text mt-3" style="letter-spacing:0;">نخدم مجموعة متنوعة من العملاء</h2>
-                        <div class="space-y-4 mt-6">
-                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
-                                <span class="material-symbols-outlined text-[24px] text-secondary">home</span>
-                                <div>
-                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">أصحاب المنازل</h4>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">لمن يبحثون عن أبواب مناسبة للتجهيز أو التجديد.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
-                                <span class="material-symbols-outlined text-[24px] text-secondary">business</span>
-                                <div>
-                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">المكاتب والشركات</h4>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">لتجهيز المساحات الإدارية والمكاتب.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
-                                <span class="material-symbols-outlined text-[24px] text-secondary">storefront</span>
-                                <div>
-                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">المشاريع التجارية</h4>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">مثل المحلات والمشاريع الجديدة التي تحتاج إلى أبواب وتجهيزات ومقابض عملية.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
-                                <span class="material-symbols-outlined text-[24px] text-secondary">engineering</span>
-                                <div>
-                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">المقاولون والمصممون</h4>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">للمساعدة في توفير المنتجات اللازمة للمشاريع المختلفة.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="aspect-[4/3] bg-surface-container-high overflow-hidden rounded-lg">
-                            <img alt="خدمات شركة بيتي للعملاء" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ5HBOcSosZkdkLlhWs-NC2eAKzrIbZg9wm2MmM40VOo2W-y0oL0InzoOfiwYW1LjFsZket3sg8blwpGkV__M80gC2nKmaEeU2HS7xnqJ2X_XblWsiTTOAhVpzbCcKXoWGQMWhG6airYk4vSXEYgTTWh7Bs25hUM-oRlWqO9KH-O5_B-ZKokKwdeBK1ItBDlXXdIS8GEwuydEHzFi4MHUlVqT6PR0b3vrB_eIpqar6wLHgQ6L3j_dH"/>
-                        </div>
-                        <div class="absolute -bottom-4 -right-4 bg-secondary text-on-secondary p-4 shadow-lg rounded-lg">
-                            <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-[24px]">star</span>
-                                <span class="font-headline-sm text-headline-sm heading-text" style="letter-spacing:0;">نخدم عملاءنا في جميع أنحاء ليبيا</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="w-full py-monumental bg-primary-container text-surface-bright">
-            <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="text-right space-y-4 p-8 bg-surface-bright/5 rounded-lg">
-                        <span class="material-symbols-outlined text-[48px] text-secondary-fixed">visibility</span>
-                        <h2 class="font-headline-lg text-headline-lg text-surface-bright font-normal heading-text" style="letter-spacing:0;">رؤيتنا</h2>
-                        <p class="font-body-lg text-body-lg text-surface-container-high/80 leading-relaxed body-text" style="letter-spacing:0;">
-                            أن نكون من الخيارات الموثوقة في مجال الأبواب الجاهزة والإكسسوارات في ليبيا، من خلال توفير منتجات متنوعة وتجربة تعامل تركز على احتياجات العميل وجودة الاختيار.
-                        </p>
-                    </div>
-                    <div class="text-right space-y-4 p-8 bg-surface-bright/5 rounded-lg">
-                        <span class="material-symbols-outlined text-[48px] text-secondary-fixed">mission</span>
-                        <h2 class="font-headline-lg text-headline-lg text-surface-bright font-normal heading-text" style="letter-spacing:0;">رسالتنا</h2>
-                        <p class="font-body-lg text-body-lg text-surface-container-high/80 leading-relaxed body-text" style="letter-spacing:0;">
-                            توفير منتجات وحلول عملية وأنيقة تساعد عملاءنا على تجهيز مساحاتهم واختيار الأبواب والإكسسوارات المناسبة لمشاريعهم.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="w-full py-monumental bg-surface">
-            <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-monumental items-center">
-                    <div class="text-right space-y-6">
-                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">📍 شركة بيتي في ليبيا</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">نخدم عملاءنا في ليبيا</h2>
-                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
-                            نخدم عملاءنا في ليبيا ونوفر منتجات الأبواب الجاهزة والإكسسوارات وفق المنتجات المتوفرة لدينا.
-                        </p>
-                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
-                            إذا كان لديك مشروع أو تبحث عن باب أو إكسسوار معماري مناسب، يمكنك التواصل معنا لمعرفة الخيارات المتاحة.
-                        </p>
-                        <div class="flex flex-wrap gap-4 pt-4">
-                            <a class="h-12 px-6 cta-primary transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg" href="{% url 'home' %}#catalog-section" style="letter-spacing:0;font-size:14px;">
-                                <span class="material-symbols-outlined ml-2 text-[20px]">grid_view</span>
-                                تصفح منتجاتنا
-                            </a>
-                            <a class="h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank" style="letter-spacing:0;font-size:14px;">
-                                <span class="material-symbols-outlined ml-2 text-[20px]">chat</span>
-                                تواصل معنا
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-surface-container-high p-6 rounded-lg">
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
-    <span class="material-symbols-outlined text-[24px] text-secondary">location_on</span>
-    <div>
-        <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">العنوان</h4>
-        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</p>
-        <a href="https://maps.app.goo.gl/4Snj4BdaKP7msct6A?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-1 text-secondary hover:text-secondary-container transition-colors font-label-sm text-label-sm" style="letter-spacing:0;">
-            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-            عرض   
-        </a>
-    </div>
-</div>
-
-<div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
-    <span class="material-symbols-outlined text-[24px] text-secondary">call</span>
-    <div>
-        <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">الهاتف</h4>
-        <a href="tel:+218947710070" class="font-body-sm text-body-sm text-on-surface-variant body-text hover:text-secondary transition-colors" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
-        <div class="flex flex-wrap gap-2 mt-1">
-            <a href="tel:+218947710070" class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors px-3 py-1 rounded-lg font-label-sm text-label-sm" style="letter-spacing:0;">
-                <span class="material-symbols-outlined text-[16px]">call</span>
-                اتصل الآن
-            </a>
-            <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors px-3 py-1 rounded-lg font-label-sm text-label-sm" style="letter-spacing:0;">
-                <span class="material-symbols-outlined text-[16px]">chat</span>
-                واتساب
-            </a>
-        </div>
-    </div>
-</div>
-                            <div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
-                                <span class="material-symbols-outlined text-[24px] text-secondary">schedule</span>
-                                <div>
-                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">ساعات العمل</h4>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <div class="fixed bottom-monumental left-monumental z-40">
-        <a class="group relative inline-flex items-center gap-element px-spacious py-element bg-secondary text-on-secondary rounded-full shadow-[0_12px_32px_-4px_rgba(22,24,29,0.18)] hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300" href="tel:+218947710070" rel="noopener noreferrer" target="_blank">
-            <span class="relative flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed-dim"></span>
-            </span>
-            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">forum</span>
-            <span class="font-label-md text-label-md hidden md:inline text-white" style="letter-spacing:0;">تواصل معنا</span>  
-        </a>
-    </div>
-
-    <footer class="w-full footer-bg text-inverse-on-surface pt-monumental pb-spacious">
-        <div class="max-w-7xl mx-auto px-structural" style="padding-left:32px;padding-right:32px;">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-monumental pb-monumental">
-                <div class="lg:col-span-4 space-y-spacious">
-                    <div class="flex items-center gap-element">
-                        <div class="flex flex-col text-right">
-                            <span class="font-headline-sm text-headline-sm footer-heading heading-text" style="letter-spacing:0;">شركة بيتي</span>
-                            <span class="font-label-sm text-label-sm footer-text uppercase tracking-wider" style="letter-spacing:0.05em;">الأبواب الجاهزة والاكسسوار</span>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-map">
-                        <iframe 
-                            src="https://maps.app.goo.gl/4Snj4BdaKP7msct6A?g_st=ac" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="موقع شركة بيتي على الخريطة">
-                        </iframe>
-                    </div>
-                </div>
-                <div class="lg:col-span-3 space-y-element">
-                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-micro heading-text" style="letter-spacing:0;">التصنيفات والعروض</h4>
-                    <ul class="space-y-compact">
-                      {% for category in categories %}
-                        <li class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;"><a data-path="products-and-catalog" href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
-                      {% endfor %}
-                    </ul>
-                </div>
-                <div class="lg:col-span-5 space-y-element">
-                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-micro heading-text" style="letter-spacing:0;">صالات العرض والتواصل</h4>
-                    <div class="space-y-compact">
-                        <div class="flex items-start gap-compact">
-                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed pt-micro">location_on</span>
-                            <div class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">
-                                <span class="block footer-heading font-label-md" style="letter-spacing:0;">صالة العرض الرئيسية</span>
-                                <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-compact">
-                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
-                            <a href="tel:+218947710070" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
-                        </div>
-                        <div class="flex items-center gap-compact">
-                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">schedule</span>
-                            <span class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-spacious flex flex-col sm:flex-row items-center justify-between gap-standard">
-                <p class="font-label-sm text-label-sm footer-text body-text" style="letter-spacing:0;">© 2026 شركة بيتي للأبواب الجاهزة والإكسسوار. جميع الحقوق محفوظة.</p>
-                <p class="font-label-sm text-label-sm footer-text tracking-wider body-text" style="letter-spacing:0.05em;">دقة هندسية • حضور معماري • تشطيبات أصيلة</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuTrigger = document.querySelector('.mobile-nav-trigger');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (menuTrigger && mobileMenu) {
-                menuTrigger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('open');
-                });
-                
-                document.addEventListener('click', function(e) {
-                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
-                        mobileMenu.classList.remove('open');
-                    }
-                });
-            }
-        });
-    </script>
-
     <script>
     tailwind.config = {
         darkMode: "class",
@@ -872,6 +117,936 @@
             }
         }
     }
-</script>
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        html, body { margin: 0; padding: 0; }
+        body { overscroll-behavior: none; }
+        main > :first-child { margin-top: 0 !important; }
+        main > :last-child { margin-bottom: 0 !important; }
+        ::-webkit-scrollbar { display: none; }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #1a1b21 0%, #2d2d2d 100%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .logo-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #fed488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #ffffff;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container {
+                width: 52px;
+                height: 52px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .logo-container {
+                width: 56px;
+                height: 56px;
+            }
+        }
+
+        .nav-bar {
+            background: #775a19 !important;
+            color: #ffffff !important;
+        }
+        .nav-bar a {
+            color: #ffffff !important;
+        }
+        .nav-bar a:hover {
+            color: #fed488 !important;
+        }
+        .nav-bar .material-symbols-outlined {
+            color: #ffffff !important;
+        }
+
+        .brand-name {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0;
+        }
+
+        .brand-subtitle {
+            color: #fed488;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 640px) {
+            .brand-name {
+                font-size: 22px;
+            }
+            .brand-subtitle {
+                font-size: 11px;
+            }
+        }
+
+        .navbar-height {
+            height: 64px;
+        }
+
+        @media (min-width: 640px) {
+            .navbar-height {
+                height: 72px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .navbar-height {
+                height: 80px;
+            }
+        }
+
+        .desktop-nav {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .desktop-nav {
+                display: flex !important;
+            }
+        }
+
+        .mobile-nav-trigger {
+            display: flex;
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-nav-trigger {
+                display: none !important;
+            }
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 64px;
+            right: 8px;
+            left: 8px;
+            background: #775a19;
+            backdrop-filter: blur(12px);
+            padding: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            z-index: 50;
+            gap: 4px;
+            border-radius: 0 0 16px 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        @media (min-width: 640px) {
+            .mobile-menu {
+                top: 72px;
+                right: 16px;
+                left: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            padding: 14px 16px;
+            border-radius: 12px;
+            color: #ffffff;
+            transition: all 0.2s;
+            font-size: 16px;
+            letter-spacing: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 48px;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .mobile-menu .menu-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 6px 0;
+        }
+
+        .mobile-menu .menu-whatsapp {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-top: 4px;
+        }
+
+        .mobile-menu .menu-whatsapp:hover {
+            background: #fed488;
+            color: #775a19;
+        }
+
+        .mobile-menu .menu-whatsapp:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        .mobile-menu .material-symbols-outlined {
+            font-size: 22px !important;
+            color: #fed488 !important;
+        }
+
+        .mobile-menu .menu-whatsapp .material-symbols-outlined {
+            color: #fed488 !important;
+        }
+
+        .mobile-menu .menu-whatsapp:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        .body-text {
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 767px) {
+            .body-text {
+                font-size: 15px;
+            }
+        }
+
+        .heading-text {
+            letter-spacing: 0;
+        }
+
+        .english-label {
+            letter-spacing: 0.08em;
+        }
+
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        .cta-primary {
+            background: #775a19;
+            color: #ffffff;
+        }
+
+        .cta-primary:hover {
+            background: #fed488;
+            color: #261900;
+        }
+
+        .footer-bg {
+            background: #000000;
+        }
+
+        .footer-text {
+            color: #89837a;
+        }
+
+        .footer-heading {
+            color: #fbf9f6;
+        }
+
+        /* ================================
+           Responsive Fixes - موحد مع الصفحة الرئيسية
+        ================================ */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            width: 100%;
+        }
+
+        header > div:first-child {
+            width: 100%;
+        }
+
+        main {
+            padding-top: 80px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .fixed.bottom-monumental {
+            max-width: calc(100vw - 24px);
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            main {
+                padding-top: 72px;
+            }
+
+            header > div:first-child {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .mobile-menu {
+                left: 12px;
+                right: 12px;
+                width: auto;
+            }
+
+            section > div {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            main {
+                padding-top: 64px;
+            }
+
+            header > div:first-child {
+                padding-left: 14px !important;
+                padding-right: 14px !important;
+            }
+
+            .brand-name {
+                font-size: 17px !important;
+                white-space: nowrap;
+            }
+
+            .brand-subtitle {
+                font-size: 8px !important;
+                white-space: nowrap;
+            }
+
+            header .flex.items-center {
+                min-width: 0;
+            }
+
+            .mobile-menu {
+                top: 64px !important;
+                left: 8px;
+                right: 8px;
+                width: auto;
+                border-radius: 0 0 12px 12px;
+                padding: 10px;
+            }
+
+            .mobile-menu a {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            section {
+                width: 100%;
+                overflow: hidden;
+            }
+
+            section > div {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .about-hero {
+                min-height: auto;
+            }
+
+            .about-hero > div.relative {
+                padding-top: 64px;
+                padding-bottom: 64px;
+            }
+
+            .about-hero h1 {
+                font-size: 28px !important;
+                line-height: 1.4 !important;
+            }
+
+            .about-hero p {
+                font-size: 15px !important;
+                line-height: 1.9 !important;
+            }
+
+            h2 {
+                font-size: 28px !important;
+                line-height: 1.5 !important;
+            }
+
+            h3 {
+                font-size: 20px !important;
+                line-height: 1.5 !important;
+            }
+
+            .stat-card {
+                width: 100%;
+            }
+
+            .relative > .aspect-\[4\/3\] {
+                width: 100%;
+            }
+
+            .relative > .absolute {
+                position: relative;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                margin-top: 12px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+            }
+
+            .flex.flex-wrap.gap-4.pt-4 {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .flex.flex-wrap.gap-4.pt-4 a {
+                width: 100%;
+            }
+
+            footer {
+                overflow: hidden;
+            }
+
+            footer > div {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .footer-map {
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .footer-map iframe {
+                width: 100% !important;
+                height: 220px !important;
+                display: block;
+            }
+
+            .fixed.bottom-monumental {
+                left: 12px !important;
+                bottom: 12px !important;
+            }
+
+            .fixed.bottom-monumental a {
+                padding: 10px 14px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .logo-container {
+                width: 40px;
+                height: 40px;
+            }
+
+            .brand-name {
+                font-size: 15px !important;
+            }
+
+            .brand-subtitle {
+                font-size: 7px !important;
+            }
+
+            .mobile-nav-trigger {
+                padding: 4px !important;
+            }
+
+            .about-hero h1 {
+                font-size: 24px !important;
+            }
+
+            h2 {
+                font-size: 24px !important;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "شركة بيتي للأبواب الجاهزة والإكسسوارات",
+      "image": "https://bayti.tip2.libyanspider.cloud/static/logo.jpeg",
+      "url": "https://bayti.tip2.libyanspider.cloud/",
+      "telephone": "+218947710070",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري",
+        "addressLocality": "بنغازي",
+        "addressCountry": "LY"
+      },
+      "openingHours": "Sa-Th 09:00-21:00"
+    }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
+        <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
+            <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
+                <div class="logo-container">
+                    <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
+                </div>
+                <div class="flex flex-col text-right">
+                    <span class="brand-name">بيتي</span>
+                    <span class="brand-subtitle">للابواب والاكسسوار</span>
+                </div>
+            </a>
+
+            <nav class="desktop-nav items-center gap-8">
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" data-path="home" href="{% url 'home' %}">الرئيسية</a>
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}#catalog-section">المنتجات</a>
+                <a aria-current="page" class="font-medium text-white font-bold transition-colors text-[15px]" href="{% url 'about' %}">من نحن</a>
+            </nav>
+
+            <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
+                <span class="material-symbols-outlined text-[28px]">menu</span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="{% url 'home' %}">
+                <span class="material-symbols-outlined">home</span>
+                الرئيسية
+            </a>
+            <a href="{% url 'home' %}#catalog-section">
+                <span class="material-symbols-outlined">grid_view</span>
+                المنتجات
+            </a>
+            <a href="{% url 'about' %}">
+                <span class="material-symbols-outlined">info</span>
+                من نحن
+            </a>
+            <div class="menu-divider"></div>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'user_login' %}">
+                <span class="material-symbols-outlined">person</span>
+                حسابي
+            </a>
+            {% else %}
+            <a href="{% url 'dashboard' %}">
+                <span class="material-symbols-outlined">person</span>
+                حسابي
+            </a>
+            {% endif %}
+            <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
+                <span class="material-symbols-outlined">chat</span>
+                استفسار عبر واتساب
+            </a>
+        </div>
+    </header>
+
+    <main class="w-full bg-surface min-h-screen">
+        
+        <section class="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden about-hero">
+            <div class="absolute inset-0 opacity-10">
+                <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLjHyjoQOGPFpdCXaaLmhrdj40j_M2gx565zO6BmUsHsbBBqBNBgM71bHwSehl9DQsSjC98DvT9JoEYML1tWDDFVjz_aUQrybGol0hRV0W19kYRBNthLeAa1SBXrZp3Pyg76mSHWG249I0-kh-rRRVqVthHqJ-l1hwSvFrTP9afj7nHTPjFzXGV2f4nC30tPTlYrf_zDwcZ3wRj12CBvX11C8AiJOVZ0KOBykGfdKARQE_JX4N3y62');"></div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-primary/30"></div>
+            <div class="relative z-10 w-full max-w-4xl mx-auto px-4 py-20 text-center text-surface-bright">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-surface-bright/10 text-secondary-fixed font-label-md text-label-md rounded-full mb-6" style="letter-spacing:0;">
+                    <span class="material-symbols-outlined text-[18px]">info</span>
+                    من نحن
+                </div>
+                <h1 class="font-headline-lg text-headline-lg text-surface-bright font-normal heading-text" style="letter-spacing:0;">
+                    من نحن | شركة بيتي للأبواب الجاهزة والإكسسوارات
+                </h1>
+                <p class="font-body-lg text-body-lg text-surface-container-high/80 max-w-3xl mx-auto mt-4 leading-relaxed body-text" style="letter-spacing:0;">
+                    شركة بيتي للأبواب الجاهزة والإكسسوارات هي شركة متخصصة في توفير الأبواب الجاهزة والإكسسوارات، ونحرص على تقديم منتجات تجمع بين الجودة، التصميم العملي، والمظهر الذي يناسب مختلف المساحات والمشاريع.
+                </p>
+                <p class="font-body-md text-body-md text-surface-container-high/70 max-w-3xl mx-auto mt-3 leading-relaxed body-text" style="letter-spacing:0;">
+                    نعمل على توفير خيارات متنوعة تلبي احتياجات المنازل والمكاتب والمشاريع التجارية، مع الاهتمام بجودة المنتجات وتفاصيلها لمساعدة عملائنا على اختيار الحل المناسب لاحتياجاتهم.
+                </p>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-surface">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div class="text-right space-y-4 sm:space-y-6">
+                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">من نحن؟</span>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">
+                            في شركة بيتي، نؤمن أن الباب ليس مجرد جزء من المبنى، بل عنصر أساسي في التصميم والوظيفة.
+                        </h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
+                            لذلك نسعى إلى توفير مجموعة من الأبواب الجاهزة والإكسسوارات التي تساعد أصحاب المنازل والمشاريع والمصممين على الوصول إلى خيارات عملية وأنيقة تناسب احتياجاتهم.
+                        </p>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
+                            نهتم بتقديم تجربة شراء واضحة للعميل، بدءًا من التعرف على المنتجات واختيار التصميم المناسب، وصولًا إلى الحصول على المنتج الذي يلائم احتياجات المشروع.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-[4/3] bg-surface-container-high overflow-hidden rounded-lg">
+                            <img alt="شركة بيتي للأبواب الجاهزة والإكسسوارات" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsVXnFCHxahcWca6-p3jNlOW8vQ8JPG37Ebs6RTRhwMJdeiFCCCEQGdFPnbcIyG9ZPW10siWY0oln0toqBfgNCeumMSOtH1q6Decpibzg7p1afBsDHHAH-sv8dRjUdVgaSg3IXtSC_xUK87kEev2LeRmudf1RIKlzTUZnI5_3qxuPuBaPd-cNb08sKxbbDplZKX1zK96yu_YMMmhpKov-dchmRJ79Fs9WaMV5JeCyFMuzRtAbF74oy"/>
+                        </div>
+                        <div class="sm:absolute -bottom-4 -left-4 bg-surface-container-lowest p-4 shadow-lg rounded-lg max-w-xs mt-4 sm:mt-0">
+                            <div class="flex items-center gap-2 text-secondary">
+                                <span class="material-symbols-outlined text-[24px]">verified</span>
+                                <span class="font-label-md text-label-md" style="letter-spacing:0;">أبواب جاهزة بجودة عالية</span>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 body-text" style="letter-spacing:0;">تشكيلة واسعة من الأبواب والإكسسوارات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-3 pb-8 lg:pb-12">
+                    <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">لماذا نحن؟</span>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">لماذا تختار شركة بيتي للأبواب والإكسسوارات؟</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
+                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
+                            <span class="material-symbols-outlined text-[28px]">grid_view</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">خيارات متنوعة</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نوفر مجموعة من الأبواب الجاهزة والإكسسوارات لتناسب احتياجات مختلفة.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
+                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
+                            <span class="material-symbols-outlined text-[28px]">verified</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">الاهتمام بالجودة</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نحرص على اختيار المنتجات التي تحقق مستوى جيدًا من الجودة والاعتمادية.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
+                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
+                            <span class="material-symbols-outlined text-[28px]">design_services</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">تصاميم تناسب مختلف المساحات</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نقدم خيارات متعددة من حيث التصميم والمظهر لتناسب كل الأذواق.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
+                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
+                            <span class="material-symbols-outlined text-[28px]">business_center</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">حلول للمشاريع المختلفة</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نساعدك في الوصول إلى المنتجات المناسبة لاحتياجات مشروعك.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
+                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
+                            <span class="material-symbols-outlined text-[28px]">shopping_cart</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">تجربة شراء واضحة</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">معلومات المنتجات واضحة لاتخاذ قرار مناسب بناءً على احتياجاتك.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-right space-y-4 shadow-sm hover:shadow-md transition-all rounded-lg stat-card">
+                        <div class="w-12 h-12 bg-surface-container-high flex items-center justify-center text-secondary rounded-full">
+                            <span class="material-symbols-outlined text-[28px]">support_agent</span>
+                        </div>
+                        <h3 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">نهتم باحتياجات العميل</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">نستمع لاحتياجاتك ونساعدك في اختيار المنتج المناسب.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-surface">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-3 pb-8 lg:pb-12">
+                    <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">ماذا نقدم؟</span>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">منتجات وحلول متكاملة</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant body-text" style="letter-spacing:0;">في شركة بيتي نوفر مجموعة من المنتجات والحلول المتعلقة بالأبواب والتجهيزات</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
+                        <span class="material-symbols-outlined text-[48px] text-secondary">door_front</span>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">الأبواب الجاهزة</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">تشكيلة واسعة من الأبواب الجاهزة بمواصفات عالية</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
+                        <span class="material-symbols-outlined text-[48px] text-secondary">meeting_room</span>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">أبواب داخلية</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">تصاميم راقية تناسب مختلف الديكورات الداخلية</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
+                        <span class="material-symbols-outlined text-[48px] text-secondary">security</span>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">أبواب خارجية مصفحة</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">أمان عالي ومتانة للاستخدام الخارجي</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm hover:shadow-md transition-all rounded-lg">
+                        <span class="material-symbols-outlined text-[48px] text-secondary">handshake</span>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface mt-3 heading-text" style="letter-spacing:0;">إكسسوارات فاخرة</h4>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">مقابض وتركيبات وإكسسوارات عالية الجودة</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">* المنتجات متاحة حسب المخزون والتوفر</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div>
+                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">لمن نقدم خدماتنا؟</span>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text mt-3" style="letter-spacing:0;">نخدم مجموعة متنوعة من العملاء</h2>
+                        <div class="space-y-4 mt-6">
+                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">home</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">أصحاب المنازل</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">لمن يبحثون عن أبواب مناسبة للتجهيز أو التجديد.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">business</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">المكاتب والشركات</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">لتجهيز المساحات الإدارية والمكاتب.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">storefront</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">المشاريع التجارية</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">مثل المحلات والمشاريع الجديدة التي تحتاج إلى أبواب وتجهيزات.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 bg-surface-container-lowest p-4 rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">engineering</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">المقاولون والمصممون</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">للمساعدة في توفير المنتجات اللازمة للمشاريع المختلفة.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="aspect-[4/3] bg-surface-container-high overflow-hidden rounded-lg">
+                            <img alt="خدمات شركة بيتي للعملاء" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ5HBOcSosZkdkLlhWs-NC2eAKzrIbZg9wm2MmM40VOo2W-y0oL0InzoOfiwYW1LjFsZket3sg8blwpGkV__M80gC2nKmaEeU2HS7xnqJ2X_XblWsiTTOAhVpzbCcKXoWGQMWhG6airYk4vSXEYgTTWh7Bs25hUM-oRlWqO9KH-O5_B-ZKokKwdeBK1ItBDlXXdIS8GEwuydEHzFi4MHUlVqT6PR0b3vrB_eIpqar6wLHgQ6L3j_dH"/>
+                        </div>
+                        <div class="sm:absolute -bottom-4 -right-4 bg-secondary text-on-secondary p-4 shadow-lg rounded-lg mt-4 sm:mt-0">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[24px]">star</span>
+                                <span class="font-headline-sm text-headline-sm heading-text" style="letter-spacing:0;">نخدم عملاءنا في جميع أنحاء ليبيا</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-primary-container text-surface-bright">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    <div class="text-right space-y-4 p-6 md:p-8 bg-surface-bright/5 rounded-lg">
+                        <span class="material-symbols-outlined text-[48px] text-secondary-fixed">visibility</span>
+                        <h2 class="font-headline-lg text-headline-lg text-surface-bright font-normal heading-text" style="letter-spacing:0;">رؤيتنا</h2>
+                        <p class="font-body-lg text-body-lg text-surface-container-high/80 leading-relaxed body-text" style="letter-spacing:0;">
+                            أن نكون من الخيارات الموثوقة في مجال الأبواب الجاهزة والإكسسوارات في ليبيا، من خلال توفير منتجات متنوعة وتجربة تعامل تركز على احتياجات العميل وجودة الاختيار.
+                        </p>
+                    </div>
+                    <div class="text-right space-y-4 p-6 md:p-8 bg-surface-bright/5 rounded-lg">
+                        <span class="material-symbols-outlined text-[48px] text-secondary-fixed">mission</span>
+                        <h2 class="font-headline-lg text-headline-lg text-surface-bright font-normal heading-text" style="letter-spacing:0;">رسالتنا</h2>
+                        <p class="font-body-lg text-body-lg text-surface-container-high/80 leading-relaxed body-text" style="letter-spacing:0;">
+                            توفير منتجات وحلول عملية وأنيقة تساعد عملاءنا على تجهيز مساحاتهم واختيار الأبواب والإكسسوارات المناسبة لمشاريعهم.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-surface">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <div class="text-right space-y-4 sm:space-y-6">
+                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase block english-label">📍 شركة بيتي في ليبيا</span>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text" style="letter-spacing:0;">نخدم عملاءنا في ليبيا</h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
+                            نخدم عملاءنا في ليبيا ونوفر منتجات الأبواب الجاهزة والإكسسوارات وفق المنتجات المتوفرة لدينا.
+                        </p>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed body-text" style="letter-spacing:0;">
+                            إذا كان لديك مشروع أو تبحث عن باب أو إكسسوار معماري مناسب، يمكنك التواصل معنا لمعرفة الخيارات المتاحة.
+                        </p>
+                        <div class="flex flex-wrap gap-3 sm:gap-4 pt-4">
+                            <a class="h-12 px-6 cta-primary transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg w-full sm:w-auto" href="{% url 'home' %}#catalog-section" style="letter-spacing:0;font-size:14px;">
+                                <span class="material-symbols-outlined ml-2 text-[20px]">grid_view</span>
+                                تصفح منتجاتنا
+                            </a>
+                            <a class="h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg w-full sm:w-auto" href="https://wa.me/218947710070" rel="noopener noreferrer" target="_blank" style="letter-spacing:0;font-size:14px;">
+                                <span class="material-symbols-outlined ml-2 text-[20px]">chat</span>
+                                تواصل معنا
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-high p-4 sm:p-6 rounded-lg">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">location_on</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">العنوان</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</p>
+                                    <a href="https://maps.app.goo.gl/4Snj4BdaKP7msct6A?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-1 text-secondary hover:text-secondary-container transition-colors font-label-sm text-label-sm" style="letter-spacing:0;">
+                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                                        عرض الموقع على الخريطة
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">call</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">الهاتف</h4>
+                                    <a href="tel:+218947710070" class="font-body-sm text-body-sm text-on-surface-variant body-text hover:text-secondary transition-colors" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
+                                    <div class="flex flex-wrap gap-2 mt-1">
+                                        <a href="tel:+218947710070" class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors px-3 py-1 rounded-lg font-label-sm text-label-sm" style="letter-spacing:0;">
+                                            <span class="material-symbols-outlined text-[16px]">call</span>
+                                            اتصل الآن
+                                        </a>
+                                        <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors px-3 py-1 rounded-lg font-label-sm text-label-sm" style="letter-spacing:0;">
+                                            <span class="material-symbols-outlined text-[16px]">chat</span>
+                                            واتساب
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 p-4 bg-surface-container-lowest rounded-lg">
+                                <span class="material-symbols-outlined text-[24px] text-secondary">schedule</span>
+                                <div>
+                                    <h4 class="font-headline-sm text-headline-sm text-on-surface heading-text" style="letter-spacing:0;">ساعات العمل</h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="fixed bottom-6 left-6 z-40">
+        <a class="group relative inline-flex items-center gap-2 px-4 py-3 bg-secondary text-on-secondary rounded-full shadow-[0_12px_32px_-4px_rgba(22,24,29,0.18)] hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300" href="tel:+218947710070" rel="noopener noreferrer" target="_blank">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed-dim"></span>
+            </span>
+            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">forum</span>
+            <span class="font-label-md text-label-md hidden sm:inline text-white" style="letter-spacing:0;">تواصل معنا</span>  
+        </a>
+    </div>
+
+    <footer class="w-full footer-bg text-inverse-on-surface pt-12 pb-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8">
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex flex-col text-right">
+                            <span class="font-headline-sm text-headline-sm footer-heading heading-text" style="letter-spacing:0;">شركة بيتي</span>
+                            <span class="font-label-sm text-label-sm footer-text uppercase tracking-wider" style="letter-spacing:0.05em;">الأبواب الجاهزة والاكسسوار</span>
+                        </div>
+                    </div>
+                    <div class="footer-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.4235518358723!2d20.160377300000004!3d32.030725100000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1383054d55016e79%3A0xffebbe8434375579!2z2LTYsdmD2Kkg2KjZitiq2Yog2YTZhNij2KjZiNin2Kgg2KfZhNis2KfZh9iy2Kkg2YjYp9mE2KXZg9iz2LPZiNin2LE!5e0!3m2!1sar!2sly!4v1788811377092!5m2!1sar!2sly" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-1 heading-text" style="letter-spacing:0;">التصنيفات والعروض</h4>
+                    <ul class="space-y-1">
+                      {% for category in categories %}
+                        <li class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;"><a data-path="products-and-catalog" href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                </div>
+                <div class="lg:col-span-5 space-y-3">
+                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-1 heading-text" style="letter-spacing:0;">صالات العرض والتواصل</h4>
+                    <div class="space-y-2">
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed pt-0.5">location_on</span>
+                            <div class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">
+                                <span class="block footer-heading font-label-md" style="letter-spacing:0;">صالة العرض الرئيسية</span>
+                                <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
+                            <a href="tel:+218947710070" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">schedule</span>
+                            <span class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-surface-container-high/20 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <p class="font-label-sm text-label-sm footer-text body-text" style="letter-spacing:0;">© 2026 شركة بيتي للأبواب الجاهزة والإكسسوار. جميع الحقوق محفوظة.</p>
+                <p class="font-label-sm text-label-sm footer-text tracking-wider body-text" style="letter-spacing:0.05em;">دقة هندسية • حضور معماري • تشطيبات أصيلة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuTrigger = document.querySelector('.mobile-nav-trigger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuTrigger && mobileMenu) {
+                menuTrigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
