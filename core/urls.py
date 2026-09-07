@@ -4,9 +4,9 @@ urlpatterns = [
     path('captin-dashboard/',dashboard, name='dashboard'),
 
     path('', home, name='home'),
-    path('product/<slug:slug>/',product_detail, name='product_detail'),
-    path('category/<slug:slug>/',products_by_category, name='products_by_category'),
-    path('increment-inquiry/<slug:slug>/',increment_inquiry, name='increment_inquiry'),
+    path('product/(?P<slug>[-\w]+)/$',product_detail, name='product_detail'),
+    path('category/(?P<slug>[-\w]+)/$',products_by_category, name='products_by_category'),
+    path('increment-inquiry/(?P<slug>[-\w]+)/$',increment_inquiry, name='increment_inquiry'),
     path('about/', about, name='about'),
     path('dashboard/', dashboard, name='dashboard'),
     path('accounts/login/', login_view, name='user_login'),
