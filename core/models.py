@@ -117,13 +117,7 @@ class Product(models.Model):
         
         if size:
             message += f"المقاس: {size}\n"
-        
-        if self.image1:
-            domain = "https://bayti.tip2.libyanspider.cloud"  
-            image_url = f"{domain}{self.image1.url}"
-            message += f"رابط الصورة: {image_url}\n"
-        
-        message += f"رابط المنتج: {domain}{self.get_absolute_url()}"
+                
         
         import urllib.parse
         encoded_message = urllib.parse.quote(message)

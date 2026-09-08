@@ -350,60 +350,65 @@
 </head>
 <body>
 
-    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
-        <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
-            <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
-                <div class="logo-container">
-                    <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
-                </div>
-                <div class="flex flex-col text-right">
-                    <span class="brand-name">بيتي</span>
-                    <span class="brand-subtitle">للابواب والاكسسوار</span>
-                </div>
-            </a>
+<header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
+    <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
+            <div class="logo-container">
+                <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
+            </div>
+            <div class="flex flex-col text-right">
+                <span class="brand-name">بيتي</span>
+                <span class="brand-subtitle">للابواب والاكسسوار</span>
+            </div>
+        </a>
 
-            <nav class="desktop-nav items-center gap-8">
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" data-path="home" href="{% url 'home' %}">الرئيسية</a>
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}#catalog-section">المنتجات</a>
-                <a aria-current="page" class="font-medium text-white font-bold transition-colors text-[15px]" href="{% url 'about' %}">من نحن</a>
-            </nav>
-
-            <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
-                <span class="material-symbols-outlined text-[28px]">menu</span>
-            </button>
-        </div>
-
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="{% url 'home' %}">
-                <span class="material-symbols-outlined">home</span>
-                الرئيسية
-            </a>
-            <a href="{% url 'home' %}#catalog-section">
-                <span class="material-symbols-outlined">grid_view</span>
-                المنتجات
-            </a>
-            <a href="{% url 'about' %}">
-                <span class="material-symbols-outlined">info</span>
-                من نحن
-            </a>
-            <div class="menu-divider"></div>
+        <nav class="desktop-nav items-center gap-8">
+            <a aria-current="page" class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="home" href="{% url 'home' %}">الرئيسية</a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" href="{% url 'home' %}#catalog-section">المنتجات</a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'about' %}">من نحن</a>
             {% if not user.is_authenticated %}
-            <a href="{% url 'user_login' %}">
-                <span class="material-symbols-outlined">person</span>
-                حسابي
-            </a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'user_login' %}">حسابي</a>
             {% else %}
-            <a href="{% url 'dashboard' %}">
-                <span class="material-symbols-outlined">person</span>
-                حسابي
-            </a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'dashboard' %}">لوحة التحكم</a>
             {% endif %}
-            <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
-                <span class="material-symbols-outlined">chat</span>
-                استفسار عبر واتساب
-            </a>
-        </div>
-    </header>
+        </nav>
+
+        <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="{% url 'home' %}">
+            <span class="material-symbols-outlined">home</span>
+            الرئيسية
+        </a>
+        <a href="{% url 'home' %}#catalog-section">
+            <span class="material-symbols-outlined">grid_view</span>
+            المنتجات
+        </a>
+        <a href="{% url 'about' %}">
+            <span class="material-symbols-outlined">info</span>
+            من نحن
+        </a>
+        <div class="menu-divider"></div>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'user_login' %}">
+            <span class="material-symbols-outlined">person</span>
+            حسابي
+        </a>
+        {% else %}
+        <a href="{% url 'dashboard' %}">
+            <span class="material-symbols-outlined">person</span>
+            حسابي
+        </a>
+        {% endif %}
+        <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
+            <span class="material-symbols-outlined">chat</span>
+            استفسار عبر واتساب
+        </a>
+    </div>
+</header>
 
     <main>
         
@@ -426,7 +431,7 @@
                     </div>
                     <div class="relative">
                         <div class="aspect-[4/3] bg-surface-container-high overflow-hidden rounded-lg">
-                            <img alt="شركة بيتي للأبواب الجاهزة والإكسسوارات" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsVXnFCHxahcWca6-p3jNlOW8vQ8JPG37Ebs6RTRhwMJdeiFCCCEQGdFPnbcIyG9ZPW10siWY0oln0toqBfgNCeumMSOtH1q6Decpibzg7p1afBsDHHAH-sv8dRjUdVgaSg3IXtSC_xUK87kEev2LeRmudf1RIKlzTUZnI5_3qxuPuBaPd-cNb08sKxbbDplZKX1zK96yu_YMMmhpKov-dchmRJ79Fs9WaMV5JeCyFMuzRtAbF74oy"/>
+                            <img alt="شركة بيتي للأبواب الجاهزة والإكسسوارات" class="w-full h-full object-cover" src="{% static 'b.jpeg' %}"/>
                         </div>
                         <div class="sm:absolute -bottom-4 -left-4 bg-surface-container-lowest p-4 shadow-lg rounded-lg max-w-xs mt-4 sm:mt-0">
                             <div class="flex items-center gap-2 text-secondary">
@@ -747,22 +752,29 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuTrigger = document.querySelector('.mobile-nav-trigger');
-            const mobileMenu = document.getElementById('mobile-menu');
+        const menuTrigger = document.querySelector('.mobile-nav-trigger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+        
+        if (menuTrigger && mobileMenu) {
+            menuTrigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('open');
+            });
             
-            if (menuTrigger && mobileMenu) {
-                menuTrigger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('open');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
                 });
-                
-                document.addEventListener('click', function(e) {
-                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
-                        mobileMenu.classList.remove('open');
-                    }
-                });
-            }
-        });
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+        }
+    });
     </script>
  <script>
     tailwind.config = {

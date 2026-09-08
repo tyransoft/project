@@ -674,26 +674,31 @@
         </div>
     </footer>
 
-    <!-- ====== JAVASCRIPT ====== -->
     <script>
-        // ====== Mobile Menu ======
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuTrigger = document.querySelector('.mobile-nav-trigger');
-            const mobileMenu = document.getElementById('mobile-menu');
+          document.addEventListener('DOMContentLoaded', function() {
+        const menuTrigger = document.querySelector('.mobile-nav-trigger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
+        
+        if (menuTrigger && mobileMenu) {
+            menuTrigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('open');
+            });
             
-            if (menuTrigger && mobileMenu) {
-                menuTrigger.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mobileMenu.classList.toggle('open');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('open');
                 });
-                
-                document.addEventListener('click', function(e) {
-                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
-                        mobileMenu.classList.remove('open');
-                    }
-                });
-            }
-        });
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+        }
+    });
 
         function changeImage(element, src) {
             document.querySelectorAll('.product-image-thumb').forEach(el => el.classList.remove('active'));
@@ -743,10 +748,6 @@
             let message = `استفسار عن منتج: {{ product.name }}\n`;
             message += `المقاس: ${sizeMessage}\n`;
             
-            const imageUrl = document.getElementById('main-image').src;
-            message += `رابط الصورة: ${imageUrl}\n`;
-            
-            message += `رابط المنتج: ${window.location.href}`;
             
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/218947710070?text=${encodedMessage}`;
