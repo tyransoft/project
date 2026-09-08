@@ -455,76 +455,73 @@
     </script>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+     <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
+    <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <!-- الشعار + الاسم -->
+        <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
+            <div class="logo-container">
+                <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
+            </div>
+            <div class="flex flex-col text-right">
+                <span class="brand-name">بيتي</span>
+                <span class="brand-subtitle">للابواب والاكسسوار</span>
+            </div>
+        </a>
 
-    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
-        <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
-            <!-- الشعار + الاسم -->
-            <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
-                <div class="logo-container">
-                    <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
-                </div>
-                <div class="flex flex-col text-right">
-                    <span class="brand-name">بيتي</span>
-                    <span class="brand-subtitle">للابواب والاكسسوار</span>
-                </div>
-            </a>
-
-            <!-- القائمة Desktop -->
-            <nav class="desktop-nav items-center gap-8">
-                <a aria-current="page" class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="home" href="{% url 'home' %}">الرئيسية</a>
-                </a>   <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" href="{% url 'home' %}#catalog-section">المنتجات</a>
-
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'about' %}">من نحن</a>
-                {% if not user.is_authenticated %}
-            
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'user_login' %}">حسابي</a>
-
-                {% else %}
-
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'dashboard' %}">لوحة التحكم</a>
-            
-                {% endif %}
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer">
-                 <span class="material-symbols-outlined">chat</span>
-                 استفسار
-                </a>
-
-            <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
-                <span class="material-symbols-outlined text-[28px]">menu</span>
-            </button>
-        </div>
-
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="{% url 'home' %}">
-                <span class="material-symbols-outlined">home</span>
-                الرئيسية
-            </a>
-            <a href="{% url 'about' %}">
-                <span class="material-symbols-outlined">info</span>
-                من نحن
-            </a>
-            <a href="{% url 'home' %}#catalog-section">
-                <span class="material-symbols-outlined">grid_view</span>
-                المنتجات
-            </a>
-            <div class="menu-divider"></div>
+        <!-- القائمة Desktop -->
+        <nav class="desktop-nav items-center gap-8">
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}">الرئيسية</a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}#catalog-section">المنتجات</a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'about' %}">من نحن</a>
             {% if not user.is_authenticated %}
-            <a href="{% url 'user_login' %}">
-                <span class="material-symbols-outlined">person</span>
-                حسابي
-            </a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'user_login' %}">حسابي</a>
             {% else %}
-            <a href="{% url 'dashboard' %}">
-                <span class="material-symbols-outlined">person</span>
-                حسابي
-            </a>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'dashboard' %}">لوحة التحكم</a>
             {% endif %}
-             <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
-              <span class="material-symbols-outlined">chat</span>
-               استفسار عبر واتساب
-              </a>
-        </div>
-    </header>
+            <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined">chat</span>
+                استفسار
+            </a>
+        </nav>
+
+        <!-- زر المنيو -->
+        <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
+            <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+    </div>
+
+    <!-- القائمة المتنقلة -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="{% url 'home' %}">
+            <span class="material-symbols-outlined">home</span>
+            الرئيسية
+        </a>
+        <a href="{% url 'home' %}#catalog-section">
+            <span class="material-symbols-outlined">grid_view</span>
+            المنتجات
+        </a>
+        <a href="{% url 'about' %}">
+            <span class="material-symbols-outlined">info</span>
+            من نحن
+        </a>
+        <div class="menu-divider"></div>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'user_login' %}">
+            <span class="material-symbols-outlined">person</span>
+            حسابي
+        </a>
+        {% else %}
+        <a href="{% url 'dashboard' %}">
+            <span class="material-symbols-outlined">person</span>
+            حسابي
+        </a>
+        {% endif %}
+        <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
+            <span class="material-symbols-outlined">chat</span>
+            استفسار عبر واتساب
+        </a>
+    </div>
+</header>
 
     <main class="w-full pt-16 sm:pt-[72px] lg:pt-20 bg-surface min-h-screen">
         <div class="flex flex-col w-full">
@@ -796,7 +793,7 @@
         }
     }
 
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const menuTrigger = document.querySelector('.mobile-nav-trigger');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];

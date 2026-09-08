@@ -72,8 +72,12 @@ def product_detail(request, slug):
     ).exclude(id=product.id)[:4]
     
     suggested_handles = Handle.objects.all().order_by('-created_at')[:4]
+    categories = Category.objects.all()
+    
     
     context = {
+        'categories': categories,   
+   
         'product': product,
         'related_products': related_products,
         'suggested_handles': suggested_handles,
