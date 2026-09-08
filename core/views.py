@@ -259,7 +259,7 @@ def handles_admin(request):
         'search_query': search_query,
         'total_count': Handle.objects.count(),
     }
-    return render(request, 'handles_list.html', context)
+    return render(request, 'handle_list.html', context)
 
 
 @staff_member_required
@@ -269,7 +269,7 @@ def handle_add(request):
         if form.is_valid():
             handle = form.save()
             messages.success(request, f'تم إضافة المقبض "{handle.name}" بنجاح!')
-            return redirect('handles:admin')
+            return redirect('handles_admin')
         else:
             messages.error(request, 'حدث خطأ في إضافة المقبض. يرجى التحقق من البيانات.')
     else:
@@ -291,7 +291,7 @@ def handle_edit(request, pk):
         if form.is_valid():
             form.save()
             messages.success(request, f'تم تحديث المقبض "{handle.name}" بنجاح!')
-            return redirect('handles:admin')
+            return redirect('handles_admin')
         else:
             messages.error(request, 'حدث خطأ في تحديث المقبض. يرجى التحقق من البيانات.')
     else:
@@ -313,7 +313,7 @@ def handle_delete(request, pk):
         handle_name = handle.name
         handle.delete()
         messages.success(request, f'تم حذف المقبض "{handle_name}" بنجاح!')
-        return redirect('handles:admin')
+        return redirect('handles_admin')
     
     context = {
         'handle': handle,
