@@ -107,7 +107,7 @@ class Product(models.Model):
         if not self.size:
             return []
         import re
-        sizes_text = re.sub(r'[\/\-_]', ',', self.sizes)
+        sizes_text = re.sub(r'[\/\-_]', ',', self.size)
         sizes_list = [s.strip() for s in sizes_text.split(',') if s.strip()]
         return sizes_list
 
