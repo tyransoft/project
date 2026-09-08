@@ -496,7 +496,7 @@
                         </div>
                         <p id="size-error" class="text-red-500 text-xs mt-2 hidden">
                             <span class="material-symbols-outlined text-[14px] align-middle">error</span>
-                            يرجى اختيار المقاس المناسب
+                            يرجى اختيار المقاس المناسب وتصفح المقابض بالاسفل
                         </p>
                     </div>
 
@@ -542,10 +542,8 @@
                         <span class="material-symbols-outlined text-[18px]">arrow_left</span>
                     </a>
                     <div>
-                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">مقابض مقترحة</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text">
-                            سمكن تغيير المقبض حسب اختيارك من المقابض المتوفرة لدينا
-                        </h2>
+                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">  يمكن تغيير المقبض </span>
+                        <p>حسب اختيارك من المقابض المتوفرة لدينا</p>
                     </div>
                 </div>
                 
@@ -698,33 +696,27 @@
             }
         });
 
-        // ====== تغيير الصورة الرئيسية ======
         function changeImage(element, src) {
             document.querySelectorAll('.product-image-thumb').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('main-image').src = src;
         }
 
-        // ====== نسخ الرابط ======
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
                 alert('تم نسخ الرابط');
             });
         }
 
-        // ====== اختيار المقاس - إلزامي ======
         let selectedSize = null;
 
         function selectSize(element, size) {
-            // إزالة التحديد عن جميع الخيارات
             document.querySelectorAll('.size-option').forEach(el => el.classList.remove('selected'));
             element.classList.add('selected');
             selectedSize = size;
             
-            // إخفاء رسالة الخطأ
             document.getElementById('size-error').classList.add('hidden');
             
-            // تفعيل زر واتساب
             const btn = document.getElementById('whatsapp-btn');
             btn.classList.remove('btn-disabled');
             btn.innerHTML = `
@@ -733,15 +725,12 @@
             `;
         }
 
-        // ====== زيادة عدد الاستفسارات وإرسال واتساب ======
         function incrementInquiry(event) {
             event.preventDefault();
             
-            // التحقق من اختيار المقاس
             const selected = document.querySelector('.size-option.selected');
             if (!selected) {
                 document.getElementById('size-error').classList.remove('hidden');
-                // اهتزاز بسيط للتنبيه
                 const container = document.getElementById('sizes-container');
                 container.style.animation = 'shake 0.5s ease';
                 setTimeout(() => {
@@ -752,22 +741,17 @@
             
             const sizeMessage = selected.dataset.size;
             
-            // بناء رسالة واتساب مع الصورة والمقاس فقط
             let message = `استفسار عن منتج: {{ product.name }}\n`;
             message += `المقاس: ${sizeMessage}\n`;
             
-            // إضافة رابط الصورة (رابط مطلق)
             const imageUrl = document.getElementById('main-image').src;
             message += `رابط الصورة: ${imageUrl}\n`;
             
-            // إضافة رابط المنتج
             message += `رابط المنتج: ${window.location.href}`;
             
-            // ترميز الرسالة
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/218947710070?text=${encodedMessage}`;
             
-            // زيادة عدد الاستفسارات
             const url = "{% url 'increment_inquiry' product.slug %}";
             
             fetch(url, {
@@ -788,7 +772,6 @@
             });
         }
 
-        // ====== إضافة اهتزاز ======
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
@@ -799,14 +782,12 @@
         `;
         document.head.appendChild(style);
 
-        // ====== تحديد مقاس افتراضي عند تحميل الصفحة ======
         document.addEventListener('DOMContentLoaded', function() {
             const firstSize = document.querySelector('.size-option');
             if (firstSize) {
                 firstSize.classList.add('selected');
                 selectedSize = firstSize.dataset.size;
                 
-                // تفعيل زر واتساب
                 const btn = document.getElementById('whatsapp-btn');
                 btn.classList.remove('btn-disabled');
                 btn.innerHTML = `

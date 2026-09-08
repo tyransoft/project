@@ -363,6 +363,7 @@
                 </div>
             </a>
 
+
             <nav class="desktop-nav items-center gap-8">
                 <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="/">الرئيسية</a>
                 <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="/#catalog-section">المنتجات</a>
@@ -384,10 +385,7 @@
                 <span class="material-symbols-outlined">grid_view</span>
                 المنتجات
             </a>
-            <a href="{% url 'handles:public' %}">
-                <span class="material-symbols-outlined">handshake</span>
-                المقابض
-            </a>
+           
             <a href="{% url 'about' %}">
                 <span class="material-symbols-outlined">info</span>
                 من نحن
@@ -461,7 +459,6 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     {% for handle in handles %}
                     <div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-variant handle-card">
-                        <a href="{% url 'handles:detail' handle.pk %}" class="block">
                             <div class="aspect-square bg-surface-container-high overflow-hidden">
                                 {% if handle.image %}
                                 <img src="{{ handle.image.url }}" alt="{{ handle.name }}" 
@@ -477,7 +474,7 @@
                                     {{ handle.name }}
                                 </h3>
                             </div>
-                        </a>
+                        
                     </div>
                     {% empty %}
                     <div class="col-span-full text-center py-12">
