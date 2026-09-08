@@ -46,11 +46,11 @@
                 
                 <td>
                     <div class="flex items-center gap-2">
-                        <a href="{% url 'handles_edit' handle.id %}" class="btn-warning">
+                        <a href="{% url 'handles_edit' handle.pk %}" class="btn-warning">
                             <span class="material-symbols-outlined text-[16px]">edit</span>
                             تعديل
                         </a>
-                        <a href="{% url 'handles_delete' handle.id %}" class="btn-danger">
+                        <a href="{% url 'handles_delete' handle.pk %}" class="btn-danger">
                             <span class="material-symbols-outlined text-[16px]">delete</span>
                             حذف
                         </a>
@@ -101,11 +101,11 @@
             </div>
             
             <div class="flex items-center gap-2 pt-3 border-t border-gray-100">
-                <a href="{% url 'handles_edit' handle.id %}" class="btn-warning flex-1 justify-center">
+                <a href="{% url 'handles_edit' handle.pk %}" class="btn-warning flex-1 justify-center">
                     <span class="material-symbols-outlined text-[16px]">edit</span>
                     تعديل
                 </a>
-                <a href="{% url 'handles_delete' handle.id %}" class="btn-danger flex-1 justify-center">
+                <a href="{% url 'handles_delete' handle.pk %}" class="btn-danger flex-1 justify-center">
                     <span class="material-symbols-outlined text-[16px]">delete</span>
                     حذف
                 </a>
