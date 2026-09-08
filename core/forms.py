@@ -50,3 +50,19 @@ class ProductForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'w-full px-3 py-2 border rounded-lg', 'rows': 5, 'placeholder': 'وصف المنتج'}),
             'is_featured': forms.CheckboxInput(attrs={'class': 'w-4 h-4'}),
         }    
+
+
+class HandleForm(forms.ModelForm):
+    class Meta:
+        model = Handle
+        fields = ['name', 'image']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'w-full px-4 py-3 rounded-lg border border-surface-variant focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 transition-all',
+                'placeholder': 'أدخل اسم المقبض...'
+            }),
+        }
+        labels = {
+            'name': 'اسم المقبض',
+            'image': 'صورة المقبض',
+        }        

@@ -1,0 +1,129 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block title %}إدارة المقابض{% endblock %}
+{% block page_title %}إدارة المقابض{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-between mb-6">
+    <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-[28px] text-secondary">inventory_2</span>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface">إدارة المقابض</h1>
+    </div>
+    <a href="{% url 'handles_add' %}" class="btn-primary">
+        <span class="material-symbols-outlined text-[20px]">add</span>
+        إضافة مقبض
+    </a>
+</div>
+
+<div class="table-container hidden md:block">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>المقبض</th>
+                <th>الصورة</th>
+              
+                <th>الإجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for handle in handles %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td class="font-medium">{{ handle.name }}</td>
+
+                <td>
+                    {% if handle.image %}
+                    <img src="{{ handle.image.url }}" alt="{{ handle.name }}" class="w-12 h-12 object-cover rounded"/>
+                    
+                    {% else %}
+                    <div class="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
+                        <span class="material-symbols-outlined text-gray-400">image</span>
+                    </div>
+                    {% endif %}
+                </td>
+                
+                <td>
+                    <div class="flex items-center gap-2">
+                        <a href="{% url 'handles_edit' handle.id %}" class="btn-warning">
+                            <span class="material-symbols-outlined text-[16px]">edit</span>
+                            تعديل
+                        </a>
+                        <a href="{% url 'handles_delete' handle.id %}" class="btn-danger">
+                            <span class="material-symbols-outlined text-[16px]">delete</span>
+                            حذف
+                        </a>
+                    </div>
+               
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">
+                    <div class="empty-state">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                        <h3>لا توجد مقبض</h3>
+                        <p>أضف مقبضاً جديداً للبدء</p>
+                        <a href="{% url 'handles_add' %}" class="btn-primary mt-4 inline-flex">
+                            <span class="material-symbols-outlined">add</span>
+                            إضافة 
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Mobile Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+    {% for handle in handles %}
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all">
+            <div class="aspect-[4/3] bg-gray-100 relative">
+                {% if handle.image %}
+                <img src="{{ handle.image.url }}" alt="{{ handle.name }}" class="w-full h-full object-cover"/>
+                {% else %}
+                <div class="w-full h-full flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[48px] text-gray-300">image</span>
+                </div>
+                {% endif %}
+                
+            </div>
+        </a>
+        <div class="p-4">
+            <div class="flex items-start justify-between mb-2">
+                <div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">{{ handle.name }}</h3>
+                </div>
+                
+            </div>
+            
+            <div class="flex items-center gap-2 pt-3 border-t border-gray-100">
+                <a href="{% url 'handles_edit' handle.id %}" class="btn-warning flex-1 justify-center">
+                    <span class="material-symbols-outlined text-[16px]">edit</span>
+                    تعديل
+                </a>
+                <a href="{% url 'handles_delete' handle.id %}" class="btn-danger flex-1 justify-center">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                    حذف
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-span-2">
+        <div class="empty-state">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <h3>لا توجد مقبض</h3>
+            <p>أضف مقبضاً جديداً للبدء</p>
+            <a href="{% url 'handles_add' %}" class="btn-primary mt-4 inline-flex">
+                <span class="material-symbols-outlined">add</span>
+                إضافة مقبض
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

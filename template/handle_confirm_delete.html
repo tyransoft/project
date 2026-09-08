@@ -1,0 +1,35 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block title %}حذف مقبض | شركة بيتي{% endblock %}
+
+{% block content %}
+<section class="w-full py-12 md:py-20 bg-surface">
+    <div class="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-variant p-6 md:p-8 text-center">
+            <div class="w-20 h-20 mx-auto bg-red-50 rounded-full flex items-center justify-center mb-6">
+                <span class="material-symbols-outlined text-[48px] text-red-600">delete_forever</span>
+            </div>
+
+            <h2 class="text-2xl font-medium heading-text text-on-surface">تأكيد الحذف</h2>
+            <p class="text-on-surface-variant body-text mt-2">
+                هل أنت متأكد من حذف المقبض التالي؟
+            </p>
+
+            <div class="flex gap-3 mt-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" 
+                            class="flex-1 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all">
+                        نعم، احذف
+                    </button>
+                </form>
+                <a href="{% url 'handles_list' %}" 
+                   class="flex-1 px-6 py-3 bg-surface-container-high text-on-surface rounded-lg hover:bg-surface-container transition-all">
+                    إلغاء
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

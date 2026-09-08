@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
     <title>{{ product.name }} - شركة بيتي للأبواب</title>
     <meta name="description" content="{{ product.description|truncatewords:30 }}"/>
     <meta property="og:title" content="{{ product.name }} - شركة بيتي"/>
@@ -13,86 +13,463 @@
     <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
     
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=ibmPlexSans:wght@100..900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         html, body { margin: 0; padding: 0; }
-        body { overscroll-behavior: none; }
+        body { 
+            overscroll-behavior: none;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
         ::-webkit-scrollbar { display: none; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .product-image-thumb { cursor: pointer; transition: all 0.3s ease; }
-        .product-image-thumb:hover { opacity: 0.7; }
-        .product-image-thumb.active { border: 2px solid #000; }
-        .hidden { display: none !important; }
+        * { scrollbar-width: none; }
         
+        .material-symbols-outlined { 
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+        }
+
+        /* ====== أنماط النافبار ====== */
+        .nav-bar {
+            background: #775a19 !important;
+            color: #ffffff !important;
+        }
+        .nav-bar a { color: #ffffff !important; }
+        .nav-bar a:hover { color: #fed488 !important; }
+        .nav-bar .material-symbols-outlined { color: #ffffff !important; }
+
+        .logo-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #fed488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #ffffff;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container { width: 52px; height: 52px; }
+        }
+
+        @media (min-width: 1024px) {
+            .logo-container { width: 56px; height: 56px; }
+        }
+
+        .brand-name {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0;
+        }
+
+        .brand-subtitle {
+            color: #fed488;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 640px) {
+            .brand-name { font-size: 22px; }
+            .brand-subtitle { font-size: 11px; }
+        }
+
+        .navbar-height { height: 64px; }
+        @media (min-width: 640px) { .navbar-height { height: 72px; } }
+        @media (min-width: 1024px) { .navbar-height { height: 80px; } }
+
+        .desktop-nav { display: none; }
+        @media (min-width: 1024px) { .desktop-nav { display: flex !important; } }
+
+        .mobile-nav-trigger { display: flex; }
+        @media (min-width: 1024px) { .mobile-nav-trigger { display: none !important; } }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 64px;
+            right: 8px;
+            left: 8px;
+            background: #775a19;
+            backdrop-filter: blur(12px);
+            padding: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            z-index: 50;
+            gap: 4px;
+            border-radius: 0 0 16px 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        @media (min-width: 640px) {
+            .mobile-menu { top: 72px; right: 16px; left: 16px; }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu { display: none !important; }
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            padding: 14px 16px;
+            border-radius: 12px;
+            color: #ffffff;
+            transition: all 0.2s;
+            font-size: 16px;
+            letter-spacing: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 48px;
+        }
+
+        .mobile-menu a:hover { background: rgba(255,255,255,0.12); }
+
+        .mobile-menu .menu-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 6px 0;
+        }
+
+        .mobile-menu .menu-whatsapp {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-top: 4px;
+        }
+
+        .mobile-menu .menu-whatsapp:hover {
+            background: #fed488;
+            color: #775a19;
+        }
+
+        .mobile-menu .menu-whatsapp:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        .mobile-menu .material-symbols-outlined {
+            font-size: 22px !important;
+            color: #fed488 !important;
+        }
+
+        .mobile-menu .menu-whatsapp .material-symbols-outlined {
+            color: #fed488 !important;
+        }
+
+        .mobile-menu .menu-whatsapp:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        /* ====== أنماط الصور ====== */
+        .product-image-thumb {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .product-image-thumb:hover {
+            opacity: 0.7;
+            transform: scale(0.98);
+        }
+        .product-image-thumb.active {
+            border-color: #775a19;
+            box-shadow: 0 0 0 2px rgba(119, 90, 25, 0.2);
+        }
+        
+        .gallery-container {
+            position: relative;
+            background: #f5f3f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .gallery-container .main-image-wrapper {
+            width: 100%;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .gallery-container .main-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #f5f3f0;
+            transition: transform 0.3s ease;
+        }
+        .gallery-container .main-image-wrapper img:hover {
+            transform: scale(1.02);
+        }
+
+        /* ====== أنماط المقاسات ====== */
+        .size-option {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid #e4e2df;
+        }
+        .size-option:hover {
+            border-color: #775a19;
+            background: #f5f3f0;
+        }
+        .size-option.selected {
+            border-color: #775a19;
+            background: #775a19;
+            color: #ffffff;
+        }
+        .size-option.selected .material-symbols-outlined {
+            color: #ffffff !important;
+        }
+
+        /* ====== أنماط المقابض ====== */
+        .handle-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e4e2df;
+        }
+        .handle-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-color: #775a19;
+        }
+        .handle-card .handle-image-wrapper {
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #f5f3f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .handle-card .handle-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            padding: 8px;
+        }
+        .handle-card:hover .handle-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* ====== أنماط الفوتر ====== */
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        .footer-bg { background: #000000; }
+        .footer-text { color: #89837a; }
+        .footer-heading { color: #fbf9f6; }
+
+        /* ====== أنيمشن ====== */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .fade-in { animation: fadeIn 0.5s ease; }
+
+        .body-text {
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 767px) {
+            .body-text { font-size: 15px; }
+        }
+
+        .heading-text { letter-spacing: 0; }
+        .english-label { letter-spacing: 0.08em; }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 40;
+            background: #775a19;
+            color: #ffffff;
+            border-radius: 9999px;
+            padding: 12px 20px;
+            box-shadow: 0 12px 32px -4px rgba(22,24,29,0.18);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-float:hover {
+            background: #fed488;
+            color: #261900;
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px -4px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-float .material-symbols-outlined {
+            color: #fed488;
+            font-size: 20px;
+        }
+
+        .whatsapp-float:hover .material-symbols-outlined {
+            color: #261900;
+        }
+
+        .whatsapp-float .float-text {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .whatsapp-float .float-text {
+                display: inline;
+            }
+        }
+
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-disabled:hover {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #775a19 !important;
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
 
-    <header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-        <div class="h-20 max-w-7xl mx-auto px-4 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a class="flex items-center gap-2" href="{% url 'home' %}">
-                    <img alt="Bayti Logo" class="h-8 w-auto object-contain" src="{% static 'logo.jpeg' %}"/>
-                    <div class="flex flex-col text-right">
-                        <span class="font-headline-sm text-headline-sm text-on-surface leading-tight">بيتي</span>
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">للابواب والاكسسوار</span>
-                    </div>
-                </a>
-            </div>
-            <div class="flex items-center gap-3">
-                <a class="px-3 py-2 bg-primary text-on-primary hover:bg-primary-container transition-colors" href="{% url 'home' %}">
-                    <span class="material-symbols-outlined text-[18px]">home</span>
-                </a>
-            </div>
+    <!-- ====== HEADER - نفس الهيدر من الصفحة الرئيسية ====== -->
+    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
+        <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
+            <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
+                <div class="logo-container">
+                    <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
+                </div>
+                <div class="flex flex-col text-right">
+                    <span class="brand-name">بيتي</span>
+                    <span class="brand-subtitle">للابواب والاكسسوار</span>
+                </div>
+            </a>
+
+            <nav class="desktop-nav items-center gap-8">
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}">الرئيسية</a>
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}#catalog-section">المنتجات</a>
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'about' %}">من نحن</a>
+                {% if not user.is_authenticated %}
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'user_login' %}">حسابي</a>
+                {% else %}
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'dashboard' %}">لوحة التحكم</a>
+                {% endif %}
+            </nav>
+
+            <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
+                <span class="material-symbols-outlined text-[28px]">menu</span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="{% url 'home' %}">
+                <span class="material-symbols-outlined">home</span>
+                الرئيسية
+            </a>
+            <a href="{% url 'home' %}#catalog-section">
+                <span class="material-symbols-outlined">grid_view</span>
+                المنتجات
+            </a>
+            <a href="{% url 'about' %}">
+                <span class="material-symbols-outlined">info</span>
+                من نحن
+            </a>
+            <div class="menu-divider"></div>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'user_login' %}">
+                <span class="material-symbols-outlined">person</span>
+                حسابي
+            </a>
+            {% else %}
+            <a href="{% url 'dashboard' %}">
+                <span class="material-symbols-outlined">person</span>
+                حسابي
+            </a>
+            {% endif %}
+            <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
+                <span class="material-symbols-outlined">chat</span>
+                استفسار عبر واتساب
+            </a>
         </div>
     </header>
 
-    <main class="w-full pt-20 bg-surface min-h-screen">
+    <!-- ====== MAIN ====== -->
+    <main class="w-full pt-16 sm:pt-[72px] lg:pt-20 bg-surface min-h-screen">
         <div class="max-w-7xl mx-auto px-4 py-8">
             
+            <!-- Breadcrumb -->
             <nav class="flex items-center gap-2 text-sm text-on-surface-variant mb-6" aria-label="Breadcrumb">
-                <a href="{% url 'home' %}" class="hover:text-primary">الرئيسية</a>
+                <a href="{% url 'home' %}" class="hover:text-secondary">الرئيسية</a>
                 <span class="material-symbols-outlined text-[16px]">chevron_left</span>
-                <a href="{% url 'products_by_category' product.category.slug %}" class="hover:text-primary">{{ product.category.name }}</a>
+                <a href="{% url 'products_by_category' product.category.slug %}" class="hover:text-secondary">{{ product.category.name }}</a>
                 <span class="material-symbols-outlined text-[16px]">chevron_left</span>
-                <span class="text-primary font-bold">{{ product.name }}</span>
+                <span class="text-secondary font-bold">{{ product.name }}</span>
             </nav>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
+            <!-- ====== Product Grid ====== -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 fade-in">
                 
+                <!-- ====== معرض الصور ====== -->
                 <div>
-                    <div class="aspect-[4/5] bg-surface-container-high overflow-hidden rounded-lg">
-                        <img id="main-image" class="w-full h-full object-cover" src="{% if product.image1 %}{{ product.image1.url }}{% endif %}" alt="{{ product.name }}"/>
+                    <div class="gallery-container shadow-sm">
+                        <div class="main-image-wrapper">
+                            <img id="main-image" 
+                                 src="{% if product.image1 %}{{ product.image1.url }}{% endif %}" 
+                                 alt="{{ product.name }}"/>
+                        </div>
                     </div>
+                    
+                    <!-- الصور المصغرة -->
                     <div class="grid grid-cols-4 gap-2 mt-3">
                         {% if product.image1 %}
-                        <img class="product-image-thumb active w-full aspect-square object-cover rounded border" src="{{ product.image1.url }}" onclick="changeImage(this, '{{ product.image1.url }}')"/>
+                        <img class="product-image-thumb active w-full aspect-square object-cover rounded-lg" 
+                             src="{{ product.image1.url }}" 
+                             onclick="changeImage(this, '{{ product.image1.url }}')"
+                             alt="{{ product.name }} - صورة 1"/>
                         {% endif %}
                         {% if product.image2 %}
-                        <img class="product-image-thumb w-full aspect-square object-cover rounded border" src="{{ product.image2.url }}" onclick="changeImage(this, '{{ product.image2.url }}')"/>
+                        <img class="product-image-thumb w-full aspect-square object-cover rounded-lg" 
+                             src="{{ product.image2.url }}" 
+                             onclick="changeImage(this, '{{ product.image2.url }}')"
+                             alt="{{ product.name }} - صورة 2"/>
                         {% endif %}
                         {% if product.image3 %}
-                        <img class="product-image-thumb w-full aspect-square object-cover rounded border" src="{{ product.image3.url }}" onclick="changeImage(this, '{{ product.image3.url }}')"/>
+                        <img class="product-image-thumb w-full aspect-square object-cover rounded-lg" 
+                             src="{{ product.image3.url }}" 
+                             onclick="changeImage(this, '{{ product.image3.url }}')"
+                             alt="{{ product.name }} - صورة 3"/>
                         {% endif %}
                         {% if product.image4 %}
-                        <img class="product-image-thumb w-full aspect-square object-cover rounded border" src="{{ product.image4.url }}" onclick="changeImage(this, '{{ product.image4.url }}')"/>
+                        <img class="product-image-thumb w-full aspect-square object-cover rounded-lg" 
+                             src="{{ product.image4.url }}" 
+                             onclick="changeImage(this, '{{ product.image4.url }}')"
+                             alt="{{ product.name }} - صورة 4"/>
                         {% endif %}
                     </div>
                 </div>
 
+                <!-- ====== معلومات المنتج ====== -->
                 <div class="space-y-6 text-right">
                     <div>
                         <span class="font-label-md text-label-md text-secondary tracking-wider uppercase">{{ product.category.name }}</span>
                         <h1 class="font-headline-lg text-headline-lg text-on-surface mt-1">{{ product.name }}</h1>
                         
                         <div class="flex items-center gap-3 mt-2">
-                            <span id="inquiry-count" class="inline-flex items-center gap-1 text-sm bg-surface-container-high px-3 py-1 rounded-full">
+                            <span class="inline-flex items-center gap-1 text-sm bg-surface-container-high px-3 py-1 rounded-full">
                                 <span class="material-symbols-outlined text-[16px] text-secondary">chat</span>
                                 <span id="inquiry-number">{{ product.inquiry_count }}</span>
                                 <span>استفسار</span>
@@ -100,25 +477,46 @@
                         </div>
                     </div>
 
-                    {% if product.size %}
-                    <div class="flex items-center gap-2">
-                        <span class="font-label-md text-label-md text-on-surface-variant">المقاس:</span>
-                        <span class="font-body-md text-body-md text-on-surface">{{ product.size }}</span>
+                    <!-- ====== اختيار المقاس - إلزامي ====== -->
+                    <div class="bg-surface-container-low rounded-xl p-4">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="material-symbols-outlined text-secondary">straighten</span>
+                            <span class="font-headline-sm text-headline-sm text-on-surface">اختر المقاس المناسب</span>
+                            <span class="text-red-500 text-sm">*</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2" id="sizes-container">
+                            {% for size in product.get_sizes_list %}
+                            <div class="size-option px-4 py-2 rounded-lg text-sm font-medium text-on-surface transition-all cursor-pointer" 
+                                 data-size="{{ size }}"
+                                 onclick="selectSize(this, '{{ size }}')">
+                                <span class="material-symbols-outlined text-[16px] align-middle ml-1">straighten</span>
+                                {{ size }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <p id="size-error" class="text-red-500 text-xs mt-2 hidden">
+                            <span class="material-symbols-outlined text-[14px] align-middle">error</span>
+                            يرجى اختيار المقاس المناسب
+                        </p>
                     </div>
-                    {% endif %}
 
+                    <!-- ====== الوصف ====== -->
                     <div>
                         <h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">الوصف</h3>
                         <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">{{ product.description|linebreaks }}</p>
                     </div>
 
+                    <!-- ====== أزرار التواصل ====== -->
                     <div class="flex flex-wrap gap-3 pt-4">
-                        <a id="whatsapp-btn" class="h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md" href="{{ product.get_whatsapp_url }}" target="_blank" onclick="incrementInquiry(event)">
+                        <button id="whatsapp-btn" 
+                                class="h-12 px-6 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg flex-1 btn-disabled"
+                                onclick="incrementInquiry(event)">
                             <span class="material-symbols-outlined ml-2 text-[20px]">chat</span>
                             استفسار عبر واتساب
-                        </a>
+                        </button>
                     </div>
 
+                    <!-- ====== مشاركة ====== -->
                     <div class="pt-4 border-t border-surface-container-high">
                         <span class="font-label-sm text-label-sm text-on-surface-variant">مشاركة:</span>
                         <div class="flex gap-2 mt-2">
@@ -136,14 +534,55 @@
                 </div>
             </div>
 
+            <div class="mt-16">
+                <div class="flex items-center justify-between mb-6">
+                    <a href="{% url 'handles' %}" class="text-secondary hover:text-secondary-container transition-colors inline-flex items-center gap-1">
+                        استكشف المزيد
+                        <span class="material-symbols-outlined text-[18px]">arrow_left</span>
+                    </a>
+                    <div>
+                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">مقابض مقترحة</span>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text">
+                            سمكن تغيير المقبض حسب اختيارك من المقابض المتوفرة لدينا
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {% for handle in suggested_handles %}
+                    <div class="handle-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+                        <div class="handle-image-wrapper">
+                            {% if handle.image %}
+                            <img src="{{ handle.image.url }}" alt="{{ handle.name }}" loading="lazy"/>
+                            {% else %}
+                            <div class="w-full h-full flex items-center justify-center bg-surface-container-high">
+                                <span class="material-symbols-outlined text-[48px] text-outline">door_handle</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="p-3 text-center">
+                            <h4 class="text-sm font-medium text-on-surface heading-text">{{ handle.name }}</h4>
+                            <span class="text-xs text-on-surface-variant inline-flex items-center gap-1 mt-1">
+                                <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                متوفر
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
             {% if related_products %}
             <div class="mt-12">
                 <h2 class="font-headline-lg text-headline-lg text-on-surface text-right mb-6">منتجات مشابهة</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {% for product in related_products %}
-                    <a href="{{ product.get_absolute_url }}" class="group bg-surface-container-lowest overflow-hidden rounded-lg shadow hover:shadow-lg transition-shadow">
+                    <a href="{{ product.get_absolute_url }}" class="group bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all">
                         <div class="aspect-[4/5] bg-surface-container overflow-hidden">
-                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="{% if product.image1 %}{{ product.image1.url }}{% endif %}" alt="{{ product.name }}"/>
+                            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                                 src="{% if product.image1 %}{{ product.image1.url }}{% endif %}" 
+                                 alt="{{ product.name }}"/>
                         </div>
                         <div class="p-3 text-right">
                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors text-sm">{{ product.name }}</h3>
@@ -161,68 +600,174 @@
 
         </div>
     </main>
-    <footer class="w-full bg-tertiary text-inverse-on-surface pt-8 pb-4 mt-8">
+
+    <a class="whatsapp-float" href="https://wa.me/218947710070?text=مرحباً، أنا زائر من الموقع" rel="noopener noreferrer" target="_blank">
+        <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed-dim"></span>
+        </span>
+        <span class="material-symbols-outlined">chat</span>
+        <span class="float-text font-label-md text-label-md" style="letter-spacing:0;">تواصل معنا</span>
+    </a>
+
+    <footer class="w-full footer-bg text-inverse-on-surface pt-12 pb-4">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8">
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <img alt="Bayti Logo" class="h-8 w-auto object-contain brightness-0 invert" src="{% static 'j' %}"/>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8">
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
                         <div class="flex flex-col text-right">
-                            <span class="font-headline-sm text-headline-sm text-surface-bright">شركة بيتي</span>
-                            <span class="font-label-sm text-label-sm text-on-tertiary-container uppercase tracking-wider">للابواب والاكسسوار</span>
+                            <span class="font-headline-sm text-headline-sm footer-heading heading-text" style="letter-spacing:0;font-size:22px;">شركة بيتي</span>
+                            <span class="font-label-sm text-label-sm footer-text uppercase tracking-wider" style="letter-spacing:0.05em;">الأبواب الجاهزة والاكسسوار</span>
                         </div>
                     </div>
-                    <p class="font-body-sm text-body-sm text-on-tertiary-container leading-relaxed">شركة بيتي للأبواب الجاهزة والإكسسوارات  - وجهتكم الأولى لاقتناء أفخم الأبواب الداخلية والخارجية.</p>
+                    <div class="footer-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.4235518358723!2d20.160377300000004!3d32.030725100000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1383054d55016e79%3A0xffebbe8434375579!2z2LTYsdmD2Kkg2KjZitiq2Yog2YTZhNij2KjZiNin2Kgg2KfZhNis2KfZh9iy2Kkg2YjYp9mE2KXZg9iz2LPZiNin2LE!5e0!3m2!1sar!2sly!4v1788811377092!5m2!1sar!2sly" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
                 </div>
-                <div class="space-y-3">
-                    <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-2">التصنيفات</h4>
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-1 heading-text" style="letter-spacing:0;font-size:18px;">التصنيفات والعروض</h4>
                     <ul class="space-y-1">
-                        {% for category in categories %}
-                        <li class="font-body-sm text-body-sm text-on-tertiary-container hover:text-surface-bright transition-colors">
-                            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-                        </li>
-                        {% endfor %}
+                      {% for category in categories %}
+                        <li class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+                      {% endfor %}
                     </ul>
                 </div>
-                <div class="space-y-3">
-                    <h4 class="font-headline-sm text-headline-sm text-surface-bright pb-2">تواصل معنا</h4>
+                <div class="lg:col-span-5 space-y-3">
+                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-1 heading-text" style="letter-spacing:0;font-size:18px;">صالات العرض والتواصل</h4>
                     <div class="space-y-2">
                         <div class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">location_on</span>
-                            <span class="font-body-sm text-body-sm text-on-tertiary-container">بنغازي، امتداد جزيرة السيدة عائشة</span>
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed pt-0.5">location_on</span>
+                            <div class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">
+                                <span class="block footer-heading font-label-md" style="letter-spacing:0;">صالة العرض الرئيسية</span>
+                                <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
+                                <a href="https://maps.app.goo.gl/4Snj4BdaKP7msct6A?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-1 text-secondary-fixed hover:text-secondary-container transition-colors text-xs">
+                                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                    عرض على الخريطة
+                                </a>
+                            </div>
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
-                            <span class="font-body-sm text-body-sm text-on-tertiary-container">+218 94 771 00 70</span>
+                            <div>
+                                <a href="tel:+218947710070" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
+                                <div class="flex flex-wrap gap-2 mt-1">
+                                    <a href="tel:+218947710070" class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors px-3 py-1 rounded-lg text-xs font-medium" style="letter-spacing:0;">
+                                        <span class="material-symbols-outlined text-[14px]">call</span>
+                                        اتصل الآن
+                                    </a>
+                                    <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors px-3 py-1 rounded-lg text-xs font-medium" style="letter-spacing:0;">
+                                        <span class="material-symbols-outlined text-[14px]">chat</span>
+                                        واتساب
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">schedule</span>
+                            <span class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="pt-4 border-t border-surface-container-high/20 flex flex-col sm:flex-row items-center justify-between gap-2">
-                <p class="font-label-sm text-label-sm text-on-tertiary-container">© 2026 شركة بيتي. جميع الحقوق محفوظة.</p>
-                <p class="font-label-sm text-label-sm text-on-tertiary-container tracking-wider">دقة هندسية • حضور معماري • تشطيبات أصيلة</p>
+                <p class="font-label-sm text-label-sm footer-text body-text" style="letter-spacing:0;">© 2026 شركة بيتي للأبواب الجاهزة والإكسسوار. جميع الحقوق محفوظة.</p>
+                <p class="font-label-sm text-label-sm footer-text tracking-wider body-text" style="letter-spacing:0.05em;">دقة هندسية • حضور معماري • تشطيبات أصيلة</p>
             </div>
         </div>
     </footer>
 
+    <!-- ====== JAVASCRIPT ====== -->
     <script>
+        // ====== Mobile Menu ======
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuTrigger = document.querySelector('.mobile-nav-trigger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuTrigger && mobileMenu) {
+                menuTrigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            }
+        });
+
+        // ====== تغيير الصورة الرئيسية ======
         function changeImage(element, src) {
             document.querySelectorAll('.product-image-thumb').forEach(el => el.classList.remove('active'));
             element.classList.add('active');
             document.getElementById('main-image').src = src;
         }
 
+        // ====== نسخ الرابط ======
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
                 alert('تم نسخ الرابط');
             });
         }
 
-        function incrementInquiry(event) {
-            event.preventDefault(); 
+        // ====== اختيار المقاس - إلزامي ======
+        let selectedSize = null;
+
+        function selectSize(element, size) {
+            // إزالة التحديد عن جميع الخيارات
+            document.querySelectorAll('.size-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedSize = size;
             
+            // إخفاء رسالة الخطأ
+            document.getElementById('size-error').classList.add('hidden');
+            
+            // تفعيل زر واتساب
+            const btn = document.getElementById('whatsapp-btn');
+            btn.classList.remove('btn-disabled');
+            btn.innerHTML = `
+                <span class="material-symbols-outlined ml-2 text-[20px]">chat</span>
+                استفسار عبر واتساب - ${size}
+            `;
+        }
+
+        // ====== زيادة عدد الاستفسارات وإرسال واتساب ======
+        function incrementInquiry(event) {
+            event.preventDefault();
+            
+            // التحقق من اختيار المقاس
+            const selected = document.querySelector('.size-option.selected');
+            if (!selected) {
+                document.getElementById('size-error').classList.remove('hidden');
+                // اهتزاز بسيط للتنبيه
+                const container = document.getElementById('sizes-container');
+                container.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    container.style.animation = '';
+                }, 500);
+                return;
+            }
+            
+            const sizeMessage = selected.dataset.size;
+            
+            // بناء رسالة واتساب مع الصورة والمقاس فقط
+            let message = `استفسار عن منتج: {{ product.name }}\n`;
+            message += `المقاس: ${sizeMessage}\n`;
+            
+            // إضافة رابط الصورة (رابط مطلق)
+            const imageUrl = document.getElementById('main-image').src;
+            message += `رابط الصورة: ${imageUrl}\n`;
+            
+            // إضافة رابط المنتج
+            message += `رابط المنتج: ${window.location.href}`;
+            
+            // ترميز الرسالة
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/218947710070?text=${encodedMessage}`;
+            
+            // زيادة عدد الاستفسارات
             const url = "{% url 'increment_inquiry' product.slug %}";
-            const whatsappUrl = event.currentTarget.href;
             
             fetch(url, {
                 method: 'POST',
@@ -241,108 +786,126 @@
                 window.open(whatsappUrl, '_blank');
             });
         }
+
+        // ====== إضافة اهتزاز ======
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ====== تحديد مقاس افتراضي عند تحميل الصفحة ======
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSize = document.querySelector('.size-option');
+            if (firstSize) {
+                firstSize.classList.add('selected');
+                selectedSize = firstSize.dataset.size;
+                
+                // تفعيل زر واتساب
+                const btn = document.getElementById('whatsapp-btn');
+                btn.classList.remove('btn-disabled');
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined ml-2 text-[20px]">chat</span>
+                    استفسار عبر واتساب - ${selectedSize}
+                `;
+            }
+        });
     </script>
-   <script>
-    tailwind.config = {
-        darkMode: "class",
-        theme: {
-            extend: {
-                colors: {
-                    "surface-container-high": "#eae8e5",
-                    "tertiary-container": "#1f1b15",
-                    "secondary-container": "#fed488",
-                    "surface-bright": "#fbf9f6",
-                    "surface-container-lowest": "#ffffff",
-                    "tertiary": "#000000",
-                    "secondary-fixed-dim": "#e9c176",
-                    "surface-container-low": "#f5f3f0",
-                    "outline-variant": "#c6c6cb",
-                    "on-tertiary-fixed-variant": "#4b463e",
-                    "on-primary-container": "#82838a",
-                    "primary": "#000000",
-                    "surface-variant": "#e4e2df",
-                    "inverse-surface": "#30312f",
-                    "on-secondary-fixed-variant": "#5d4201",
-                    "inverse-on-surface": "#f2f0ed",
-                    "primary-fixed": "#e2e2e9",
-                    "on-secondary": "#ffffff",
-                    "background": "#fbf9f6",
-                    "error": "#ba1a1a",
-                    "surface-dim": "#dbdad7",
-                    "inverse-primary": "#c6c6cd",
-                    "tertiary-fixed": "#eae1d6",
-                    "surface-container-highest": "#e4e2df",
-                    "error-container": "#ffdad6",
-                    "primary-fixed-dim": "#c6c6cd",
-                    "outline": "#76777b",
-                    "primary-container": "#1a1b21",
-                    "on-surface": "#1b1c1a",
-                    "on-background": "#1b1c1a",
-                    "on-secondary-container": "#785a1a",
-                    "secondary-fixed": "#ffdea5",
-                    "on-tertiary": "#ffffff",
-                    "on-surface-variant": "#46474b",
-                    "on-error": "#ffffff",
-                    "secondary": "#775a19",
-                    "on-primary": "#ffffff",
-                    "surface-tint": "#5d5e64",
-                    "surface": "#fbf9f6",
-                    "on-secondary-fixed": "#261900",
-                    "surface-container": "#efeeeb",
-                    "on-primary-fixed": "#1a1b21",
-                    "on-tertiary-container": "#89837a",
-                    "on-tertiary-fixed": "#1f1b15",
-                    "on-primary-fixed-variant": "#45474c",
-                    "on-error-container": "#93000a",
-                    "tertiary-fixed-dim": "#cdc5bb"
-                },
-                borderRadius: {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-                },
-                spacing: {
-                    "spacious": "1.5rem",
-                    "monumental": "3rem",
-                    "pavilion": "6rem",
-                    "hairline": "1px",
-                    "standard": "1rem",
-                    "gallery-gap": "4rem",
-                    "compact": "0.5rem",
-                    "element": "0.75rem",
-                    "micro": "0.25rem",
-                    "structural": "2rem"
-                },
-                fontFamily: {
-                    "label-md": ["ibmPlexSans"],
-                    "body-lg": ["ibmPlexSans"],
-                    "headline-sm": ["ibmPlexSans"],
-                    "label-sm": ["ibmPlexSans"],
-                    "display-xl": ["ibmPlexSans"],
-                    "body-sm": ["ibmPlexSans"],
-                    "display-xl-mobile": ["ibmPlexSans"],
-                    "headline-lg": ["ibmPlexSans"],
-                    "headline-md": ["ibmPlexSans"],
-                    "body-md": ["ibmPlexSans"],
-                    "headline-lg-mobile": ["ibmPlexSans"]
-                },
-                fontSize: {
-                    "label-md": ["12px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "600" }],
-                    "body-lg": ["18px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "300" }],
-                    "headline-sm": ["22px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }],
-                    "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
-                    "display-xl": ["56px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "300" }],
-                    "body-sm": ["13px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
-                    "display-xl-mobile": ["38px", { "lineHeight": "50px", "letterSpacing": "-0.01em", "fontWeight": "300" }],
-                    "headline-lg": ["40px", { "lineHeight": "54px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
-                    "headline-md": ["28px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "500" }],
-                    "body-md": ["15px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
-                    "headline-lg-mobile": ["28px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "400" }]
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#eae8e5",
+                        "tertiary-container": "#1f1b15",
+                        "secondary-container": "#fed488",
+                        "surface-bright": "#fbf9f6",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#000000",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-container-low": "#f5f3f0",
+                        "outline-variant": "#c6c6cb",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-container": "#82838a",
+                        "primary": "#000000",
+                        "surface-variant": "#e4e2df",
+                        "inverse-surface": "#30312f",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-on-surface": "#f2f0ed",
+                        "primary-fixed": "#e2e2e9",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbf9f6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dbdad7",
+                        "inverse-primary": "#c6c6cd",
+                        "tertiary-fixed": "#eae1d6",
+                        "surface-container-highest": "#e4e2df",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c6c6cd",
+                        "outline": "#76777b",
+                        "primary-container": "#1a1b21",
+                        "on-surface": "#1b1c1a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-container": "#785a1a",
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#46474b",
+                        "on-error": "#ffffff",
+                        "secondary": "#775a19",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#5d5e64",
+                        "surface": "#fbf9f6",
+                        "on-secondary-fixed": "#261900",
+                        "surface-container": "#efeeeb",
+                        "on-primary-fixed": "#1a1b21",
+                        "on-tertiary-container": "#89837a",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "on-primary-fixed-variant": "#45474c",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#cdc5bb"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "label-md": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-sm": ["IBM Plex Sans"],
+                        "label-sm": ["IBM Plex Sans"],
+                        "display-xl": ["IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans"],
+                        "display-xl-mobile": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans"]
+                    },
+                    fontSize: {
+                        "label-md": ["12px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "300" }],
+                        "headline-sm": ["22px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-xl": ["56px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                        "body-sm": ["13px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "display-xl-mobile": ["38px", { "lineHeight": "50px", "letterSpacing": "-0.01em", "fontWeight": "300" }],
+                        "headline-lg": ["40px", { "lineHeight": "54px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "body-md": ["15px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
                 }
             }
         }
-    }
-</script>
+    </script>
+    
 </body>
 </html>

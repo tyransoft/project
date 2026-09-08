@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+{% load static %}
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport"/>
+    <title>مقابض الأبواب | شركة بيتي للأبواب والإكسسوارات</title>
+    <meta name="description" content="تشكيلة راقية من مقابض الأبواب المصممة بدقة من شركة بيتي في بنغازي وليبيا."/>
+    <meta property="og:title" content="مقابض الأبواب | شركة بيتي للأبواب والإكسسوارات"/>
+    <meta property="og:description" content="مجموعة مميزة من مقابض الأبواب والإكسسوارات عالية الجودة من شركة بيتي."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+    <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
+    <meta name="robots" content="index, follow"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <style>
+        /* ====== أنماط أساسية ====== */
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: visible;
+            font-family: 'IBM Plex Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            background: #fbf9f6;
+        }
+
+        main {
+            flex: 1 0 auto;
+            width: 100%;
+            padding-top: 80px;
+            min-height: auto;
+        }
+
+        * { box-sizing: border-box; }
+        main > :first-child { margin-top: 0 !important; }
+        main > :last-child { margin-bottom: 0 !important; }
+
+        ::-webkit-scrollbar { display: none; }
+        * { scrollbar-width: none; }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* ====== أنماط الهيرو ====== */
+        .about-hero {
+            background: linear-gradient(135deg, #1a1b21 0%, #2d2d2d 100%);
+            min-height: 50vh;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .logo-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #fed488;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #ffffff;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container { width: 52px; height: 52px; }
+        }
+
+        @media (min-width: 1024px) {
+            .logo-container { width: 56px; height: 56px; }
+        }
+
+        /* ====== أنماط النافبار ====== */
+        .nav-bar {
+            background: #775a19 !important;
+            color: #ffffff !important;
+        }
+        .nav-bar a { color: #ffffff !important; }
+        .nav-bar a:hover { color: #fed488 !important; }
+        .nav-bar .material-symbols-outlined { color: #ffffff !important; }
+
+        .brand-name {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0;
+        }
+
+        .brand-subtitle {
+            color: #fed488;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 640px) {
+            .brand-name { font-size: 22px; }
+            .brand-subtitle { font-size: 11px; }
+        }
+
+        .navbar-height { height: 64px; }
+        @media (min-width: 640px) { .navbar-height { height: 72px; } }
+        @media (min-width: 1024px) { .navbar-height { height: 80px; } }
+
+        .desktop-nav { display: none; }
+        @media (min-width: 1024px) { .desktop-nav { display: flex !important; } }
+
+        .mobile-nav-trigger { display: flex; }
+        @media (min-width: 1024px) { .mobile-nav-trigger { display: none !important; } }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 64px;
+            right: 8px;
+            left: 8px;
+            background: #775a19;
+            backdrop-filter: blur(12px);
+            padding: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            z-index: 50;
+            gap: 4px;
+            border-radius: 0 0 16px 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        @media (min-width: 640px) {
+            .mobile-menu { top: 72px; right: 16px; left: 16px; }
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu { display: none !important; }
+        }
+
+        .mobile-menu.open { display: flex; }
+
+        .mobile-menu a {
+            padding: 14px 16px;
+            border-radius: 12px;
+            color: #ffffff;
+            transition: all 0.2s;
+            font-size: 16px;
+            letter-spacing: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 48px;
+        }
+
+        .mobile-menu a:hover { background: rgba(255,255,255,0.12); }
+
+        .mobile-menu .menu-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 6px 0;
+        }
+
+        .mobile-menu .menu-whatsapp {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-top: 4px;
+        }
+
+        .mobile-menu .menu-whatsapp:hover {
+            background: #fed488;
+            color: #775a19;
+        }
+
+        .mobile-menu .menu-whatsapp:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        .mobile-menu .material-symbols-outlined {
+            font-size: 22px !important;
+            color: #fed488 !important;
+        }
+
+        .mobile-menu .menu-whatsapp .material-symbols-outlined {
+            color: #fed488 !important;
+        }
+
+        .mobile-menu .menu-whatsapp:hover .material-symbols-outlined {
+            color: #775a19 !important;
+        }
+
+        .body-text {
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 767px) {
+            .body-text { font-size: 15px; }
+        }
+
+        .heading-text { letter-spacing: 0; }
+        .english-label { letter-spacing: 0.08em; }
+
+        /* ====== أنماط الفوتر ====== */
+        .footer-map iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        .cta-primary {
+            background: #775a19;
+            color: #ffffff;
+        }
+
+        .cta-primary:hover {
+            background: #fed488;
+            color: #261900;
+        }
+
+        .footer-bg { background: #000000; }
+        .footer-text { color: #89837a; }
+        .footer-heading { color: #fbf9f6; }
+
+        header { width: 100%; }
+        header > div:first-child { width: 100%; }
+
+        img { max-width: 100%; }
+
+        .fixed.bottom-6 { max-width: calc(100vw - 24px); }
+
+        /* ====== أنماط بطاقات المقابض ====== */
+        .handle-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e4e2df;
+        }
+        .handle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #fed488;
+        }
+        .handle-card .handle-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            background: #f5f3f0;
+        }
+        .handle-card .handle-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1b1c1a;
+        }
+        .handle-card .handle-code {
+            font-size: 13px;
+            color: #76777b;
+        }
+
+        /* ====== Responsive Fixes ====== */
+        header { width: 100%; }
+        header > div:first-child { width: 100%; }
+
+        img { max-width: 100%; }
+
+        .fixed.bottom-6 { max-width: calc(100vw - 24px); }
+
+        @media (max-width: 767px) {
+            html, body {
+                overflow-x: hidden !important;
+                overflow-y: auto !important;
+                height: auto !important;
+                min-height: 100% !important;
+            }
+
+            body { display: block; }
+
+            main {
+                width: 100%;
+                min-height: auto !important;
+                padding-top: 64px;
+            }
+
+            header > div:first-child { padding-left: 14px !important; padding-right: 14px !important; }
+            .brand-name { font-size: 17px !important; white-space: nowrap; }
+            .brand-subtitle { font-size: 8px !important; white-space: nowrap; }
+            header .flex.items-center { min-width: 0; }
+            .mobile-menu { top: 64px !important; left: 8px; right: 8px; width: auto; border-radius: 0 0 12px 12px; padding: 10px; }
+            .mobile-menu a { padding: 12px 14px; font-size: 14px; }
+            section { width: 100%; position: relative; }
+            section > div { padding-left: 16px !important; padding-right: 16px !important; }
+            .about-hero { min-height: auto; }
+            .about-hero > div.relative { padding-top: 64px; padding-bottom: 64px; }
+            .about-hero h1 { font-size: 28px !important; line-height: 1.4 !important; }
+            .about-hero p { font-size: 15px !important; line-height: 1.9 !important; }
+            h2 { font-size: 28px !important; line-height: 1.5 !important; }
+            h3 { font-size: 20px !important; line-height: 1.5 !important; }
+            .stat-card { width: 100%; }
+            .flex.flex-wrap.gap-3.sm\:gap-4.pt-4 { flex-direction: column; width: 100%; }
+            .flex.flex-wrap.gap-3.sm\:gap-4.pt-4 a { width: 100%; }
+            footer { overflow: hidden; }
+            footer > div { padding-left: 16px !important; padding-right: 16px !important; }
+            .footer-map { width: 100%; overflow: hidden; }
+            .footer-map iframe { width: 100% !important; height: 220px !important; display: block; }
+            .fixed.bottom-6 { left: 12px !important; bottom: 12px !important; }
+            .fixed.bottom-6 a { padding: 10px 14px !important; }
+        }
+
+        @media (max-width: 380px) {
+            .logo-container { width: 40px; height: 40px; }
+            .brand-name { font-size: 15px !important; }
+            .brand-subtitle { font-size: 7px !important; }
+            .mobile-nav-trigger { padding: 4px !important; }
+            .about-hero h1 { font-size: 24px !important; }
+            h2 { font-size: 24px !important; }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "مقابض الأبواب - شركة بيتي",
+      "description": "تشكيلة مميزة من مقابض الأبواب والإكسسوارات"
+    }
+    </script>
+</head>
+<body>
+
+    <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
+        <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
+            <a class="flex items-center gap-3" href="/">
+                <div class="logo-container">
+                    <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
+                </div>
+                <div class="flex flex-col text-right">
+                    <span class="brand-name">بيتي</span>
+                    <span class="brand-subtitle">للابواب والاكسسوار</span>
+                </div>
+            </a>
+
+            <nav class="desktop-nav items-center gap-8">
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="/">الرئيسية</a>
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="/#catalog-section">المنتجات</a>
+                <a aria-current="page" class="font-medium text-white font-bold transition-colors text-[15px]" href="{% url 'handles' %}">المقابض</a>
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'about' %}">من نحن</a>
+            </nav>
+
+            <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
+                <span class="material-symbols-outlined text-[28px]">menu</span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="/">
+                <span class="material-symbols-outlined">home</span>
+                الرئيسية
+            </a>
+            <a href="/#catalog-section">
+                <span class="material-symbols-outlined">grid_view</span>
+                المنتجات
+            </a>
+            <a href="{% url 'handles:public' %}">
+                <span class="material-symbols-outlined">handshake</span>
+                المقابض
+            </a>
+            <a href="{% url 'about' %}">
+                <span class="material-symbols-outlined">info</span>
+                من نحن
+            </a>
+            <div class="menu-divider"></div>
+            <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
+                <span class="material-symbols-outlined">chat</span>
+                استفسار عبر واتساب
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="w-full about-hero text-white">
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+                <div class="max-w-3xl text-right">
+                    <span class="inline-block text-[#fed488] font-semibold text-sm uppercase tracking-wider mb-3 english-label">مقابض فاخرة</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-light leading-tight heading-text">
+                        مجموعة مميزة من مقابض الأبواب
+                    </h1>
+                    <p class="text-lg md:text-xl text-[#c6c6cb] mt-4 leading-relaxed body-text max-w-2xl">
+                        تشكيلة راقية من مقابض الأبواب المصممة بدقة، تجمع بين الأناقة والمتانة لتناسب مختلف الأذواق والمشاريع.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm rounded-lg stat-card">
+                        <span class="text-3xl font-bold text-secondary">{{ total_count }}</span>
+                        <p class="text-sm text-on-surface-variant mt-1">مقبض متاح</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm rounded-lg stat-card">
+                        <span class="text-3xl font-bold text-secondary">✓</span>
+                        <p class="text-sm text-on-surface-variant mt-1">جودة عالية</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm rounded-lg stat-card">
+                        <span class="text-3xl font-bold text-secondary">🔄</span>
+                        <p class="text-sm text-on-surface-variant mt-1">تشكيلة متنوعة</p>
+                    </div>
+                    <div class="bg-surface-container-lowest p-6 text-center shadow-sm rounded-lg stat-card">
+                        <span class="text-3xl font-bold text-secondary">📍</span>
+                        <p class="text-sm text-on-surface-variant mt-1">متوفرة في ليبيا</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 lg:py-20 bg-surface">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 lg:mb-12">
+                    <div>
+                        <span class="font-label-md text-label-md text-secondary tracking-widest uppercase english-label">المجموعة</span>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-normal heading-text mt-1">
+                            مقابضنا المميزة
+                        </h2>
+                    </div>
+                    <form method="GET" class="flex gap-2 w-full md:w-auto">
+                        <input type="text" name="search" value="{{ search_query }}" 
+                               placeholder="ابحث عن مقبض..." 
+                               class="flex-1 md:w-64 px-4 py-2 rounded-lg border border-surface-variant focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 transition-all">
+                        <button type="submit" class="px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-container hover:text-on-secondary-container transition-all">
+                            <span class="material-symbols-outlined text-[20px]">search</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {% for handle in handles %}
+                    <div class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all border border-surface-variant handle-card">
+                        <a href="{% url 'handles:detail' handle.pk %}" class="block">
+                            <div class="aspect-square bg-surface-container-high overflow-hidden">
+                                {% if handle.image %}
+                                <img src="{{ handle.image.url }}" alt="{{ handle.name }}" 
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 handle-image">
+                                {% else %}
+                                <div class="w-full h-full flex items-center justify-center bg-surface-container-high">
+                                    <span class="material-symbols-outlined text-[64px] text-outline">door_handle</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="p-4 text-right">
+                                <h3 class="text-lg font-medium text-on-surface heading-text group-hover:text-secondary transition-colors handle-name">
+                                    {{ handle.name }}
+                                </h3>
+                            </div>
+                        </a>
+                    </div>
+                    {% empty %}
+                    <div class="col-span-full text-center py-12">
+                        <span class="material-symbols-outlined text-[64px] text-outline">door_handle</span>
+                        <p class="text-lg text-on-surface-variant mt-4">لا توجد مقابض متاحة حالياً</p>
+                        <p class="text-sm text-on-surface-variant">تواصل معنا للاستعلام عن المنتجات المتوفرة</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% if handles.has_other_pages %}
+                <div class="flex justify-center gap-2 mt-8">
+                    {% if handles.has_previous %}
+                    <a href="?page={{ handles.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                       class="px-4 py-2 rounded-lg border border-surface-variant hover:bg-surface-container-low transition-colors">
+                        السابق
+                    </a>
+                    {% endif %}
+                    
+                    <span class="px-4 py-2 rounded-lg bg-secondary text-white">
+                        {{ handles.number }} / {{ handles.paginator.num_pages }}
+                    </span>
+                    
+                    {% if handles.has_next %}
+                    <a href="?page={{ handles.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                       class="px-4 py-2 rounded-lg border border-surface-variant hover:bg-surface-container-low transition-colors">
+                        التالي
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="w-full py-12 md:py-16 bg-secondary-container">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-2xl md:text-3xl font-normal heading-text text-on-secondary-container">
+                    هل تبحث عن مقبض معين؟
+                </h2>
+                <p class="text-on-secondary-container/80 mt-2 body-text max-w-2xl mx-auto">
+                    فريقنا مستعد لمساعدتك في اختيار المقبض المناسب لك. تواصل معنا    .
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-2 px-8 py-3 bg-[#25D366] text-white rounded-full hover:bg-[#128C7E] transition-colors">
+                        <span class="material-symbols-outlined">chat</span>
+                        واتساب
+                    </a>
+                    <a href="tel:+218947710070" 
+                       class="inline-flex items-center gap-2 px-8 py-3 bg-[#775a19] text-white rounded-full hover:bg-[#fed488] hover:text-[#261900] transition-colors">
+                        <span class="material-symbols-outlined">call</span>
+                        اتصل بنا
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ====== FLOATING WHATSAPP BUTTON ====== -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <a class="group relative inline-flex items-center gap-2 px-4 py-3 bg-secondary text-on-secondary rounded-full shadow-[0_12px_32px_-4px_rgba(22,24,29,0.18)] hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300" href="tel:+218947710070">
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-secondary-fixed-dim"></span>
+            </span>
+            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">forum</span>
+            <span class="font-label-md text-label-md hidden sm:inline text-white" style="letter-spacing:0;">تواصل معنا</span>  
+        </a>
+    </div>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="w-full footer-bg text-inverse-on-surface pt-12 pb-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8">
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex flex-col text-right">
+                            <span class="font-headline-sm text-headline-sm footer-heading heading-text" style="letter-spacing:0;">شركة بيتي</span>
+                            <span class="font-label-sm text-label-sm footer-text uppercase tracking-wider" style="letter-spacing:0.05em;">الأبواب الجاهزة والاكسسوار</span>
+                        </div>
+                    </div>
+                    <div class="footer-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3382.4235518358723!2d20.160377300000004!3d32.030725100000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1383054d55016e79%3A0xffebbe8434375579!2z2LTYsdmD2Kkg2KjZitiq2Yog2YTZhNij2KjZiNin2Kgg2KfZhNis2KfZh9iy2Kkg2YjYp9mE2KXZg9iz2LPZiNin2LE!5e0!3m2!1sar!2sly!4v1788811377092!5m2!1sar!2sly" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-1 heading-text" style="letter-spacing:0;">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;">الرئيسية</a></li>
+                        <li><a href="/#catalog-section" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;">المنتجات</a></li>
+                        <li><a href="{% url 'handles' %}" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;">المقابض</a></li>
+                        <li><a href="{% url 'about' %}" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" style="letter-spacing:0;">من نحن</a></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-5 space-y-3">
+                    <h4 class="font-headline-sm text-headline-sm footer-heading pb-1 heading-text" style="letter-spacing:0;">صالات العرض والتواصل</h4>
+                    <div class="space-y-2">
+                         <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed pt-0.5">location_on</span>
+                            <div class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">
+                                <span class="block footer-heading font-label-md" style="letter-spacing:0;">صالة العرض الرئيسية</span>
+                                <span>بنغازي، امتداد جزيرة السيدة عائشة بجوار مسجد سلمة بن ثابت الأنصاري</span>
+                                <a href="https://maps.app.goo.gl/4Snj4BdaKP7msct6A?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-1 text-secondary-fixed hover:text-secondary-container transition-colors text-xs">
+                                    <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                    عرض على الخريطة
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">call</span>
+                            <div>
+                                <a href="tel:+218947710070" class="font-body-sm text-body-sm footer-text hover:text-surface-bright transition-colors body-text" dir="ltr" style="letter-spacing:0;">+218 94 771 00 70</a>
+                                <div class="flex flex-wrap gap-2 mt-1">
+                                    <a href="tel:+218947710070" class="inline-flex items-center gap-1 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors px-3 py-1 rounded-lg text-xs font-medium" style="letter-spacing:0;">
+                                        <span class="material-symbols-outlined text-[14px]">call</span>
+                                        اتصل الآن
+                                    </a>
+                                    <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors px-3 py-1 rounded-lg text-xs font-medium" style="letter-spacing:0;">
+                                        <span class="material-symbols-outlined text-[14px]">chat</span>
+                                        واتساب
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px] text-secondary-fixed">schedule</span>
+                            <span class="font-body-sm text-body-sm footer-text body-text" style="letter-spacing:0;">السبت - الخميس: 9:00 صباحاً – 9:00 مساءً</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-4 border-t border-surface-container-high/20 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <p class="font-label-sm text-label-sm footer-text body-text" style="letter-spacing:0;">© 2026 شركة بيتي للأبواب الجاهزة والإكسسوار. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuTrigger = document.querySelector('.mobile-nav-trigger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuTrigger && mobileMenu) {
+                menuTrigger.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('open');
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenu.contains(e.target) && !menuTrigger.contains(e.target)) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#eae8e5",
+                        "tertiary-container": "#1f1b15",
+                        "secondary-container": "#fed488",
+                        "surface-bright": "#fbf9f6",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#000000",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-container-low": "#f5f3f0",
+                        "outline-variant": "#c6c6cb",
+                        "on-tertiary-fixed-variant": "#4b463e",
+                        "on-primary-container": "#82838a",
+                        "primary": "#000000",
+                        "surface-variant": "#e4e2df",
+                        "inverse-surface": "#30312f",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-on-surface": "#f2f0ed",
+                        "primary-fixed": "#e2e2e9",
+                        "on-secondary": "#ffffff",
+                        "background": "#fbf9f6",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#dbdad7",
+                        "inverse-primary": "#c6c6cd",
+                        "tertiary-fixed": "#eae1d6",
+                        "surface-container-highest": "#e4e2df",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c6c6cd",
+                        "outline": "#76777b",
+                        "primary-container": "#1a1b21",
+                        "on-surface": "#1b1c1a",
+                        "on-background": "#1b1c1a",
+                        "on-secondary-container": "#785a1a",
+                        "secondary-fixed": "#ffdea5",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#46474b",
+                        "on-error": "#ffffff",
+                        "secondary": "#775a19",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#5d5e64",
+                        "surface": "#fbf9f6",
+                        "on-secondary-fixed": "#261900",
+                        "surface-container": "#efeeeb",
+                        "on-primary-fixed": "#1a1b21",
+                        "on-tertiary-container": "#89837a",
+                        "on-tertiary-fixed": "#1f1b15",
+                        "on-primary-fixed-variant": "#45474c",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#cdc5bb"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "spacious": "1.5rem",
+                        "monumental": "3rem",
+                        "pavilion": "6rem",
+                        "hairline": "1px",
+                        "standard": "1rem",
+                        "gallery-gap": "4rem",
+                        "compact": "0.5rem",
+                        "element": "0.75rem",
+                        "micro": "0.25rem",
+                        "structural": "2rem"
+                    },
+                    fontFamily: {
+                        "label-md": ["IBM Plex Sans"],
+                        "body-lg": ["IBM Plex Sans"],
+                        "headline-sm": ["IBM Plex Sans"],
+                        "label-sm": ["IBM Plex Sans"],
+                        "display-xl": ["IBM Plex Sans"],
+                        "body-sm": ["IBM Plex Sans"],
+                        "display-xl-mobile": ["IBM Plex Sans"],
+                        "headline-lg": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "body-md": ["IBM Plex Sans"],
+                        "headline-lg-mobile": ["IBM Plex Sans"]
+                    },
+                    fontSize: {
+                        "label-md": ["12px", { "lineHeight": "18px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "300" }],
+                        "headline-sm": ["22px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-xl": ["56px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "300" }],
+                        "body-sm": ["13px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "display-xl-mobile": ["38px", { "lineHeight": "50px", "letterSpacing": "-0.01em", "fontWeight": "300" }],
+                        "headline-lg": ["40px", { "lineHeight": "54px", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "500" }],
+                        "body-md": ["15px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>

@@ -11,6 +11,12 @@ from django.db.models import Count, Sum
 from .models import Category, Product
 from .forms import *
 from django.urls import reverse
+from django.core.paginator import Paginator
+
+
+
+
+
 def home(request):
     categories = Category.objects.all()
     products = Product.objects.all().order_by('-is_featured')
@@ -58,13 +64,20 @@ def about(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+
 def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug)
-    related_products = Product.objects.filter(category=product.category).exclude(id=product.id)[:4]
+    product = get_object_or_404(Product, slug=slug, is_active=True)
+    related_products = Product.objects.filter(
+        category=product.category, 
+        is_active=True
+    ).exclude(id=product.id)[:4]
+    
+    suggested_handles = Handle.objects.all().order_by('-created_at')[:4]
     
     context = {
         'product': product,
         'related_products': related_products,
+        'suggested_handles': suggested_handles,
     }
     return render(request, 'product_detail.html', context)
 
@@ -207,4 +220,105 @@ def product_delete(request, pk):
         messages.success(request, 'تم حذف المنتج بنجاح')
         return redirect('product_list')
     return render(request, 'product_delete.html', {'product': product})
+
+
+
+def handles_public(request):
+    handles = Handle.objects.all().order_by('-created_at')
+    
+    search_query = request.GET.get('search', '')
+    if search_query:
+        handles = handles.filter(name__icontains=search_query)
+    
+    paginator = Paginator(handles, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'handles': page_obj,
+        'search_query': search_query,
+        'total_count': Handle.objects.count(),
+    }
+    return render(request, 'handles.html', context)
+
+
+
+@staff_member_required
+def handles_admin(request):
+    handles = Handle.objects.all().order_by('-created_at')
+    
+    search_query = request.GET.get('search', '')
+    if search_query:
+        handles = handles.filter(name__icontains=search_query)
+    
+    paginator = Paginator(handles, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'handles': page_obj,
+        'search_query': search_query,
+        'total_count': Handle.objects.count(),
+    }
+    return render(request, 'handles_list.html', context)
+
+
+@staff_member_required
+def handle_add(request):
+    if request.method == 'POST':
+        form = HandleForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle = form.save()
+            messages.success(request, f'تم إضافة المقبض "{handle.name}" بنجاح!')
+            return redirect('handles:admin')
+        else:
+            messages.error(request, 'حدث خطأ في إضافة المقبض. يرجى التحقق من البيانات.')
+    else:
+        form = HandleForm()
+    
+    context = {
+        'form': form,
+        'title': 'إضافة مقبض جديد',
+    }
+    return render(request, 'handle_form.html', context)
+
+
+@staff_member_required
+def handle_edit(request, pk):
+    handle = get_object_or_404(Handle, pk=pk)
+    
+    if request.method == 'POST':
+        form = HandleForm(request.POST, request.FILES, instance=handle)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'تم تحديث المقبض "{handle.name}" بنجاح!')
+            return redirect('handles:admin')
+        else:
+            messages.error(request, 'حدث خطأ في تحديث المقبض. يرجى التحقق من البيانات.')
+    else:
+        form = HandleForm(instance=handle)
+    
+    context = {
+        'form': form,
+        'handle': handle,
+        'title': f'تعديل: {handle.name}',
+    }
+    return render(request, 'handle_form.html', context)
+
+
+@staff_member_required
+def handle_delete(request, pk):
+    handle = get_object_or_404(Handle, pk=pk)
+    
+    if request.method == 'POST':
+        handle_name = handle.name
+        handle.delete()
+        messages.success(request, f'تم حذف المقبض "{handle_name}" بنجاح!')
+        return redirect('handles:admin')
+    
+    context = {
+        'handle': handle,
+        'title': f'حذف: {handle.name}',
+    }
+    return render(request, 'handle_confirm_delete.html', context)
 

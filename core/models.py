@@ -103,3 +103,43 @@ class Product(models.Model):
         self.inquiry_count += 1
         self.save(update_fields=['inquiry_count'])
 
+    def get_sizes_list(self):
+        if not self.size:
+            return []
+        import re
+        sizes_text = re.sub(r'[\/\-_]', ',', self.sizes)
+        sizes_list = [s.strip() for s in sizes_text.split(',') if s.strip()]
+        return sizes_list
+
+    def get_whatsapp_url(self, size=None):
+        base_url = "https://wa.me/218947710070"
+        message = f"استفسار عن منتج: {self.name}\n"
+        
+        if size:
+            message += f"المقاس: {size}\n"
+        
+        if self.image1:
+            domain = "https://bayti.tip2.libyanspider.cloud"  
+            image_url = f"{domain}{self.image1.url}"
+            message += f"رابط الصورة: {image_url}\n"
+        
+        message += f"رابط المنتج: {domain}{self.get_absolute_url()}"
+        
+        import urllib.parse
+        encoded_message = urllib.parse.quote(message)
+        return f"{base_url}?text={encoded_message}"
+
+
+class Handle(models.Model):
+    name = models.CharField(max_length=200, verbose_name="اسم المقبض")
+    image = models.ImageField(upload_to='handles/', verbose_name="صورة المقبض")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "مقبض"
+        verbose_name_plural = "المقابض"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.name

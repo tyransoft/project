@@ -21,4 +21,12 @@ urlpatterns = [
     path('captin-products/add/',product_add, name='product_add'),
     path('captin-products/edit/<int:pk>/',product_edit, name='product_edit'),
     path('captin-products/delete/<int:pk>/',product_delete, name='product_delete'),
+
+    path('handles/', handles_public, name='handles'),
+    
+    path('captin-handles/', handles_admin, name='handles_admin'),
+    path('captin-handles/add/', handle_add, name='handles_add'),
+    path('captin-handles/<int:pk>/edit/', handle_edit, name='handles_edit'),
+    path('captin-handles/<int:pk>/delete/', handle_delete, name='handles_delete'),
+
 ]

@@ -472,17 +472,29 @@
             <!-- القائمة Desktop -->
             <nav class="desktop-nav items-center gap-8">
                 <a aria-current="page" class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="home" href="{% url 'home' %}">الرئيسية</a>
+                </a>   <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" href="{% url 'home' %}#catalog-section">المنتجات</a>
+
                 <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'about' %}">من نحن</a>
-                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" href="{% url 'home' %}#catalog-section">المنتجات</a>
+                {% if not user.is_authenticated %}
+            
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'user_login' %}">حسابي</a>
+
+                {% else %}
+
+                <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px] tracking-0" data-path="about-us" href="{% url 'dashboard' %}">لوحة التحكم</a>
+            
+                {% endif %}
+            <a href="https://wa.me/218947710070" target="_blank" rel="noopener noreferrer" class="menu-whatsapp">
+                <span class="material-symbols-outlined">chat</span>
+                استفسار  
+
             </nav>
 
-            <!-- زر القائمة (موبايل وتابلت) -->
             <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
                 <span class="material-symbols-outlined text-[28px]">menu</span>
             </button>
         </div>
 
-        <!-- القائمة المنسدلة (موبايل وتابلت) -->
         <div class="mobile-menu" id="mobile-menu">
             <a href="{% url 'home' %}">
                 <span class="material-symbols-outlined">home</span>
