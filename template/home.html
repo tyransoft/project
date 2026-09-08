@@ -76,7 +76,6 @@
             }
         }
 
-        /* Navbar - نفس نظام الألوان */
         .nav-bar {
             background: #775a19 !important;
             color: #ffffff !important;
@@ -116,7 +115,6 @@
             }
         }
 
-        /* Navbar heights - responsive */
         .navbar-height {
             height: 64px;
         }
@@ -457,7 +455,6 @@
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
      <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
     <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <!-- الشعار + الاسم -->
         <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
             <div class="logo-container">
                 <img alt="Bayti Architectural Logo" src="{% static 'logo.jpeg' %}"/>
@@ -468,7 +465,6 @@
             </div>
         </a>
 
-        <!-- القائمة Desktop -->
         <nav class="desktop-nav items-center gap-8">
             <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}">الرئيسية</a>
             <a class="font-medium text-white hover:text-[#fed488] transition-colors text-[15px]" href="{% url 'home' %}#catalog-section">المنتجات</a>
@@ -484,13 +480,11 @@
             </a>
         </nav>
 
-        <!-- زر المنيو -->
         <button aria-label="القائمة الرئيسية" class="mobile-nav-trigger p-2 text-white hover:text-[#fed488] transition-colors" type="button">
             <span class="material-symbols-outlined text-[28px]">menu</span>
         </button>
     </div>
 
-    <!-- القائمة المتنقلة -->
     <div class="mobile-menu" id="mobile-menu">
         <a href="{% url 'home' %}">
             <span class="material-symbols-outlined">home</span>
