@@ -635,9 +635,9 @@
                             {{ category.name }}
                         </button>
                         {% endfor %}
-                         <button class="category-pill active"  href="{% url 'handles' %}">
-                         المقابض
-                        </button>
+                         <button class="category-pill active" onclick="window.location.href='{% url 'handles' %}'">
+                          المقابض
+                         </button>
                     </div>
 
                     <div class="product-grid pt-6" id="products-grid">
