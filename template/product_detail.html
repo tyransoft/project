@@ -493,6 +493,7 @@
                                 {{ size }}
                             </div>
                             {% endfor %}
+                            <p>متوفر فني تعديل مقاسات لتعديل القياس حسب الطلب</p>
                         </div>
                         <p id="size-error" class="text-red-500 text-xs mt-2 hidden">
                             <span class="material-symbols-outlined text-[14px] align-middle">error</span>
@@ -745,7 +746,7 @@
             
             const sizeMessage = selected.dataset.size;
             
-            let message = `استفسار عن منتج: {{ product.name }}\n`;
+            let message = `استفسار عن منتج: {{ product.name }}--{{ product.code}}\n`;
             message += `المقاس: ${sizeMessage}\n`;
             
             

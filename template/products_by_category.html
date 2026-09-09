@@ -449,9 +449,22 @@
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors heading-text" style="font-size:16px;font-weight:500;">
                                         {{ product.name }}
                                     </h3>
-                                    {% if product.size %}
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 body-text" style="font-size:13px;">المقاس: {{ product.size }}</p>
-                                    {% endif %}
+                                   {% if product.sizes %}
+<div class="flex flex-wrap gap-1 mt-2">
+    {% for size in product.get_sizes_list %}
+    <span class="inline-block px-2 py-0.5 text-xs border border-secondary/30 rounded bg-secondary/5 text-secondary text-center min-w-[40px]">
+        {{ size }}
+    </span>
+    {% endfor %}
+    <span class="inline-block px-2 py-0.5 text-xs text-secondary/60 border border-dashed border-secondary/20 rounded">
+        ...
+    </span>
+</div>
+<p class="text-[10px] text-on-surface-variant/60 mt-1 flex items-center gap-1">
+    <span class="material-symbols-outlined text-[12px]">edit</span>
+    متوفر تعديل المقاسات حسب الطلب
+</p>
+{% endif %} 
                                     <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
                                         <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
                                             <span class="material-symbols-outlined text-[14px] text-secondary">chat</span>
