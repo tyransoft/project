@@ -306,13 +306,23 @@
         @media (max-width: 480px) {
             .product-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
         }
-        .size-btn {
+    /* ====== أنماط المقاسات كأزرار ====== */
+.size-btn {
     cursor: pointer;
     user-select: none;
-    min-width: 48px;
+    min-width: 40px;
     text-align: center;
-    position: relative;
     font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 10px;
+    padding: 4px 8px;
+}
+
+.size-btn:hover {
+    transform: translateY(-1px);
+}
+
+.size-btn:active {
+    transform: scale(0.95) !important;
 }
 
 .size-btn.selected {
@@ -322,23 +332,50 @@
     box-shadow: 0 2px 12px rgba(119, 90, 25, 0.3);
 }
 
-.size-btn.selected .material-symbols-outlined {
-    color: #ffffff !important;
-}
-
-.size-btn .check-icon {
-    display: none;
-}
-
-.size-btn.selected .check-icon {
-    display: inline;
-}
-
 .size-btn-more {
     cursor: pointer;
+    user-select: none;
     min-width: 40px;
     text-align: center;
     font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 10px;
+    padding: 4px 8px;
+}
+
+.size-btn-more:hover {
+    background: rgba(119, 90, 25, 0.08);
+    border-color: #775a19;
+    color: #775a19;
+}
+
+/* ====== تحسين العرض على الهاتف ====== */
+@media (max-width: 640px) {
+    .size-btn {
+        font-size: 9px;
+        padding: 3px 6px;
+        min-width: 32px;
+    }
+    .size-btn-more {
+        font-size: 9px;
+        padding: 3px 6px;
+        min-width: 32px;
+    }
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .size-btn {
+        font-size: 8px;
+        padding: 2px 4px;
+        min-width: 28px;
+    }
+    .size-btn-more {
+        font-size: 8px;
+        padding: 2px 4px;
+        min-width: 28px;
+    }
 }
 
 /* ====== تأثير عند اختيار مقاس ====== */
@@ -350,25 +387,6 @@
 
 .size-btn.selected {
     animation: sizeSelect 0.3s ease;
-}
-
-/* ====== عدد المقاسات الإضافية ====== */
-.size-more-badge {
-    position: relative;
-}
-
-.size-more-badge::after {
-    content: attr(data-count);
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    background: #775a19;
-    color: white;
-    font-size: 8px;
-    padding: 1px 5px;
-    border-radius: 9999px;
-    min-width: 16px;
-    text-align: center;
 }
     </style>
 </head>
@@ -505,56 +523,68 @@
 
                     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pt-6" id="products-grid">
                         {% for product in products %}
-                        <article class="product-card group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg border border-surface-variant" data-title="{{ product.name }}">
-                            <a href="{{ product.get_absolute_url }}" class="block">
-                                <div class="product-image">
-                                    {% if product.image1 %}
-                                    <img src="{{ product.image1.url }}" alt="{{ product.name }}" loading="lazy"/>
-                                    {% else %}
-                                    <div class="w-full h-full flex items-center justify-center bg-surface-container-high">
-                                        <span class="material-symbols-outlined text-[48px] text-outline">image</span>
-                                    </div>
-                                    {% endif %}
-                                    <span class="absolute top-3 right-3 font-label-sm text-label-sm bg-secondary text-surface-bright px-2 py-0.5 rounded" style="letter-spacing:0;">{{ category.name }}</span>
-                                    {% if product.is_featured %}
-                                    <span class="absolute top-3 left-3 font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-0.5 rounded">مميز</span>
-                                    {% endif %}
-                                </div>
-                                <div class="p-3 sm:p-4 text-right">
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors heading-text" style="font-size:16px;font-weight:500;">
-                                        {{ product.name }}
-                                    </h3>
-                                    
-                                    <div class="flex flex-wrap gap-1.5 mt-2">
-    {% for size in product.get_sizes_list %}
-    <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
-                   border-secondary/30 bg-secondary/5 text-secondary 
-                   hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
-                   active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40"
-            onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
-        {{ size }}
-        <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-    </button>
-    {% endfor %}
-   
-</div>
-<p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
-    <span class="material-symbols-outlined text-[12px]">edit</span>
-    متوفر تعديل المقاسات حسب الطلب
-</p>
 
-                                    
-                                    
-                                    <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
-                                        <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
-                                            <span class="material-symbols-outlined text-[14px] text-secondary">chat</span>
-                                            {{ product.inquiry_count }}
-                                        </span>
-                                        <span class="text-sm text-secondary hover:text-secondary-container transition-colors font-medium">تفاصيل</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
+<article class="product-card group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg border border-surface-variant" data-title="{{ product.name }}">
+    <a href="{{ product.get_absolute_url }}" class="block">
+        <div class="product-image">
+            {% if product.image1 %}
+            <img src="{{ product.image1.url }}" alt="{{ product.name }}" loading="lazy"/>
+            {% else %}
+            <div class="w-full h-full flex items-center justify-center bg-surface-container-high">
+                <span class="material-symbols-outlined text-[48px] text-outline">image</span>
+            </div>
+            {% endif %}
+            <span class="absolute top-3 right-3 font-label-sm text-label-sm bg-secondary text-surface-bright px-2 py-0.5 rounded" style="letter-spacing:0;">{{ category.name }}</span>
+            {% if product.is_featured %}
+            <span class="absolute top-3 left-3 font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-0.5 rounded">مميز</span>
+            {% endif %}
+        </div>
+        <div class="p-3 sm:p-4 text-right">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors heading-text" style="font-size:16px;font-weight:500;">
+                {{ product.name }}
+            </h3>
+            
+            {% if product.sizes %}
+            {% with sizes_list=product.get_sizes_list %}
+            <div class="grid grid-cols-2 gap-1.5 mt-2 max-w-[200px]">
+                {% for size in sizes_list|slice:":4" %}
+                <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
+                               border-secondary/30 bg-secondary/5 text-secondary 
+                               hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
+                               active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40
+                               w-full text-center"
+                        onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
+                    {{ size }}
+                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </button>
+                {% endfor %}
+                {% if sizes_list|length > 4 %}
+                <button class="size-btn-more inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-lg 
+                               border-2 border-dashed border-secondary/25 text-secondary/50 
+                               hover:border-secondary/50 hover:text-secondary/70 transition-all duration-200 cursor-pointer select-none
+                               w-full text-center col-span-2"
+                        onclick="event.preventDefault(); event.stopPropagation(); showMoreSizes('{{ product.id }}')">
+                    +{{ sizes_list|length|add:"-4" }} مقاسات إضافية
+                </button>
+                {% endif %}
+            </div>
+            {% endwith %}
+            <p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">edit</span>
+                متوفر تعديل المقاسات حسب الطلب
+            </p>
+            {% endif %}
+            
+            <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
+                <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[14px] text-secondary">chat</span>
+                    {{ product.inquiry_count }}
+                </span>
+                <span class="text-sm text-secondary hover:text-secondary-container transition-colors font-medium">تفاصيل</span>
+            </div>
+        </div>
+    </a>
+</article>
                         {% empty %}
                         <div class="col-span-full text-center py-12">
                             <span class="material-symbols-outlined text-[48px] text-outline">inbox</span>
@@ -706,6 +736,7 @@
                 noResults.classList.add('hidden');
             }
         }
+
     </script>
 
     <script>
