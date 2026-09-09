@@ -1,5 +1,18 @@
 from django.urls import path,include
 from .views import *
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import (
+    StaticViewSitemap,
+    ProductSitemap,
+    CategorySitemap,
+)
+
+sitemaps = {
+    "static": StaticViewSitemap,
+    "products": ProductSitemap,
+    "categories": CategorySitemap,
+}
+
 urlpatterns = [
     path('captin-dashboard/',dashboard, name='dashboard'),
 
@@ -28,5 +41,6 @@ urlpatterns = [
     path('captin-handles/add/', handle_add, name='handles_add'),
     path('captin-handles/<int:pk>/edit/', handle_edit, name='handles_edit'),
     path('captin-handles/<int:pk>/delete/', handle_delete, name='handles_delete'),
-
+    path("sitemap.xml",sitemap,{"sitemaps": sitemaps},name="django_sitemap",
+),
 ]
