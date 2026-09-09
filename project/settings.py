@@ -28,11 +28,14 @@ SECRET_KEY = 'django-insecure-qmh+!0(xi&6w1fx2ai$ziih_&vp4@255&r$o$ysk0wc)vw#hbu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = [
-    "baytidoors.ly"
+    "baytidoors.ly",
+  "www.baytidoors.ly"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://baytidoors.ly"
+    "https://baytidoors.ly",
+    "https://www.baytidoors.ly"
+
 ]
 
 SITE_URL = "https://baytidoors.ly"
