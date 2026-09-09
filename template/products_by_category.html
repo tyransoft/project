@@ -461,8 +461,6 @@
                                         {{ product.name }}
                                     </h3>
                                     
-                                    <!-- ====== المقاسات ====== -->
-                                    {% if product.sizes %}
                                     <div class="flex flex-wrap gap-1 mt-2">
                                         {% for size in product.get_sizes_list %}
                                         <span class="size-tag">
@@ -477,7 +475,6 @@
                                         <span class="material-symbols-outlined text-[12px]">edit</span>
                                         متوفر تعديل المقاسات حسب الطلب
                                     </p>
-                                    {% endif %}
                                     
                                     <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
                                         <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">

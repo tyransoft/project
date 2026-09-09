@@ -60,19 +60,7 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-    def get_whatsapp_url(self):
-        phone = "218947710070"
-        
-        message = f"السلام عليكم، أريد الاستفسار عن المنتج التالي:\n"
-        message += f"المنتج: {self.name}\n"
-        if self.code:
-            message += f"الكود: {self.code}\n"
-        if self.size:
-            message += f"المقاس: {self.size}"
-        
-        encoded_message = quote(message)
-        
-        return f"https://wa.me/{phone}?text={encoded_message}"    
+   
     @staticmethod
     def generate_code():
         while True:
@@ -114,7 +102,8 @@ class Product(models.Model):
     def get_whatsapp_url(self, size=None):
         base_url = "https://wa.me/218947710070"
         message = f"استفسار عن منتج: {self.name}\n"
-        
+        if self.code:
+            message += f"الكود: {self.code}\n"
         if size:
             message += f"المقاس: {size}\n"
                 
