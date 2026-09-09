@@ -536,22 +536,14 @@
         <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
     </button>
     {% endfor %}
-    <button class="size-btn-more px-3 py-1.5 text-xs font-medium rounded-lg border-2 border-dashed 
-                   border-secondary/25 text-secondary/50 hover:border-secondary/50 hover:text-secondary/70 
-                   transition-all duration-200 cursor-pointer"
-            onclick="event.preventDefault(); showMoreSizes('{{ product.id }}')">
-        +{{ product.get_sizes_list|length|add:"-3"|default:0 }}
-    </button>
+   
 </div>
 <p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
     <span class="material-symbols-outlined text-[12px]">edit</span>
     متوفر تعديل المقاسات حسب الطلب
 </p>
 
-                                    <p class="text-[10px] text-on-surface-variant/60 mt-1 flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[12px]">edit</span>
-                                        متوفر تعديل المقاسات حسب الطلب
-                                    </p>
+                                    
                                     
                                     <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
                                         <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
