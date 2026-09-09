@@ -306,6 +306,70 @@
         @media (max-width: 480px) {
             .product-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
         }
+        .size-btn {
+    cursor: pointer;
+    user-select: none;
+    min-width: 48px;
+    text-align: center;
+    position: relative;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.size-btn.selected {
+    background: #775a19 !important;
+    color: #ffffff !important;
+    border-color: #775a19 !important;
+    box-shadow: 0 2px 12px rgba(119, 90, 25, 0.3);
+}
+
+.size-btn.selected .material-symbols-outlined {
+    color: #ffffff !important;
+}
+
+.size-btn .check-icon {
+    display: none;
+}
+
+.size-btn.selected .check-icon {
+    display: inline;
+}
+
+.size-btn-more {
+    cursor: pointer;
+    min-width: 40px;
+    text-align: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* ====== تأثير عند اختيار مقاس ====== */
+@keyframes sizeSelect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.size-btn.selected {
+    animation: sizeSelect 0.3s ease;
+}
+
+/* ====== عدد المقاسات الإضافية ====== */
+.size-more-badge {
+    position: relative;
+}
+
+.size-more-badge::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #775a19;
+    color: white;
+    font-size: 8px;
+    padding: 1px 5px;
+    border-radius: 9999px;
+    min-width: 16px;
+    text-align: center;
+}
     </style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
@@ -461,16 +525,29 @@
                                         {{ product.name }}
                                     </h3>
                                     
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        {% for size in product.get_sizes_list %}
-                                        <span class="size-tag">
-                                            {{ size }}
-                                        </span>
-                                        {% endfor %}
-                                        <span class="size-tag-more">
-                                            ...
-                                        </span>
-                                    </div>
+                                    <div class="flex flex-wrap gap-1.5 mt-2">
+    {% for size in product.get_sizes_list %}
+    <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
+                   border-secondary/30 bg-secondary/5 text-secondary 
+                   hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
+                   active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40"
+            onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
+        {{ size }}
+        <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+    </button>
+    {% endfor %}
+    <button class="size-btn-more px-3 py-1.5 text-xs font-medium rounded-lg border-2 border-dashed 
+                   border-secondary/25 text-secondary/50 hover:border-secondary/50 hover:text-secondary/70 
+                   transition-all duration-200 cursor-pointer"
+            onclick="event.preventDefault(); showMoreSizes('{{ product.id }}')">
+        +{{ product.get_sizes_list|length|add:"-3"|default:0 }}
+    </button>
+</div>
+<p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
+    <span class="material-symbols-outlined text-[12px]">edit</span>
+    متوفر تعديل المقاسات حسب الطلب
+</p>
+{% endif %}
                                     <p class="text-[10px] text-on-surface-variant/60 mt-1 flex items-center gap-1">
                                         <span class="material-symbols-outlined text-[12px]">edit</span>
                                         متوفر تعديل المقاسات حسب الطلب
