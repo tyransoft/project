@@ -130,5 +130,92 @@
             </a>
         </div>
     </form>
+     {% block extra_js %}
+
+<script>
+document.querySelector("form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const form = this;
+    const imageInputs = form.querySelectorAll('input[type="file"]');
+
+    for (const input of imageInputs) {
+        if (!input.files.length) continue;
+
+        const file = input.files[0];
+
+        // إذا كانت الصورة صغيرة، اتركها كما هي
+        if (file.size <= 2 * 1024 * 1024) {
+            continue;
+        }
+
+        const compressedFile = await compressImage(file);
+
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(compressedFile);
+        input.files = dataTransfer.files;
+    }
+
+    form.submit();
+});
+
+
+function compressImage(file) {
+    return new Promise((resolve) => {
+
+        const img = new Image();
+        const canvas = document.createElement("canvas");
+
+        img.onload = function () {
+
+            const MAX_WIDTH = 2000;
+            const MAX_HEIGHT = 2000;
+
+            let width = img.width;
+            let height = img.height;
+
+            // تصغير الأبعاد مع الحفاظ على النسبة
+            if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+
+                const ratio = Math.min(
+                    MAX_WIDTH / width,
+                    MAX_HEIGHT / height
+                );
+
+                width = Math.round(width * ratio);
+                height = Math.round(height * ratio);
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(
+                function (blob) {
+
+                    const newFile = new File(
+                        [blob],
+                        file.name.replace(/\.[^/.]+$/, "") + ".webp",
+                        {
+                            type: "image/webp",
+                            lastModified: Date.now()
+                        }
+                    );
+
+                    resolve(newFile);
+                },
+                "image/webp",
+                0.88
+            );
+        };
+
+        img.src = URL.createObjectURL(file);
+    });
+}
+</script>
+{% endblock %}
 </div>
 {% endblock %}
