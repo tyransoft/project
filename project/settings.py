@@ -26,7 +26,7 @@ TEMP=BASE_DIR / 'template'
 SECRET_KEY = 'django-insecure-qmh+!0(xi&6w1fx2ai$ziih_&vp4@255&r$o$ysk0wc)vw#hbu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [
     "baytidoors.ly"
 ]
@@ -37,7 +37,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 SITE_URL = "https://baytidoors.ly"
 # Application definition
-SITE_ID = 1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    "django.contrib.sites",
     "django.contrib.sitemaps",
 ]
 
