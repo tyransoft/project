@@ -544,7 +544,6 @@
                 {{ product.name }}
             </h3>
             
-            {% if product.sizes %}
             {% with sizes_list=product.get_sizes_list %}
             <div class="grid grid-cols-2 gap-1.5 mt-2 max-w-[200px]">
                 {% for size in sizes_list|slice:":4" %}
@@ -573,7 +572,6 @@
                 <span class="material-symbols-outlined text-[12px]">edit</span>
                 متوفر تعديل المقاسات حسب الطلب
             </p>
-            {% endif %}
             
             <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
                 <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
