@@ -388,6 +388,28 @@
 .size-btn.selected {
     animation: sizeSelect 0.3s ease;
 }
+        .category-pill {
+            flex-shrink: 0;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            background: #eae8e5;
+            color: #1b1c1a;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .category-pill.active {
+            background: #775a19 !important;
+            color: #ffffff !important;
+        }
+
+        .category-pill:hover:not(.active) {
+            background: #d5d3d0;
+        }
+
     </style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
@@ -511,12 +533,10 @@
                         <a class="category-pill" href="{% url 'home' %}#catalog-section">
                             جميع المعروضات
                         </a>
-                        {% for cat in categories %}
-                        <a class="category-pill {% if cat.slug == category.slug %}active{% endif %}" href="{% url 'products_by_category' cat.slug %}">
-                            {{ cat.name }}
+                        <a class="category-pill {% if cat.slug == category.slug %}active{% endif %}" href="{% url 'products_by_category' category.slug %}">
+                            {{ category.name }}
                         </a>
-                        {% endfor %}
-                        <a class="category-pill" href="{% url 'handles' %}">
+                        <a class="category-pill active" href="{% url 'handles' %}">
                             المقابض
                         </a>
                     </div>
@@ -540,7 +560,7 @@
             {% endif %}
         </div>
         <div class="p-3 sm:p-4 text-right">
-            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors heading-text" style="font-size:16px;font-weight:500;">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors heading-text truncate " title="{{ product.name }}" style="font-size:16px;font-weight:500;">
                 {{ product.name }}
             </h3>
             
