@@ -18,7 +18,7 @@ from django.core.paginator import Paginator
 
 
 def home(request):
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('created_at')
     products = Product.objects.all().order_by('-is_featured')
     
     
@@ -51,7 +51,7 @@ def login_view(request):
 
 
 def about(request):
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('created_at')
     
     
     context = {
@@ -72,7 +72,7 @@ def product_detail(request, slug):
     ).exclude(id=product.id)[:4]
     
     suggested_handles = Handle.objects.all().order_by('-created_at')[:4]
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('created_at')
     
     
     context = {
