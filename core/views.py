@@ -88,7 +88,7 @@ def product_detail(request, slug):
 def products_by_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     products = Product.objects.filter(category=category)
-    categories = Category.objects.all()
+    categories = Category.objects.all().order_by('created_at')
     
     context = {
         'category': category,
