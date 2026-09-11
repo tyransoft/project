@@ -388,6 +388,17 @@
 .size-btn.selected {
     animation: sizeSelect 0.3s ease;
 }
+.category-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+
+        .category-scroll::-webkit-scrollbar {
+            display: none;
+        }
         .category-pill {
             flex-shrink: 0;
             padding: 8px 20px;
@@ -529,87 +540,48 @@
                         </div>
                     </div>
 
+                   <section class="section-padding bg-surface-container-low" id="catalog-section">
+                <div class="max-w-7xl mx-auto px-4">
+                
+
                     <div class="category-scroll" id="category-filter-bar">
-                        <a class="category-pill" href="{% url 'home' %}#catalog-section">
+                        <button class="category-pill active" onclick="setCategory('all', this)" data-url="{% url 'home' %}#catalog-section">
                             جميع المعروضات
-                        </a>
-                        <a class="category-pill {% if cat.slug == category.slug %}active{% endif %}" href="{% url 'products_by_category' category.slug %}">
+                        </button>
+                        <button class="category-pill" onclick="setCategory('{{ category.slug }}', this)" data-url="{% url 'products_by_category' slug=category.slug %}">
                             {{ category.name }}
-                        </a>
-                        
+                        </button>
+                         
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pt-6" id="products-grid">
+                    <div class="product-grid pt-6" id="products-grid">
                         {% for product in products %}
-
-<article class="product-card group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg border border-surface-variant" data-title="{{ product.name }}">
-    <a href="{{ product.get_absolute_url }}" class="block">
-        <div class="product-image">
-            {% if product.image1 %}
-            <img src="{{ product.image1.url }}" alt="{{ product.name }}" loading="lazy"/>
-            {% else %}
-            <div class="w-full h-full flex items-center justify-center bg-surface-container-high">
-                <span class="material-symbols-outlined text-[48px] text-outline">image</span>
-            </div>
-            {% endif %}
-            <span class="absolute top-3 right-3 font-label-sm text-label-sm bg-secondary text-surface-bright px-2 py-0.5 rounded" style="letter-spacing:0;">{{ category.name }}</span>
-            {% if product.is_featured %}
-            <span class="absolute top-3 left-3 font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-0.5 rounded">مميز</span>
-            {% endif %}
-        </div>
-        <div class="p-3 sm:p-4 text-right">
-            <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors heading-text truncate " title="{{ product.name }}" style="font-size:16px;font-weight:500;">
-                {{ product.name }}
-            </h3>
-            
-{% with sizes_list=product.get_sizes_list %}
-{% with count=sizes_list|length %}
-<div class="grid grid-cols-2 gap-1.5 mt-2 max-w-[200px] min-h-[72px] content-start">
-    {% for size in sizes_list|slice:":4" %}
-    <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
-                   border-secondary/30 bg-secondary/5 text-secondary 
-                   hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
-                   active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40
-                   w-full text-center h-[32px]"
-            onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
-        {{ size }}
-        <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-    </button>
-    {% endfor %}
-    
-    {% if count == 1 %}
-        <div class="h-[32px] invisible"></div>
-        <div class="h-[32px] invisible"></div>
-        <div class="h-[32px] invisible"></div>
-    {% elif count == 2 %}
-        <div class="h-[32px] invisible"></div>
-        <div class="h-[32px] invisible"></div>
-    {% elif count == 3 %}
-        <div class="h-[32px] invisible"></div>
-    {% endif %}
-</div>
-{% endwith %}
-{% endwith %}
-
-            <p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
-                <span class="material-symbols-outlined text-[12px]">edit</span>
-                متوفر تعديل المقاسات حسب الطلب
-            </p>
-            
-            <div class="flex items-center justify-between pt-2 mt-2 border-t border-surface-container-high">
-                <span class="inline-flex items-center gap-1 text-xs text-on-surface-variant">
-                    <span class="material-symbols-outlined text-[14px] text-secondary">chat</span>
-                    {{ product.inquiry_count }}
-                </span>
-                <div class="flex flex-wrap gap-2 pt-2">
-                <a class="h-12 px-5 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg" href="{{ product.get_absolute_url }}" style="letter-spacing:0;font-size:13px;">
-                     للتفاصيل
-                </a>
+                        <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg" data-category="smart" data-code="BY-LK550" data-title="{{ product.name }}">
+                            <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ product.name }}" src="{{ product.image1.url }}"/>
+                                <span class="absolute top-3 right-3 font-label-sm text-label-sm bg-secondary text-surface-bright px-2 py-1 rounded" style="letter-spacing:0;">{{ product.category }}</span>
+                                <span class="absolute top-3 left-3 font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-1 rounded" dir="ltr" style="letter-spacing:0;">{{ product.code }}</span>
+                            </div>
+                            <div class="p-4 flex flex-col flex-1 justify-between space-y-3 text-right">
+                                <h3 class="heading-text" style="letter-spacing:0;font-size:18px;font-weight:500;">
+                                    {{ product.name }}
+                                </h3>
+                                <p class="body-text" style="letter-spacing:0;font-size:15px;color:#46474b;">
+                                    {{ product.short_description }}
+                                </p>
+                                <div class="flex flex-wrap gap-2 pt-2">
+                                    <a class="h-12 px-5 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg" href="{{ product.get_absolute_url }}" style="letter-spacing:0;font-size:13px;">
+                                        <span class="material-symbols-outlined ml-2 text-[18px]">chat</span>
+                                        للتفاصيل والاستفسار
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                    
                 </div>
-            </div>
-        </div>
-    </a>
-</article>
+            </section>
                         {% empty %}
                         <div class="col-span-full text-center py-12">
                             <span class="material-symbols-outlined text-[48px] text-outline">inbox</span>
