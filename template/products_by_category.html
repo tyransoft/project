@@ -298,96 +298,10 @@
         @media (max-width: 767px) {
             .category-hero { min-height: 30vh; }
             .category-hero h1 { font-size: 28px !important; }
-            .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-            .product-card .p-4 { padding: 10px; }
-            .product-card h3 { font-size: 14px !important; }
         }
 
-        @media (max-width: 480px) {
-            .product-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-        }
-    /* ====== أنماط المقاسات كأزرار ====== */
-.size-btn {
-    cursor: pointer;
-    user-select: none;
-    min-width: 40px;
-    text-align: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 10px;
-    padding: 4px 8px;
-}
 
-.size-btn:hover {
-    transform: translateY(-1px);
-}
 
-.size-btn:active {
-    transform: scale(0.95) !important;
-}
-
-.size-btn.selected {
-    background: #775a19 !important;
-    color: #ffffff !important;
-    border-color: #775a19 !important;
-    box-shadow: 0 2px 12px rgba(119, 90, 25, 0.3);
-}
-
-.size-btn-more {
-    cursor: pointer;
-    user-select: none;
-    min-width: 40px;
-    text-align: center;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 10px;
-    padding: 4px 8px;
-}
-
-.size-btn-more:hover {
-    background: rgba(119, 90, 25, 0.08);
-    border-color: #775a19;
-    color: #775a19;
-}
-
-/* ====== تحسين العرض على الهاتف ====== */
-@media (max-width: 640px) {
-    .size-btn {
-        font-size: 9px;
-        padding: 3px 6px;
-        min-width: 32px;
-    }
-    .size-btn-more {
-        font-size: 9px;
-        padding: 3px 6px;
-        min-width: 32px;
-    }
-    .grid-cols-2 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .size-btn {
-        font-size: 8px;
-        padding: 2px 4px;
-        min-width: 28px;
-    }
-    .size-btn-more {
-        font-size: 8px;
-        padding: 2px 4px;
-        min-width: 28px;
-    }
-}
-
-/* ====== تأثير عند اختيار مقاس ====== */
-@keyframes sizeSelect {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.size-btn.selected {
-    animation: sizeSelect 0.3s ease;
-}
 .category-scroll {
             display: flex;
             gap: 8px;
@@ -420,12 +334,27 @@
         .category-pill:hover:not(.active) {
             background: #d5d3d0;
         }
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr;  
+    gap: 24px;
+}
 
+@media (min-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);   
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);   
+    }
+}
     </style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
 
-    <!-- ====== HEADER - نفس الرئيسية ====== -->
     <header class="fixed top-0 w-full z-50 nav-bar shadow-[0_2px_12px_rgba(0,0,0,0.15)]">
         <div class="navbar-height max-w-7xl mx-auto px-4 flex items-center justify-between">
             <a class="flex items-center gap-3" data-path="home" href="{% url 'home' %}">
@@ -516,8 +445,9 @@
                     </div>
                 </div>
             </section>
-            <section class="w-full py-8 sm:py-12 bg-surface">
-                <div class="max-w-7xl mx-auto px-4">
+                   <section class="section-padding bg-surface-container-low" id="catalog-section">
+
+            <div class="max-w-7xl mx-auto px-4">
                     
                     <!-- Breadcrumb & Search -->
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6">
@@ -540,7 +470,6 @@
                         </div>
                     </div>
 
-                   <section class="section-padding bg-surface-container-low" id="catalog-section">
                 <div class="max-w-7xl mx-auto px-4">
                 
 
@@ -555,32 +484,55 @@
                     </div>
 
                     <div class="product-grid pt-6" id="products-grid">
-                        {% for product in products %}
-                        <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg" data-category="smart" data-code="BY-LK550" data-title="{{ product.name }}">
-                            <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
-                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ product.name }}" src="{{ product.image1.url }}"/>
-                                <span class="absolute top-3 right-3 font-label-sm text-label-sm bg-secondary text-surface-bright px-2 py-1 rounded" style="letter-spacing:0;">{{ product.category }}</span>
-                                <span class="absolute top-3 left-3 font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-1 rounded" dir="ltr" style="letter-spacing:0;">{{ product.code }}</span>
-                            </div>
-                            <div class="p-4 flex flex-col flex-1 justify-between space-y-3 text-right">
-                                <h3 class="heading-text" style="letter-spacing:0;font-size:18px;font-weight:500;">
-                                    {{ product.name }}
-                                </h3>
-                                <p class="body-text" style="letter-spacing:0;font-size:15px;color:#46474b;">
-                                    {{ product.short_description }}
-                                </p>
-                                <div class="flex flex-wrap gap-2 pt-2">
-                                    <a class="h-12 px-5 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg" href="{{ product.get_absolute_url }}" style="letter-spacing:0;font-size:13px;">
-                                        <span class="material-symbols-outlined ml-2 text-[18px]">chat</span>
-                                        للتفاصيل والاستفسار
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+    {% for product in products %}
+    <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg" 
+             data-category="smart" 
+             data-code="{{ product.code }}" 
+             data-title="{{ product.name }}">
+        
+        <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
+            {% if product.image1 %}
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                 alt="{{ product.name }}" 
+                 src="{{ product.image1.url }}"/>
+            {% else %}
+            <div class="w-full h-full flex items-center justify-center bg-surface-container-high">
+                <span class="material-symbols-outlined text-[64px] text-outline">image</span>
+            </div>
+            {% endif %}
+            <span class="absolute top-3 right-3 font-label-sm text-label-sm bg-secondary text-surface-bright px-2 py-1 rounded" style="letter-spacing:0;">{{ product.category }}</span>
+            {% if product.code %}
+            <span class="absolute top-3 left-3 font-label-sm text-label-sm bg-secondary text-on-secondary px-2 py-1 rounded" dir="ltr" style="letter-spacing:0;">{{ product.code }}</span>
+            {% endif %}
+        </div>
+        
+        <div class="p-4 flex flex-col flex-1 justify-between space-y-3 text-right">
+            <h3 class="heading-text" style="letter-spacing:0;font-size:18px;font-weight:500;">
+                {{ product.name }}
+            </h3>
+            <p class="body-text" style="letter-spacing:0;font-size:15px;color:#46474b;">
+                {{ product.short_description }}
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+                <a class="h-12 px-5 bg-secondary text-on-secondary hover:bg-secondary-container hover:text-on-secondary-container transition-colors inline-flex items-center justify-center font-label-md text-label-md rounded-lg w-full" 
+                   href="{{ product.get_absolute_url }}" 
+                   style="letter-spacing:0;font-size:13px;">
+                    <span class="material-symbols-outlined ml-2 text-[18px]">chat</span>
+                    للتفاصيل والاستفسار
+                </a>
+            </div>
+        </div>
+    </article>
+    {% empty %}
+    <div class="col-span-full text-center py-12">
+        <span class="material-symbols-outlined text-[48px] text-outline">inbox</span>
+        <p class="font-body-lg text-body-lg text-on-surface-variant mt-2 body-text">لا توجد منتجات في هذه الفئة حالياً</p>
+        <a href="{% url 'home' %}#catalog-section" class="text-secondary hover:text-secondary-container transition-colors mt-2 inline-block">العودة إلى المعرض</a>
+    </div>
+    {% endfor %}
+</div>
                     
                 </div>
-            </section>
                         {% empty %}
                         <div class="col-span-full text-center py-12">
                             <span class="material-symbols-outlined text-[48px] text-outline">inbox</span>
