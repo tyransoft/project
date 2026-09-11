@@ -536,9 +536,7 @@
                         <a class="category-pill {% if cat.slug == category.slug %}active{% endif %}" href="{% url 'products_by_category' category.slug %}">
                             {{ category.name }}
                         </a>
-                        <a class="category-pill active" href="{% url 'handles' %}">
-                            المقابض
-                        </a>
+                        
                     </div>
 
                     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pt-6" id="products-grid">
@@ -565,29 +563,28 @@
             </h3>
             
             {% with sizes_list=product.get_sizes_list %}
-            <div class="grid grid-cols-2 gap-1.5 mt-2 max-w-[200px]">
-                {% for size in sizes_list|slice:":4" %}
-                <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
-                               border-secondary/30 bg-secondary/5 text-secondary 
-                               hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
-                               active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40
-                               w-full text-center"
-                        onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
-                    {{ size }}
-                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                </button>
-                {% endfor %}
-                {% if sizes_list|length > 4 %}
-                <button class="size-btn-more inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-lg 
-                               border-2 border-dashed border-secondary/25 text-secondary/50 
-                               hover:border-secondary/50 hover:text-secondary/70 transition-all duration-200 cursor-pointer select-none
-                               w-full text-center col-span-2"
-                        onclick="event.preventDefault(); event.stopPropagation(); showMoreSizes('{{ product.id }}')">
-                    +{{ sizes_list|length|add:"-4" }} مقاسات إضافية
-                </button>
-                {% endif %}
-            </div>
-            {% endwith %}
+{% with count=sizes_list|length %}
+<div class="grid gap-1.5 mt-2 max-w-[200px]
+            {% if count == 1 %}grid-cols-1
+            {% elif count == 2 %}grid-cols-2
+            {% elif count == 3 %}grid-cols-3
+            {% else %}grid-cols-2{% endif %}">
+    {% for size in sizes_list|slice:":4" %}
+    <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
+                   border-secondary/30 bg-secondary/5 text-secondary 
+                   hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
+                   active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40
+                   w-full text-center"
+            onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
+        {{ size }}
+        <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+    </button>
+    {% endfor %}
+    
+</div>
+{% endwith %}
+{% endwith %}
+
             <p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
                 <span class="material-symbols-outlined text-[12px]">edit</span>
                 متوفر تعديل المقاسات حسب الطلب
