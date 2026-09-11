@@ -562,25 +562,31 @@
                 {{ product.name }}
             </h3>
             
-            {% with sizes_list=product.get_sizes_list %}
+{% with sizes_list=product.get_sizes_list %}
 {% with count=sizes_list|length %}
-<div class="grid gap-1.5 mt-2 max-w-[200px]
-            {% if count == 1 %}grid-cols-1
-            {% elif count == 2 %}grid-cols-2
-            {% elif count == 3 %}grid-cols-3
-            {% else %}grid-cols-2{% endif %}">
+<div class="grid grid-cols-2 gap-1.5 mt-2 max-w-[200px] min-h-[72px] content-start">
     {% for size in sizes_list|slice:":4" %}
     <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
                    border-secondary/30 bg-secondary/5 text-secondary 
                    hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
                    active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40
-                   w-full text-center"
+                   w-full text-center h-[32px]"
             onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
         {{ size }}
         <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
     </button>
     {% endfor %}
     
+    {% if count == 1 %}
+        <div class="h-[32px] invisible"></div>
+        <div class="h-[32px] invisible"></div>
+        <div class="h-[32px] invisible"></div>
+    {% elif count == 2 %}
+        <div class="h-[32px] invisible"></div>
+        <div class="h-[32px] invisible"></div>
+    {% elif count == 3 %}
+        <div class="h-[32px] invisible"></div>
+    {% endif %}
 </div>
 {% endwith %}
 {% endwith %}
