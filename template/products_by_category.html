@@ -17,7 +17,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..900&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1709366380132503');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1709366380132503&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->    
     <style>
         html, body { margin: 0; padding: 0; }
         body { 
@@ -351,6 +367,87 @@
         grid-template-columns: repeat(3, 1fr);   
     }
 }
+.size-btn {
+    cursor: pointer;
+    user-select: none;
+    min-width: 40px;
+    text-align: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 10px;
+    padding: 4px 8px;
+}
+
+.size-btn:hover {
+    transform: translateY(-1px);
+}
+
+.size-btn:active {
+    transform: scale(0.95) !important;
+}
+
+.size-btn.selected {
+    background: #775a19 !important;
+    color: #ffffff !important;
+    border-color: #775a19 !important;
+    box-shadow: 0 2px 12px rgba(119, 90, 25, 0.3);
+}
+
+.size-btn-more {
+    cursor: pointer;
+    user-select: none;
+    min-width: 40px;
+    text-align: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 10px;
+    padding: 4px 8px;
+}
+
+.size-btn-more:hover {
+    background: rgba(119, 90, 25, 0.08);
+    border-color: #775a19;
+    color: #775a19;
+}
+
+/* ====== تحسين العرض على الهاتف ====== */
+@media (max-width: 640px) {
+    .size-btn {
+        font-size: 9px;
+        padding: 3px 6px;
+        min-width: 32px;
+    }
+    .size-btn-more {
+        font-size: 9px;
+        padding: 3px 6px;
+        min-width: 32px;
+    }
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .size-btn {
+        font-size: 8px;
+        padding: 2px 4px;
+        min-width: 28px;
+    }
+    .size-btn-more {
+        font-size: 8px;
+        padding: 2px 4px;
+        min-width: 28px;
+    }
+}
+
+/* ====== تأثير عند اختيار مقاس ====== */
+@keyframes sizeSelect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.size-btn.selected {
+    animation: sizeSelect 0.3s ease;
+}
     </style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
@@ -485,11 +582,12 @@
 
                     <div class="product-grid pt-6" id="products-grid">
     {% for product in products %}
+
     <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg" 
              data-category="smart" 
              data-code="{{ product.code }}" 
              data-title="{{ product.name }}">
-        
+        <a href="{{product.getabsolute_url}}">
         <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
             {% if product.image1 %}
             <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
@@ -510,6 +608,34 @@
             <h3 class="heading-text" style="letter-spacing:0;font-size:18px;font-weight:500;">
                 {{ product.name }}
             </h3>
+              {% with sizes_list=product.get_sizes_list %}
+            <div class="grid grid-cols-2 gap-1.5 mt-2 max-w-[200px]">
+                {% for size in sizes_list|slice:":4" %}
+                <button class="size-btn group relative px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-200 
+                               border-secondary/30 bg-secondary/5 text-secondary 
+                               hover:bg-secondary hover:text-white hover:border-secondary hover:shadow-md 
+                               active:scale-95 focus:outline-none focus:ring-2 focus:ring-secondary/40
+                               w-full text-center"
+                        onclick="event.preventDefault(); selectSize(this, '{{ size }}')">
+                    {{ size }}
+                    <span class="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </button>
+                {% endfor %}
+                {% if sizes_list|length > 4 %}
+                <button class="size-btn-more inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium rounded-lg 
+                               border-2 border-dashed border-secondary/25 text-secondary/50 
+                               hover:border-secondary/50 hover:text-secondary/70 transition-all duration-200 cursor-pointer select-none
+                               w-full text-center col-span-2"
+                        onclick="event.preventDefault(); event.stopPropagation(); showMoreSizes('{{ product.id }}')">
+                    +{{ sizes_list|length|add:"-4" }} مقاسات إضافية
+                </button>
+                {% endif %}
+            </div>
+            {% endwith %}
+            <p class="text-[10px] text-on-surface-variant/60 mt-1.5 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">edit</span>
+                متوفر تعديل المقاسات حسب الطلب
+            </p>
             <p class="body-text" style="letter-spacing:0;font-size:15px;color:#46474b;">
                 {{ product.short_description }}
             </p>
@@ -522,6 +648,7 @@
                 </a>
             </div>
         </div>
+        </a>
     </article>
     {% empty %}
     <div class="col-span-full text-center py-12">
