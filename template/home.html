@@ -660,6 +660,7 @@ src="https://www.facebook.com/tr?id=1709366380132503&ev=PageView&noscript=1"
 
                     <div class="product-grid pt-6" id="products-grid">
                         {% for product in products %}
+                        <a href="{{product.get_absolute_url}}">
                         <article class="product-item group flex flex-col bg-surface-container-lowest overflow-hidden transition-all duration-300 hover:shadow-xl rounded-lg" data-category="smart" data-code="BY-LK550" data-title="{{ product.name }}">
                             <div class="relative aspect-[4/5] bg-surface-container overflow-hidden">
                                 <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="{{ product.name }}" src="{{ product.image1.url }}"/>
@@ -681,6 +682,7 @@ src="https://www.facebook.com/tr?id=1709366380132503&ev=PageView&noscript=1"
                                 </div>
                             </div>
                         </article>
+                        </a>
                         {% endfor %}
                     </div>
                     <div class="hidden py-12 text-center" id="no-results">
